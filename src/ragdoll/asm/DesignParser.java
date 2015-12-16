@@ -8,6 +8,7 @@ import org.objectweb.asm.Opcodes;
 public class DesignParser {
 	public static void main(String[] args) throws IOException {
 		for (String className : args) {
+			
 			ClassReader reader = new ClassReader(className);
 			
 			ClassVisitor declVisitor = new ClassDeclarationVisitor(Opcodes.ASM5);

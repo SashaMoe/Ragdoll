@@ -8,6 +8,9 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
+import ragdoll.code.api.IMethod;
+import ragdoll.code.impl.Method;
+
 public class ClassMethodVisitor extends ClassVisitor {
 
 	public ClassMethodVisitor(int arg0) {
@@ -45,6 +48,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 		}
 
 		System.out.println("Method " + level + "	" + returnType + "	" + name + "	" + sTypes.toString());
+		IMethod method = new Method();
 
 		return toDecorate;
 	}
