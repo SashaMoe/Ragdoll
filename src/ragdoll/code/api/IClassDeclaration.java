@@ -1,5 +1,5 @@
 package ragdoll.code.api;
 
-public class IClassDeclaration {
+public interface IClassDeclaration extends IClassComponent {
 
 }
