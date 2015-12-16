@@ -11,3 +11,5 @@ CSSE374 Term Project
 | Sasha          | Setup interfaces and packages for ragdoll.code     | 5m     |
 | yangh1         | Setup packages for ragdoll.code.visitor & fix typo | 10m    |
 | zxqdx          | Create Class' classes                              | 10m    |
+| yangh1         | Create ClassDeclaration constructor and fields     | 10m    |
+| Sasha          | Create Method constructor and fields               | 10m    |

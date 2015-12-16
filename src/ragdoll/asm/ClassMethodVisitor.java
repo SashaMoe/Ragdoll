@@ -1,6 +1,7 @@
 package ragdoll.asm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.objectweb.asm.ClassVisitor;
@@ -47,8 +48,10 @@ public class ClassMethodVisitor extends ClassVisitor {
 			level = "default";
 		}
 
+		List<String> exceptionList = new ArrayList<>(Arrays.asList(exceptions));
+		
 		System.out.println("Method " + level + "	" + returnType + "	" + name + "	" + sTypes.toString());
-		IMethod method = new Method();
+		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 
 		return toDecorate;
 	}
