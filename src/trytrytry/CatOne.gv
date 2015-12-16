@@ -1,0 +1,10 @@
+digraph G {
+  meow -> parse -> execute;
+  meow -> init;
+  meow -> cleanup;
+  execute -> make_string;
+  execute -> printf
+  init -> make_string;
+  meow -> printf;
+  execute -> compare;
+}
