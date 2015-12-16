@@ -1,9 +1,30 @@
 package ragdoll.code.impl;
 
+
+import java.util.List;
+
 import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class ClassDeclaration implements IClassDeclaration {
+
+	private boolean isAbstract;
+	private boolean isInterface;
+	private String className;
+	private String nameOfSuperClass;
+	private List<String> nameOfInterfaces;
+	
+	
+	public ClassDeclaration(boolean isAbstract, boolean isInterface, String className, String nameOfSuperClass,
+			List<String> nameOfInterfaces) {
+		super();
+		this.isAbstract = isAbstract;
+		this.isInterface = isInterface;
+		this.className = className;
+		this.nameOfSuperClass = nameOfSuperClass;
+		this.nameOfInterfaces = nameOfInterfaces;
+	}
+
 
 	public void accept(IVisitor v) {
 		// TODO Auto-generated method stub
