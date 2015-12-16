@@ -1,5 +1,9 @@
 package ragdoll.code.api;
 
-public interface IClass extends IClassComponent {
-	
+import java.util.Collection;
+
+import ragdoll.code.visitor.api.ITraverser;
+
+public interface IClass extends ITraverser{
+	Collection<IClassComponent> getComponents(); 
 }
