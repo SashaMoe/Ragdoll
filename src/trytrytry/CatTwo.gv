@@ -1,0 +1,19 @@
+digraph G {
+        fontname = "Bitstream Vera Sans"
+        fontsize = 16
+
+        node [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 16
+                shape = "record"
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 16
+        ]
+
+        Animal [
+                label = <{<I>Animal</I>|+ name : string<br/>+ age : int<br/>|+ die() : void}>
+        ]
+}

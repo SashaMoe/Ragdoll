@@ -39,11 +39,11 @@ public class GVOutputStream implements IVisitor {
 
 	public void visit(IClass c) {
 		appendBufferLine(c.getName() + " [");
-		this.buffer.append("label = \"{" + c.getName() + "|");
+		this.buffer.append("label = <{" + c.getName() + "|");
 	}
 
 	public void postVisit(IClass c) {
-		appendBufferLine("}\"");
+		appendBufferLine("}>");
 		appendBufferLine("]");
 	}
 
@@ -61,7 +61,7 @@ public class GVOutputStream implements IVisitor {
 			} else if (accessLevel.equals("default")) {
 				accessModifier = '~';
 			}
-			this.buffer.append(accessModifier + " " + f.getFieldName() + " : " + f.getType() + "\\l");
+			this.buffer.append(accessModifier + " " + f.getFieldName() + " : " + f.getType() + "<br/>");
 		}
 		this.buffer.append("|");
 	}
@@ -89,7 +89,7 @@ public class GVOutputStream implements IVisitor {
 				pCount++;
 			}
 			String rTypeName = getLastPartOfType(m.getReturnType());
-			this.buffer.append("): " + rTypeName + "\\l");
+			this.buffer.append("): " + rTypeName + "<br/>");
 		}
 	}
 	
@@ -99,7 +99,17 @@ public class GVOutputStream implements IVisitor {
 	}
 
 	public void visit(IClassDeclaration cd) {
-		// TODO Auto-generated method stub
+		if(cd.isInterface()) {
+			buffer.append("«interface»<br/>");
 
+		}else if(cd.isAbstract()) {
+			buffer.append("«abstract»<br/>");
+		}
+		buffer.append(cd.getClassName()+"|");
+		
+	}
+	
+	public void postVisit(IClassDeclaration cd){
+		buffer.append("");
 	}
 }
