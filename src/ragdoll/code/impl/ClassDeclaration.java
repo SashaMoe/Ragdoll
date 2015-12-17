@@ -1,6 +1,5 @@
 package ragdoll.code.impl;
 
-
 import java.util.List;
 
 import ragdoll.code.api.IClassDeclaration;
@@ -13,8 +12,7 @@ public class ClassDeclaration implements IClassDeclaration {
 	private String className;
 	private String nameOfSuperClass;
 	private List<String> nameOfInterfaces;
-	
-	
+
 	public ClassDeclaration(boolean isAbstract, boolean isInterface, String className, String nameOfSuperClass,
 			List<String> nameOfInterfaces) {
 		super();
@@ -25,10 +23,28 @@ public class ClassDeclaration implements IClassDeclaration {
 		this.nameOfInterfaces = nameOfInterfaces;
 	}
 
+	public boolean isAbstract() {
+		return isAbstract;
+	}
+
+	public boolean isInterface() {
+		return isInterface;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public String getNameOfSuperClass() {
+		return nameOfSuperClass;
+	}
+
+	public List<String> getNameOfInterfaces() {
+		return nameOfInterfaces;
+	}
 
 	public void accept(IVisitor v) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

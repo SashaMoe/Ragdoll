@@ -18,13 +18,6 @@ public class Class implements IClass {
 	private IClassDeclaration declaration;
     
 	public void accept(IVisitor v) {
-		// TODO Auto-generated method stub
 		
 	}
-
-	public Collection<IClassComponent> getComponents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
