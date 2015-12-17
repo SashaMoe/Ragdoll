@@ -9,6 +9,7 @@ import ragdoll.code.api.IClassComponent;
 import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.api.IField;
 import ragdoll.code.api.IMethod;
+import ragdoll.code.visitor.api.ITraverser;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class Class implements IClass {
