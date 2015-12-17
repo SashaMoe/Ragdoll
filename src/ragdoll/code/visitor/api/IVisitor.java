@@ -7,6 +7,7 @@ import ragdoll.code.api.IMethod;
 
 public interface IVisitor {
 	void visit(IClass c);
+	public void postVisit(IClass c);
 	void visit(IField f);
 	void visit(IMethod m);
 	void visit(IClassDeclaration cd);

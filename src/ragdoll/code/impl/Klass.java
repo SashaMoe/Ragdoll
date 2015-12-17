@@ -1,5 +1,6 @@
 package ragdoll.code.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,23 +13,25 @@ import ragdoll.code.api.IMethod;
 import ragdoll.code.visitor.api.ITraverser;
 import ragdoll.code.visitor.api.IVisitor;
 
-public class Class implements IClass {
+public class Klass implements IClass {
 	private String name;
-    private List<IMethod> methodList;
-    private HashMap<String, IField> fieldMap;
+	private List<IMethod> methodList;
+	private HashMap<String, IField> fieldMap;
 	private IClassDeclaration declaration;
-    
-	public Class(String name) {
+
+	public Klass(String name) {
 		super();
 		this.name = name;
+		this.methodList = new ArrayList<>();
+		this.fieldMap = new HashMap<>();
 	}
 
-	public void setMethodList(List<IMethod> methodList) {
-		this.methodList = methodList;
+	public void addMethod(IMethod method) {
+		this.methodList.add(method);
 	}
 
-	public void setFieldMap(HashMap<String, IField> fieldMap) {
-		this.fieldMap = fieldMap;
+	public void addField(IField field) {
+		this.fieldMap.put(field.getFieldName(), field);
 	}
 
 	public void setDeclaration(IClassDeclaration declaration) {
@@ -36,10 +39,10 @@ public class Class implements IClass {
 	}
 
 	public void accept(IVisitor v) {
-		
+
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
 }

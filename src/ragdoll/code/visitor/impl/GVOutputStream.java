@@ -35,7 +35,13 @@ public class GVOutputStream implements IVisitor {
 	}
 
 	public void visit(IClass c) {
-		appendBufferLine("");
+		appendBufferLine(c.getName()+" [");
+		this.buffer.append("label = \"{" + c.getName() + "|");
+	}
+	
+	public void postVisit(IClass c) {
+		appendBufferLine("}\"");
+		appendBufferLine("]");
 	}
 
 	public void visit(IField f) {

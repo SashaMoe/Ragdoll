@@ -9,19 +9,22 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
+import ragdoll.code.api.IClass;
 import ragdoll.code.api.IMethod;
 import ragdoll.code.impl.Method;
 
 public class ClassMethodVisitor extends ClassVisitor {
 
-	public ClassMethodVisitor(int arg0) {
+	private IClass c;
+
+	public ClassMethodVisitor(int arg0, IClass c) {
 		super(arg0);
-		// TODO Auto-generated constructor stub
+		this.c = c;
 	}
 
-	public ClassMethodVisitor(int arg0, ClassVisitor arg1) {
+	public ClassMethodVisitor(int arg0, ClassVisitor arg1, IClass c) {
 		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
+		this.c = c;
 	}
 
 	@Override
@@ -49,10 +52,9 @@ public class ClassMethodVisitor extends ClassVisitor {
 		}
 
 		List<String> exceptionList = new ArrayList<>(Arrays.asList(exceptions));
-		
 		System.out.println("Method " + level + "	" + returnType + "	" + name + "	" + sTypes.toString());
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
-
+		this.c.addMethod(method);
 		return toDecorate;
 	}
 

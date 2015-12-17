@@ -12,21 +12,22 @@ import ragdoll.asm.ClassDeclarationVisitor;
 import ragdoll.asm.ClassFieldVisitor;
 import ragdoll.asm.ClassMethodVisitor;
 import ragdoll.code.api.IClass;
-import ragdoll.code.impl.Class;
+import ragdoll.code.impl.Klass;
 
 public class Ragdoll {
 	public static void main(String[] args) throws IOException {
-		List<IClass> IClasses = new ArrayList<IClass>();
+		List<IClass> iClasses = new ArrayList<IClass>();
 		
 		for (String className : args) {
-			IClass newClass = new Class(className); 
+			IClass newClass = new Klass(className); 
 			ClassReader reader = new ClassReader(className);
 
-			ClassVisitor declVisitor = new ClassDeclarationVisitor(Opcodes.ASM5);
-			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, declVisitor);
-			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor);
+			ClassVisitor declVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, newClass);
+			ClassVisitor fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, declVisitor, newClass);
+			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, newClass);
 
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
+			iClasses.add(newClass);
 		}
 	}
 }
