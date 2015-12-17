@@ -20,3 +20,4 @@ CSSE374 Term Project
 | zxqdx          | Added visit logic for Fields and Methods.                                           | 10m    |
 | yangh1         | implement visit logic for class declaration                                         | 10m    |
 | Sasha          | implement accept logics                                                             | 10m    |
+| zxqdx          | Added main() for it to generate gv code                                             | 10m    |

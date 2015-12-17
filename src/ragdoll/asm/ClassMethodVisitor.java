@@ -53,7 +53,6 @@ public class ClassMethodVisitor extends ClassVisitor {
 
 		List<String> exceptionList = exceptions == null ? new ArrayList<>()
 				: new ArrayList<>(Arrays.asList(exceptions));
-		System.out.println("Method " + level + "	" + returnType + "	" + name + "	" + sTypes.toString());
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 		this.c.addMethod(method);
 		return toDecorate;

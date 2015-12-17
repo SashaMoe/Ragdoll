@@ -27,7 +27,6 @@ public class ClassDeclarationVisitor extends ClassVisitor {
 
 	@Override
 	public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
-		System.out.println("Class: " + name + " extends " + superName + " implements " + Arrays.toString(interfaces));
 		boolean isAbstract = (access & Opcodes.ACC_ABSTRACT) != 0;
 		boolean isInterface = (access & Opcodes.ACC_INTERFACE) != 0;
 		List<String> intfArr = new ArrayList<>(Arrays.asList(interfaces));

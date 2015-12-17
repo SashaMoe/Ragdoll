@@ -35,8 +35,8 @@ public class GVOutputStream implements IVisitor {
 	}
 
 	public void visit(IClass c) {
-		appendBufferLine(c.getName() + " [");
-		this.sb.append("label = <{" + c.getName() + "|");
+		appendBufferLine('"' + c.getName() + '"' + " [");
+		this.sb.append("label = <{");
 	}
 
 	public void postVisit(IClass c) {
@@ -49,7 +49,8 @@ public class GVOutputStream implements IVisitor {
 
 		IClassDeclaration cd = c.getDeclaration();
 		for (String interfaceName : cd.getNameOfInterfaces()) {
-			appendBufferLine(cd.getClassName() + " -> " + interfaceName);
+			appendBufferLine('"' + packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
+					+ packagifyClassName(interfaceName) + '"');
 		}
 
 		appendBufferLine("edge [");
@@ -57,7 +58,11 @@ public class GVOutputStream implements IVisitor {
 		appendBufferLine("arrowhead = \"empty\"");
 		appendBufferLine("]");
 
-		appendBufferLine(cd.getClassName() + " -> " + cd.getNameOfSuperClass());
+		if (!packagifyClassName(cd.getNameOfSuperClass()).equals("java.lang.Object")) {
+			appendBufferLine('"' + packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
+					+ packagifyClassName(cd.getNameOfSuperClass()) + '"');
+		}
+
 	}
 
 	public void visit(IField f) {
@@ -80,6 +85,9 @@ public class GVOutputStream implements IVisitor {
 	}
 
 	public void visit(IMethod m) {
+		if (m.getMethodName().contains("<")) {
+			return;
+		}
 		String accessLevel = m.getAccessLevel();
 		char accessModifier = '\0';
 		if (accessLevel.equals("public")) {
@@ -96,17 +104,12 @@ public class GVOutputStream implements IVisitor {
 		int pCount = 0;
 		for (String pType : m.getParamTypes()) {
 			String pTypeName = getLastPartOfType(pType);
-			this.sb.append(pTypeName.toLowerCase().charAt(0) + pCount + ": ");
+			this.sb.append(String.valueOf(pTypeName.toLowerCase().charAt(0)) + pCount + ": ");
 			this.sb.append(pTypeName);
 			pCount++;
 		}
 		String rTypeName = getLastPartOfType(m.getReturnType());
 		this.sb.append("): " + rTypeName + "<br/>");
-	}
-
-	private String getLastPartOfType(String type) {
-		String[] typeParts = type.split(".");
-		return typeParts[typeParts.length - 1];
 	}
 
 	public void visit(IClassDeclaration cd) {
@@ -116,8 +119,19 @@ public class GVOutputStream implements IVisitor {
 		} else if (cd.isAbstract()) {
 			sb.append("«abstract»<br/>");
 		}
-		sb.append(cd.getClassName() + "|");
+		sb.append(packagifyClassName(cd.getClassName()));
+		if (!cd.isInterface()) {
+			sb.append("|");
+		}
+	}
 
+	private String getLastPartOfType(String type) {
+		String[] typeParts = type.split("\\.");
+		return typeParts[typeParts.length - 1];
+	}
+
+	private String packagifyClassName(String className) {
+		return className.replaceAll("[/]", ".");
 	}
 
 	@Override
