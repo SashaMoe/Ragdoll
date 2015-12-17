@@ -1,8 +1,5 @@
 package ragdoll.code.visitor.impl;
 
-import java.util.HashMap;
-import java.util.List;
-
 import ragdoll.code.api.IClass;
 import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.api.IField;
@@ -11,10 +8,10 @@ import ragdoll.code.visitor.api.IVisitor;
 
 public class GVOutputStream implements IVisitor {
 
-	private StringBuffer buffer;
+	private StringBuffer sb;
 
 	public GVOutputStream() {
-		this.buffer = new StringBuffer();
+		this.sb = new StringBuffer();
 	}
 
 	public void initBuffer() {
@@ -34,82 +31,97 @@ public class GVOutputStream implements IVisitor {
 	}
 
 	private void appendBufferLine(String s) {
-		this.buffer.append(s + "\n");
+		this.sb.append(s + "\n");
 	}
 
 	public void visit(IClass c) {
 		appendBufferLine(c.getName() + " [");
-		this.buffer.append("label = <{" + c.getName() + "|");
+		this.sb.append("label = <{" + c.getName() + "|");
 	}
 
 	public void postVisit(IClass c) {
 		appendBufferLine("}>");
 		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"dashed\"");
+		appendBufferLine("arrowhead = \"empty\"");
+		appendBufferLine("]");
+
+		IClassDeclaration cd = c.getDeclaration();
+		for (String interfaceName : cd.getNameOfInterfaces()) {
+			appendBufferLine(cd.getClassName() + " -> " + interfaceName);
+		}
+
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"empty\"");
+		appendBufferLine("]");
+
+		appendBufferLine(cd.getClassName() + " -> " + cd.getNameOfSuperClass());
 	}
 
-	public void visit(HashMap<String, IField> fs) {
-		for (String fieldName : fs.keySet()) {
-			IField f = fs.get(fieldName);
-			String accessLevel = f.getAccessLevel();
-			char accessModifier = '\0';
-			if (accessLevel.equals("public")) {
-				accessModifier = '+';
-			} else if (accessLevel.equals("private")) {
-				accessModifier = '-';
-			} else if (accessLevel.equals("protected")) {
-				accessModifier = '#';
-			} else if (accessLevel.equals("default")) {
-				accessModifier = '~';
-			}
-			this.buffer.append(accessModifier + " " + f.getFieldName() + " : " + f.getType() + "<br/>");
+	public void visit(IField f) {
+		String accessLevel = f.getAccessLevel();
+		char accessModifier = '\0';
+		if (accessLevel.equals("public")) {
+			accessModifier = '+';
+		} else if (accessLevel.equals("private")) {
+			accessModifier = '-';
+		} else if (accessLevel.equals("protected")) {
+			accessModifier = '#';
+		} else if (accessLevel.equals("default")) {
+			accessModifier = '~';
 		}
-		this.buffer.append("|");
+		this.sb.append(accessModifier + " " + f.getFieldName() + " : " + f.getType() + "<br/>");
 	}
 
-	public void visit(List<IMethod> ms) {
-		for (IMethod m : ms) {
-			String accessLevel = m.getAccessLevel();
-			char accessModifier = '\0';
-			if (accessLevel.equals("public")) {
-				accessModifier = '+';
-			} else if (accessLevel.equals("private")) {
-				accessModifier = '-';
-			} else if (accessLevel.equals("protected")) {
-				accessModifier = '#';
-			} else if (accessLevel.equals("default")) {
-				accessModifier = '~';
-			}
-			this.buffer.append(accessModifier + " " + m.getMethodName());
-			this.buffer.append("(");
-			int pCount = 0;
-			for (String pType : m.getParamTypes()) {
-				String pTypeName = getLastPartOfType(pType);
-				this.buffer.append(pTypeName.toLowerCase().charAt(0) + pCount + ": ");
-				this.buffer.append(pTypeName);
-				pCount++;
-			}
-			String rTypeName = getLastPartOfType(m.getReturnType());
-			this.buffer.append("): " + rTypeName + "<br/>");
-		}
+	public void visit(String s) {
+		this.sb.append(s);
 	}
-	
+
+	public void visit(IMethod m) {
+		String accessLevel = m.getAccessLevel();
+		char accessModifier = '\0';
+		if (accessLevel.equals("public")) {
+			accessModifier = '+';
+		} else if (accessLevel.equals("private")) {
+			accessModifier = '-';
+		} else if (accessLevel.equals("protected")) {
+			accessModifier = '#';
+		} else if (accessLevel.equals("default")) {
+			accessModifier = '~';
+		}
+		this.sb.append(accessModifier + " " + m.getMethodName());
+		this.sb.append("(");
+		int pCount = 0;
+		for (String pType : m.getParamTypes()) {
+			String pTypeName = getLastPartOfType(pType);
+			this.sb.append(pTypeName.toLowerCase().charAt(0) + pCount + ": ");
+			this.sb.append(pTypeName);
+			pCount++;
+		}
+		String rTypeName = getLastPartOfType(m.getReturnType());
+		this.sb.append("): " + rTypeName + "<br/>");
+	}
+
 	private String getLastPartOfType(String type) {
 		String[] typeParts = type.split(".");
 		return typeParts[typeParts.length - 1];
 	}
 
 	public void visit(IClassDeclaration cd) {
-		if(cd.isInterface()) {
-			buffer.append("«interface»<br/>");
+		if (cd.isInterface()) {
+			sb.append("«interface»<br/>");
 
-		}else if(cd.isAbstract()) {
-			buffer.append("«abstract»<br/>");
+		} else if (cd.isAbstract()) {
+			sb.append("«abstract»<br/>");
 		}
-		buffer.append(cd.getClassName()+"|");
-		
+		sb.append(cd.getClassName() + "|");
+
 	}
-	
-	public void postVisit(IClassDeclaration cd){
-		buffer.append("");
+
+	@Override
+	public String toString() {
+		return this.sb.toString();
 	}
 }

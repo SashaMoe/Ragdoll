@@ -13,9 +13,12 @@ import ragdoll.asm.ClassFieldVisitor;
 import ragdoll.asm.ClassMethodVisitor;
 import ragdoll.code.api.IClass;
 import ragdoll.code.impl.Klass;
+import ragdoll.code.visitor.api.IVisitor;
+import ragdoll.code.visitor.impl.GVOutputStream;
 
 public class Ragdoll {
 	public static void main(String[] args) throws IOException {
+		GVOutputStream gvOS = new GVOutputStream();
 		List<IClass> iClasses = new ArrayList<IClass>();
 		
 		for (String className : args) {
@@ -29,5 +32,12 @@ public class Ragdoll {
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
 			iClasses.add(newClass);
 		}
+		
+		gvOS.initBuffer();
+		for (IClass c: iClasses) {
+			c.accept(gvOS);
+		}
+		gvOS.endBuffer();
+		System.out.println(gvOS.toString());
 	}
 }

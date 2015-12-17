@@ -10,7 +10,6 @@ import org.objectweb.asm.Opcodes;
 import ragdoll.code.api.IClass;
 import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.impl.ClassDeclaration;
-import ragdoll.code.visitor.api.IVisitor;
 
 public class ClassDeclarationVisitor extends ClassVisitor {
 

@@ -44,7 +44,7 @@ public class ClassDeclaration implements IClassDeclaration {
 	}
 
 	public void accept(IVisitor v) {
-
+		v.visit(this);
 	}
 
 }

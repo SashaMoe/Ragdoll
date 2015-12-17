@@ -17,3 +17,6 @@ CSSE374 Term Project
 | Sasha          | Implemented one visitor setup method. Fixed interface issues.                       | 10m    |
 | yangh1         | Create Ragdoll main class and added instantiation process of IClass.                | 10m    |
 | Sasha          | In asm, added IClassComponents to IClass. Implemented part of the IVisitor methods. | 10m    |
+| zxqdx          | Added visit logic for Fields and Methods.                                           | 10m    |
+| yangh1         | implement visit logic for class declaration                                         | 10m    |
+| Sasha          | implement accept logics                                                             | 10m    |

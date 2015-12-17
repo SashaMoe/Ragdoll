@@ -29,8 +29,7 @@ public class Field implements IField {
 	}
 
 	public void accept(IVisitor v) {
-		// TODO Auto-generated method stub
-
+		v.visit(this);
 	}
 
 }

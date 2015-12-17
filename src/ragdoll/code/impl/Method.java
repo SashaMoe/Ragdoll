@@ -44,8 +44,7 @@ public class Method implements IMethod {
 	}
 
 	public void accept(IVisitor v) {
-		// TODO Auto-generated method stub
-
+		v.visit(this);
 	}
 
 }
