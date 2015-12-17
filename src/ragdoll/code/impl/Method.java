@@ -23,6 +23,26 @@ public class Method implements IMethod {
 		this.exceptions = exceptions;
 	}
 
+	public String getMethodName() {
+		return methodName;
+	}
+
+	public String getAccessLevel() {
+		return accessLevel;
+	}
+
+	public String getReturnType() {
+		return returnType;
+	}
+
+	public List<String> getParamTypes() {
+		return paramTypes;
+	}
+
+	public List<String> getExceptions() {
+		return exceptions;
+	}
+
 	public void accept(IVisitor v) {
 		// TODO Auto-generated method stub
 
