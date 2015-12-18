@@ -1,4 +1,4 @@
-package ragdoll.code.impl;
+package ragdoll.code.impl.test;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +13,10 @@ import ragdoll.code.api.IClass;
 import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.api.IField;
 import ragdoll.code.api.IMethod;
+import ragdoll.code.impl.ClassDeclaration;
+import ragdoll.code.impl.Field;
+import ragdoll.code.impl.Klass;
+import ragdoll.code.impl.Method;
 
 public class KlassTest {
 	private final String name;

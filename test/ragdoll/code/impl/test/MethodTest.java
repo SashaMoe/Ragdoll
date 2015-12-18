@@ -1,4 +1,4 @@
-package ragdoll.code.impl;
+package ragdoll.code.impl.test;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+
+import ragdoll.code.impl.Method;
 
 public class MethodTest {
 	private final Method method;

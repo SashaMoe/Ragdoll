@@ -1,21 +1,10 @@
 digraph G {
 fontname = "Times New Roman"
-fontsize = 8
+fontsize = 12
 node [
 fontname = "Times New Roman"
-fontsize = 8
+fontsize = 12
 shape = "record"
-]
-"ragdoll.app.ClassFinder" [
-label = <{ragdoll.app.ClassFinder|- BAD_PACKAGE_ERROR : java.lang.String<br/>- CLASS_SUFFIX : java.lang.String<br/>- DOT : char<br/>- SLASH : char<br/>|+ find(s0: String): List<br/>- find(f0: Files1: String): List<br/>}>
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
 ]
 "ragdoll.app.Ragdoll" [
 label = <{ragdoll.app.Ragdoll||+ main(s0: String[]): void<br/>}>
@@ -65,7 +54,7 @@ arrowhead = "empty"
 ]
 "ragdoll.asm.ClassMethodVisitor" -> "org.objectweb.asm.ClassVisitor"
 "ragdoll.code.api.IClass" [
-label = <{«interface»<br/>ragdoll.code.api.IClass|+ addMethod(i0: IMethod): void<br/>+ addField(i0: IField): void<br/>+ setDeclaration(i0: IClassDeclaration): void<br/>+ getDeclaration(): IClassDeclaration<br/>+ getName(): String<br/>}>
+label = <{«interface»<br/>ragdoll.code.api.IClass|+ addMethod(i0: IMethod): void<br/>+ addField(i0: IField): void<br/>+ setDeclaration(i0: IClassDeclaration): void<br/>+ getDeclaration(): IClassDeclaration<br/>+ getMethodList(): List<br/>+ getFieldMap(): HashMap<br/>+ getName(): String<br/>}>
 ]
 edge [
 style = "dashed"
@@ -149,7 +138,7 @@ style = "solid"
 arrowhead = "empty"
 ]
 "ragdoll.code.impl.Klass" [
-label = <{ragdoll.code.impl.Klass|- fieldMap : java.util.HashMap<br/>- name : java.lang.String<br/>- methodList : java.util.List<br/>- declaration : ragdoll.code.api.IClassDeclaration<br/>|+ addMethod(i0: IMethod): void<br/>+ addField(i0: IField): void<br/>+ setDeclaration(i0: IClassDeclaration): void<br/>+ getDeclaration(): IClassDeclaration<br/>+ accept(i0: IVisitor): void<br/>+ getName(): String<br/>}>
+label = <{ragdoll.code.impl.Klass|- fieldMap : java.util.HashMap<br/>- name : java.lang.String<br/>- methodList : java.util.List<br/>- declaration : ragdoll.code.api.IClassDeclaration<br/>|+ addMethod(i0: IMethod): void<br/>+ addField(i0: IField): void<br/>+ setDeclaration(i0: IClassDeclaration): void<br/>+ getDeclaration(): IClassDeclaration<br/>+ getMethodList(): List<br/>+ getFieldMap(): HashMap<br/>+ accept(i0: IVisitor): void<br/>+ getName(): String<br/>}>
 ]
 edge [
 style = "dashed"
@@ -206,4 +195,16 @@ edge [
 style = "solid"
 arrowhead = "empty"
 ]
+"ragdoll.util.ClassFinder" [
+label = <{ragdoll.util.ClassFinder|- BAD_PACKAGE_ERROR : java.lang.String<br/>- CLASS_SUFFIX : java.lang.String<br/>- DOT : char<br/>- SLASH : char<br/>|+ find(s0: String): List<br/>- find(f0: Files1: String): List<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
 }
+

@@ -28,6 +28,9 @@ public class Ragdoll {
 		List<IClass> iClasses = new ArrayList<IClass>();
 
 		for (String className : classNames) {
+			if (className.contains(".test.")) {
+				continue;
+			}
 			IClass newClass = new Klass(className);
 			ClassReader reader = new ClassReader(className);
 

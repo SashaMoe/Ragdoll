@@ -1,4 +1,4 @@
-package ragdoll.code.visitor.impl;
+package ragdoll.code.visitor.impl.test;
 
 import static org.junit.Assert.*;
 
@@ -20,6 +20,7 @@ import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.api.IField;
 import ragdoll.code.api.IMethod;
 import ragdoll.code.impl.Klass;
+import ragdoll.code.visitor.impl.GVOutputStream;
 
 public class GVOutputStreamTest {
 
@@ -29,7 +30,7 @@ public class GVOutputStreamTest {
 
 	public GVOutputStreamTest() throws IOException {
 		gvOS = null;
-		String className = "ragdoll.asm.sample.SampleClass";
+		String className = "ragdoll.asm.test.sample.SampleClass";
 		newClass = new Klass(className);
 		ClassReader reader = new ClassReader(className);
 
@@ -60,10 +61,10 @@ public class GVOutputStreamTest {
 
 		appendBufferLine("digraph G {");
 		appendBufferLine("fontname = \"Times New Roman\"");
-		appendBufferLine("fontsize = 8");
+		appendBufferLine("fontsize = 12");
 		appendBufferLine("node [");
 		appendBufferLine("fontname = \"Times New Roman\"");
-		appendBufferLine("fontsize = 8");
+		appendBufferLine("fontsize = 12");
 		appendBufferLine("shape = \"record\"");
 		appendBufferLine("]");
 
@@ -80,7 +81,7 @@ public class GVOutputStreamTest {
 	@Test
 	public void testVisitIClass() {
 		gvOS.visit(newClass);
-		appendBufferLine("\"ragdoll.asm.sample.SampleClass\" [");
+		appendBufferLine("\"ragdoll.asm.test.sample.SampleClass\" [");
 		appendBuffer("label = <{");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
@@ -95,12 +96,12 @@ public class GVOutputStreamTest {
 		appendBufferLine("style = \"dashed\"");
 		appendBufferLine("arrowhead = \"empty\"");
 		appendBufferLine("]");
-		appendBufferLine("\"ragdoll.asm.sample.SampleClass\" -> \"ragdoll.asm.sample.SampleInterface\"");
+		appendBufferLine("\"ragdoll.asm.test.sample.SampleClass\" -> \"ragdoll.asm.test.sample.SampleInterface\"");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"empty\"");
 		appendBufferLine("]");
-		appendBufferLine("\"ragdoll.asm.sample.SampleClass\" -> \"ragdoll.asm.sample.ParentClass\"");
+		appendBufferLine("\"ragdoll.asm.test.sample.SampleClass\" -> \"ragdoll.asm.test.sample.ParentClass\"");
 		
 		assertEquals(sb.toString(), gvOS.toString());
 	}
@@ -109,7 +110,7 @@ public class GVOutputStreamTest {
 	public void testVisitIClassDeclaration() {
 		IClassDeclaration classDeclaration = newClass.getDeclaration();
 		classDeclaration.accept(gvOS);
-		appendBuffer("«abstract»<br/>ragdoll.asm.sample.SampleClass|");
+		appendBuffer("«abstract»<br/>ragdoll.asm.test.sample.SampleClass|");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 

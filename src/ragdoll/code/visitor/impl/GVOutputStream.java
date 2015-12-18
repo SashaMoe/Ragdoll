@@ -17,11 +17,11 @@ public class GVOutputStream implements IVisitor {
 	public void initBuffer() {
 		appendBufferLine("digraph G {");
 		appendBufferLine("fontname = \"Times New Roman\"");
-		appendBufferLine("fontsize = 8");
+		appendBufferLine("fontsize = 12");
 
 		appendBufferLine("node [");
 		appendBufferLine("fontname = \"Times New Roman\"");
-		appendBufferLine("fontsize = 8");
+		appendBufferLine("fontsize = 12");
 		appendBufferLine("shape = \"record\"");
 		appendBufferLine("]");
 	}

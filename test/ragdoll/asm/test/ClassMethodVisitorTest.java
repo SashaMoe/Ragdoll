@@ -1,4 +1,4 @@
-package ragdoll.asm;
+package ragdoll.asm.test;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ragdoll.asm.ClassMethodVisitor;
 import ragdoll.code.api.IClass;
 import ragdoll.code.api.IMethod;
 import ragdoll.code.impl.Klass;
@@ -21,7 +22,7 @@ public class ClassMethodVisitorTest {
 	private final ClassVisitor methodVisitor;
 
 	public ClassMethodVisitorTest() throws IOException {
-		className = "ragdoll.asm.sample.SampleClass";
+		className = "ragdoll.asm.test.sample.SampleClass";
 		reader = new ClassReader(className);
 		c = new Klass(className);
 		methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, c);

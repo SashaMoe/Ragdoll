@@ -1,7 +1,10 @@
-package ragdoll.code.impl;
+package ragdoll.code.impl.test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import ragdoll.code.impl.ClassDeclaration;
+
 import java.util.ArrayList;
 import java.util.List;
 

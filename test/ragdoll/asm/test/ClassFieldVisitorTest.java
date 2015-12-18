@@ -1,4 +1,4 @@
-package ragdoll.asm;
+package ragdoll.asm.test;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ragdoll.asm.ClassFieldVisitor;
 import ragdoll.code.api.IClass;
 import ragdoll.code.api.IField;
 import ragdoll.code.impl.Klass;
@@ -20,7 +21,7 @@ public class ClassFieldVisitorTest {
 	private final ClassVisitor fieldVisitor;
 	
 	public ClassFieldVisitorTest() throws IOException {
-		className = "ragdoll.asm.sample.SampleClass";
+		className = "ragdoll.asm.test.sample.SampleClass";
 		reader = new ClassReader(className);
 		c = new Klass(className);
 		fieldVisitor = new ClassFieldVisitor(Opcodes.ASM5, c);

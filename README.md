@@ -7,9 +7,11 @@ CSSE374 Term Project
 1. [Design of the tool](#design-of-the-tool)
 2. [Who-Did-What table](#who-did-what-table)
 3. [Usage / Instructions](#usage--instructions)
+4. [Pictures comparisons](#pictures-comparisons)
 
 ## Design of the tool
-WIP
+![UML Diagram](/img/ProjectUMLManually.png "UML Diagram")
+Description WIP
 
 ## Who-Did-What table:
 | *Name*         | *Who did what*                                                                              | *Time* |
@@ -39,6 +41,20 @@ WIP
 | Sasha          | Added test for ClassMethodVisitor.                                                          | 10m    |
 | yangh1         | Added test cases for init/end buffer of GVOutputStream.                                     | 10m    |
 | zxqdx          | Added test cases for visiting class & declaration of GVOutputStream.                        | 10m    |
+| Sasha          | Added test cases for visiting fields & methods of GVOutputStream.                           | 8m     |
+| yangh1         | UML diagram for the project (manually)                                                      | 20m    |
+| zxqdx          | UML diagram for the project (generated)                                                     | 10m    |
 
 ## Usage / Instructions
 WIP
+
+## Pictures comparisons
+### Lab1-3
+WIP
+
+### Project
+#### Manually created UML diagram
+![UML Diagram](/img/ProjectUMLManually.png "")
+
+#### Generated UML diagram
+![UML Diagram](/img/ProjectUMLGenerated.png "")
