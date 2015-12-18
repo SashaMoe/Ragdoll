@@ -44,13 +44,18 @@ Description WIP
 | Sasha          | Added test cases for visiting fields & methods of GVOutputStream.                           | 8m     |
 | yangh1         | UML diagram for the project (manually)                                                      | 20m    |
 | zxqdx          | UML diagram for the project (generated)                                                     | 10m    |
+| Sasha          | UML diagrams for Lab1-3 (Using zxqdx's solution for Lab1-3)                                 | 10m    |
 
 ## Usage / Instructions
 WIP
 
 ## Pictures comparisons
 ### Lab1-3
-WIP
+#### Manually created UML diagram
+![UML Diagram](/img/Lab1-3UMLManually.png "")
+
+#### Generated UML diagram
+![UML Diagram](/img/Lab1-3UMLGenerated.png "")
 
 ### Project
 #### Manually created UML diagram

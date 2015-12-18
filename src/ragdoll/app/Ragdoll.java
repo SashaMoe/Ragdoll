@@ -28,7 +28,8 @@ public class Ragdoll {
 		List<IClass> iClasses = new ArrayList<IClass>();
 
 		for (String className : classNames) {
-			if (className.contains(".test.")) {
+			if (className.contains(".test.") 
+					|| className.endsWith("Test") || className.endsWith("Tests")) {
 				continue;
 			}
 			IClass newClass = new Klass(className);
