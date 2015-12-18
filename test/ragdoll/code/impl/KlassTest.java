@@ -64,4 +64,21 @@ public class KlassTest {
 	public void testGetDeclaration() {
 		assertEquals(this.declaration, this.klass.getDeclaration());
 	}
+	
+	@Test
+	public void testGetFieldMap() {
+		HashMap<String, IField> fieldMap = this.klass.getFieldMap();
+		for (String f : fieldMap.keySet()) {
+			assertEquals(true, fieldMap.containsKey(f));
+			assertEquals(fieldMap.get(f), this.fieldMap.get(f));
+		}
+	}
+	
+	@Test
+	public void testGetMethodList() {
+		List<IMethod> methodList = this.klass.getMethodList();
+		for (int i = 0; i < this.methodList.size(); i++) {
+			assertEquals(this.methodList.get(i), methodList.get(i));
+		}
+	}
 }

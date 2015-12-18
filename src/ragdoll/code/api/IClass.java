@@ -1,5 +1,8 @@
 package ragdoll.code.api;
 
+import java.util.HashMap;
+import java.util.List;
+
 import ragdoll.code.visitor.api.ITraverser;
 
 public interface IClass extends ITraverser {
@@ -10,6 +13,10 @@ public interface IClass extends ITraverser {
 	public void setDeclaration(IClassDeclaration declaration);
 
 	public IClassDeclaration getDeclaration();
+
+	public List<IMethod> getMethodList();
+
+	public HashMap<String, IField> getFieldMap();
 
 	public String getName();
 }

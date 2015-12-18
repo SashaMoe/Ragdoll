@@ -26,3 +26,4 @@ CSSE374 Term Project
 | zxqdx          | Added test for Method.                                                                      | 10m    |
 | Sasha          | Added test for Klass.                                                                       | 10m    |
 | yangh1         | Added sample classes and interface for testing asm. Added test for ClassDeclarationVisitor. | 10m    |
+| zxqdx          | Added test for ClassFieldVisitor.                                                           | 10m    |

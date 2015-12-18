@@ -39,6 +39,14 @@ public class Klass implements IClass {
 		return declaration;
 	}
 
+	public List<IMethod> getMethodList() {
+		return methodList;
+	}
+
+	public HashMap<String, IField> getFieldMap() {
+		return fieldMap;
+	}
+
 	public void accept(IVisitor v) {
 		
 		v.visit(this);
