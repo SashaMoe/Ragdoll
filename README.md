@@ -11,7 +11,20 @@ CSSE374 Term Project
 
 ## Design of the tool
 ![UML Diagram](/img/ProjectUMLManually.png "UML Diagram")
-Description WIP
+As the UML Diagram shows above, the project consists of two major parts.
+
+The first part is designed to read code from specified java files to parse them using [asm](#http://asm.ow2.org/download/index.html). Since asm is designed in visitor pattern, we need to implement its `visit` methods for ClassDeclarations, ClassFields and ClassMethods. It consists of the following packages:
+* ragdoll.app
+* ragdoll.util
+* ragdoll.asm
+
+The second part is designed to use our own visitor pattern to output the class structure in [GraphicViz](#http://www.graphviz.org/) format. It consists of the following packages:
+* ragdoll.code.api
+* ragdoll.code.impl
+* ragdoll.code.visitor.api
+* ragdoll.code.visitor.impl
+
+Overall, the project uses Decorator Pattern as well as two Visitor Patterns.
 
 ## Who-Did-What table:
 | *Name*         | *Who did what*                                                                              | *Time* |
@@ -45,7 +58,8 @@ Description WIP
 | yangh1         | UML diagram for the project (manually)                                                      | 20m    |
 | zxqdx          | UML diagram for the project (generated)                                                     | 10m    |
 | Sasha          | UML diagrams for Lab1-3 (Using zxqdx's solution for Lab1-3)                                 | 10m    |
-| yangh1         | [yangh1] Instruction for downloading & using project.                                       | 15m    |
+| yangh1         | Instruction for downloading & using project.                                                | 15m    |
+| zxqdx          | Description of the design of the tool.                                                      | 10m    |
 
 ## Usage / Instructions
 ### Before we start
