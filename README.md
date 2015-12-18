@@ -45,9 +45,53 @@ Description WIP
 | yangh1         | UML diagram for the project (manually)                                                      | 20m    |
 | zxqdx          | UML diagram for the project (generated)                                                     | 10m    |
 | Sasha          | UML diagrams for Lab1-3 (Using zxqdx's solution for Lab1-3)                                 | 10m    |
+| yangh1         | [yangh1] Instruction for downloading & using project.                                       | 15m    |
 
 ## Usage / Instructions
-WIP
+### Before we start
+Please make sure that you have installed [Java](https://www.java.com/en/download/).
+
+Also please make sure that you have installed [Git](https://git-scm.com/).
+
+### Get the code
+In command line console, type:
+```
+git clone git@github.com:SashaMoe/Ragdoll.git
+```
+
+Now you should be able to `cd` into the folder:
+```
+cd
+```
+
+You should now have the entire project.
+
+### Run the code
+To run the code using `java`, type:
+```
+java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll [<package_name>, ...]
+```
+For `[<package_name>, ...]`, you can replace it with one or more package names, and our program will traverse your entire package and get all classes in it except classes for testing purposes.
+
+For example, by typing:
+```
+java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll ragdoll
+```
+
+This will output the Ragdoll's generated UML textual representation in GraphicViz image format to the console.
+
+### Generate the image
+To generate the image, type:
+```
+java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll [<package_name>, ...] | dot -Tpng -o <output_png_path>
+```
+For `<output_png_path>`, replace it with the path of the output png file.
+
+For example, by typing:
+```
+java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll ragdoll | dot -Tpng -o outputUML.png
+```
+This will generate a png image file (the UML diagram) in your current directory.
 
 ## Pictures comparisons
 ### Lab1-3

@@ -1,0 +1,19 @@
+digraph G {
+edge [
+style = dashed
+arrowhead = empty
+]
+  <I>meow</I> -> parse -> execute;
+  meow -> init;
+  meow -> cleanup;
+  execute -> make_string;
+  edge [
+style = bold
+arrowhead = empty
+]
+  execute -> printf
+  init -> make_string;
+  meow -> printf;
+  execute -> compare;
+  meow [label=<123>]
+}

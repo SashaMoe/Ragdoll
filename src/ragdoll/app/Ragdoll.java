@@ -1,6 +1,5 @@
 package ragdoll.app;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,10 @@ import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
 public class Ragdoll {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
+		if (args.length == 0) {
+			throw new Exception("Please specify at least one package name!");
+		}
 
 		List<Class<?>> classes = ClassFinder.find(args[0]);		
 		List<String> classNames = new ArrayList<>();
