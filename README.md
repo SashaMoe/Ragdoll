@@ -38,6 +38,7 @@ WIP
 | zxqdx          | Added test for ClassFieldVisitor.                                                           | 10m    |
 | Sasha          | Added test for ClassMethodVisitor.                                                          | 10m    |
 | yangh1         | Added test cases for init/end buffer of GVOutputStream.                                     | 10m    |
+| zxqdx          | Added test cases for visiting class & declaration of GVOutputStream.                        | 10m    |
 
 ## Usage / Instructions
 WIP
