@@ -1,8 +1,17 @@
 # Ragdoll
 CSSE374 Term Project
-大家都是萌萌哒~
 
-# Who-Did-What-Table:
+大家都是萌萌哒~ (As Cute As Ragdoll~)
+
+## Table of contents
+1. [Design of the tool](#design-of-the-tool)
+2. [Who-Did-What table](#who-did-what-table)
+3. [Usage / Instructions](#usage--instructions)
+
+## Design of the tool
+WIP
+
+## Who-Did-What table:
 | *Name*         | *Who did what*                                                                              | *Time* |
 |----------------|---------------------------------------------------------------------------------------------|--------|
 | zxqdx          | init project(asm parser)                                                                    | 20m    |
@@ -28,3 +37,6 @@ CSSE374 Term Project
 | yangh1         | Added sample classes and interface for testing asm. Added test for ClassDeclarationVisitor. | 10m    |
 | zxqdx          | Added test for ClassFieldVisitor.                                                           | 10m    |
 | Sasha          | Added test for ClassMethodVisitor.                                                          | 10m    |
+
+## Usage / Instructions
+WIP
