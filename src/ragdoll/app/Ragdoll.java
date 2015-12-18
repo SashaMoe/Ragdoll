@@ -14,6 +14,7 @@ import ragdoll.asm.ClassMethodVisitor;
 import ragdoll.code.api.IClass;
 import ragdoll.code.impl.Klass;
 import ragdoll.code.visitor.impl.GVOutputStream;
+import ragdoll.util.ClassFinder;
 
 public class Ragdoll {
 	public static void main(String[] args) throws IOException {

@@ -29,7 +29,6 @@ public class ClassMethodVisitor extends ClassVisitor {
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-		// TODO Auto-generated method stub
 		MethodVisitor toDecorate = super.visitMethod(access, name, desc, signature, exceptions);
 
 		String returnType = Type.getReturnType(desc).getClassName();

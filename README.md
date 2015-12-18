@@ -21,3 +21,4 @@ CSSE374 Term Project
 | yangh1         | implement visit logic for class declaration                                         | 10m    |
 | Sasha          | implement accept logics                                                             | 10m    |
 | zxqdx          | Added main() for it to generate gv code                                             | 10m    |
+| Sasha          | Added test packages. Added test for ClassDeclaration.                               | 10m    |
