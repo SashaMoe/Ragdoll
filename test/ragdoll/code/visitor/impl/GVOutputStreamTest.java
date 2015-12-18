@@ -3,6 +3,8 @@ package ragdoll.code.visitor.impl;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +16,9 @@ import ragdoll.asm.ClassDeclarationVisitor;
 import ragdoll.asm.ClassFieldVisitor;
 import ragdoll.asm.ClassMethodVisitor;
 import ragdoll.code.api.IClass;
+import ragdoll.code.api.IClassDeclaration;
+import ragdoll.code.api.IField;
+import ragdoll.code.api.IMethod;
 import ragdoll.code.impl.Klass;
 
 public class GVOutputStreamTest {
@@ -68,19 +73,15 @@ public class GVOutputStreamTest {
 	@Test
 	public void testEndBuffer() {
 		gvOS.endBuffer();
-
 		appendBufferLine("}");
-
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
 	@Test
 	public void testVisitIClass() {
 		gvOS.visit(newClass);
-
 		appendBufferLine("\"ragdoll.asm.sample.SampleClass\" [");
 		appendBuffer("label = <{");
-
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
@@ -106,25 +107,41 @@ public class GVOutputStreamTest {
 
 	@Test
 	public void testVisitIClassDeclaration() {
-		gvOS.visit(newClass.getDeclaration());
-		
+		IClassDeclaration classDeclaration = newClass.getDeclaration();
+		classDeclaration.accept(gvOS);
 		appendBuffer("«abstract»<br/>ragdoll.asm.sample.SampleClass|");
-		
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
 	@Test
 	public void testVisitIField() {
-		// TODO
+		HashMap<String, IField> fieldMap = newClass.getFieldMap();
+		for (String fieldName : fieldMap.keySet()) {
+			IField f = fieldMap.get(fieldName);
+			f.accept(gvOS);
+		}
+		
+		appendBuffer("+ o2 : java.lang.Object<br/>- i1 : int<br/>");
+		
+		assertEquals(sb.toString(), gvOS.toString());
 	}
 
 	@Test
 	public void testVisitIMethod() {
-		// TODO
+		List<IMethod> methodList = newClass.getMethodList();
+		for (IMethod m : methodList){
+			m.accept(gvOS);
+		}
+		
+		appendBuffer("+ sampleMethod(i0: into1: Object): void<br/>");
+		
+		assertEquals(sb.toString(), gvOS.toString());
 	}
 
 	@Test
 	public void testVisitString() {
-		// TODO
+		gvOS.visit("|");
+		appendBuffer("|");
+		assertEquals(sb.toString(), gvOS.toString());
 	}
 }
