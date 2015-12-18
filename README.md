@@ -22,3 +22,5 @@ CSSE374 Term Project
 | Sasha          | implement accept logics                                                             | 10m    |
 | zxqdx          | Added main() for it to generate gv code                                             | 10m    |
 | Sasha          | Added test packages. Added test for ClassDeclaration.                               | 10m    |
+| yangh1         | Added test for Field.                                                               | 8m     |
+| zxqdx          | Added test for Method.                                                              | 10m    |
