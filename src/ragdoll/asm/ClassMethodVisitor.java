@@ -29,16 +29,15 @@ public class ClassMethodVisitor extends ClassVisitor {
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-		MethodVisitor toDecorate = super.visitMethod(access, name, desc, signature, exceptions);
-
 		String returnType = Type.getReturnType(desc).getClassName();
 
 		Type[] argTypes = Type.getArgumentTypes(desc);
 		List<String> sTypes = new ArrayList<>();
 		for (Type t : argTypes) {
 			sTypes.add(t.getClassName());
+			this.c.addUse(t.getClassName());
 		}
-
+		
 		String level = "";
 		if ((access & Opcodes.ACC_PUBLIC) != 0) {
 			level = "public";
@@ -54,7 +53,24 @@ public class ClassMethodVisitor extends ClassVisitor {
 				: new ArrayList<>(Arrays.asList(exceptions));
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 		this.c.addMethod(method);
-		return toDecorate;
+		
+		MethodVisitor oriMv = new MethodVisitor(Opcodes.ASM5) {
+		};
+		System.out.println("Class = " + this.c.getName());
+		System.out.println("Name = " + name);
+		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, oriMv) {
+			@Override
+			public void visitMethodInsn(int opcode,
+                    String owner,
+                    String name,
+                    String desc,
+                    boolean itf) {
+				System.out.println("  owner = " + owner);
+				System.out.println("  name = " + name);
+				System.out.println("  desc = " + desc);
+			}
+		};
+		return instMv;
 	}
 
 }

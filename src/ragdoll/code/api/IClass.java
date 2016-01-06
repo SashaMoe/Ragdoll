@@ -9,6 +9,8 @@ public interface IClass extends ITraverser {
 	public void addMethod(IMethod method);
 
 	public void addField(IField field);
+	
+	public void addUse(String className); // M2
 
 	public void setDeclaration(IClassDeclaration declaration);
 

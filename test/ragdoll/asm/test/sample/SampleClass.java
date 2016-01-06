@@ -10,4 +10,8 @@ public abstract class SampleClass extends ParentClass implements SampleInterface
 		this.o2 = o2;
 		throw new Exception(i1 + "");
 	}
+	
+	public SampleInterface sampleMehthod2() {
+		return new ParentClass();
+	}
 }

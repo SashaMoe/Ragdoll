@@ -13,6 +13,7 @@ import ragdoll.code.visitor.api.IVisitor;
 public class Klass implements IClass {
 	private String name;
 	private List<IMethod> methodList;
+	private List<String> useList;
 	private HashMap<String, IField> fieldMap;
 	private IClassDeclaration declaration;
 
@@ -20,11 +21,16 @@ public class Klass implements IClass {
 		super();
 		this.name = name;
 		this.methodList = new ArrayList<>();
+		this.useList = new ArrayList<>();
 		this.fieldMap = new HashMap<>();
 	}
 
 	public void addMethod(IMethod method) {
 		this.methodList.add(method);
+	}
+	
+	public void addUse(String className) {
+		this.useList.add(className);
 	}
 
 	public void addField(IField field) {
@@ -48,7 +54,6 @@ public class Klass implements IClass {
 	}
 
 	public void accept(IVisitor v) {
-		
 		v.visit(this);
 		declaration.accept(v);
 		for (String fieldName : this.fieldMap.keySet()) {
@@ -65,4 +70,5 @@ public class Klass implements IClass {
 	public String getName() {
 		return this.name;
 	}
+
 }
