@@ -12,6 +12,7 @@ import org.objectweb.asm.Type;
 import ragdoll.code.api.IClass;
 import ragdoll.code.api.IMethod;
 import ragdoll.code.impl.Method;
+import ragdoll.util.Utilities;
 
 public class ClassMethodVisitor extends ClassVisitor {
 
@@ -37,7 +38,7 @@ public class ClassMethodVisitor extends ClassVisitor {
 			sTypes.add(t.getClassName());
 			this.c.addUse(t.getClassName());
 		}
-		
+
 		String level = "";
 		if ((access & Opcodes.ACC_PUBLIC) != 0) {
 			level = "public";
@@ -53,18 +54,19 @@ public class ClassMethodVisitor extends ClassVisitor {
 				: new ArrayList<>(Arrays.asList(exceptions));
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 		this.c.addMethod(method);
-		
+
+		// System.out.println("Classname = " + c.getName());
+		// System.out.println("Methodname = " + name);
 		MethodVisitor oriMv = new MethodVisitor(Opcodes.ASM5) {
 		};
 		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, oriMv) {
 			@Override
-			public void visitMethodInsn(int opcode,
-                    String owner,
-                    String name,
-                    String desc,
-                    boolean itf) {
-				if(name.equals("<init>")) {
-					ClassMethodVisitor.this.c.addUse(owner);
+			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+				// System.out.println(" owner = " + owner);
+				// System.out.println(" name = " + name);
+				// System.out.println(" desc = " + desc);
+				if (name.equals("<init>")) {
+					ClassMethodVisitor.this.c.addUse(Utilities.packagifyClassName(owner));
 				}
 			}
 		};

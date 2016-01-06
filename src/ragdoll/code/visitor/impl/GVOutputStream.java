@@ -1,6 +1,5 @@
 package ragdoll.code.visitor.impl;
 
-import java.util.List;
 import java.util.Set;
 
 import ragdoll.code.api.IClass;
@@ -8,6 +7,7 @@ import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.api.IField;
 import ragdoll.code.api.IMethod;
 import ragdoll.code.visitor.api.IVisitor;
+import ragdoll.util.Utilities;
 
 public class GVOutputStream implements IVisitor {
 
@@ -19,6 +19,7 @@ public class GVOutputStream implements IVisitor {
 
 	public void initBuffer() {
 		appendBufferLine("digraph G {");
+		appendBufferLine("rankdir=BT;");
 		appendBufferLine("fontname = \"Times New Roman\"");
 		appendBufferLine("fontsize = 12");
 
@@ -39,11 +40,12 @@ public class GVOutputStream implements IVisitor {
 
 	public void visit(IClass c) {
 		appendBufferLine('"' + c.getName() + '"' + " [");
-		this.sb.append("label = <{");
+		//this.sb.append("label = <{");
+		this.sb.append("label = \"{");
 	}
 
 	public void postVisit(IClass c) {
-		appendBufferLine("}>");
+		appendBufferLine("}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
@@ -52,8 +54,8 @@ public class GVOutputStream implements IVisitor {
 
 		IClassDeclaration cd = c.getDeclaration();
 		for (String interfaceName : cd.getNameOfInterfaces()) {
-			appendBufferLine('"' + packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
-					+ packagifyClassName(interfaceName) + '"');
+			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
+					+ Utilities.packagifyClassName(interfaceName) + '"');
 		}
 
 		appendBufferLine("edge [");
@@ -61,9 +63,9 @@ public class GVOutputStream implements IVisitor {
 		appendBufferLine("arrowhead = \"empty\"");
 		appendBufferLine("]");
 
-		if (!packagifyClassName(cd.getNameOfSuperClass()).equals("java.lang.Object")) {
-			appendBufferLine('"' + packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
-					+ packagifyClassName(cd.getNameOfSuperClass()) + '"');
+		if (!Utilities.packagifyClassName(cd.getNameOfSuperClass()).equals("java.lang.Object")) {
+			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
+					+ Utilities.packagifyClassName(cd.getNameOfSuperClass()) + '"');
 		}
 		
 		appendBufferLine("edge [");
@@ -72,9 +74,9 @@ public class GVOutputStream implements IVisitor {
 		appendBufferLine("]");
 		Set<String> useList = c.getUseSet();
 		for (String usedClass : useList) {
-			if(!packagifyClassName(usedClass).startsWith("java.")){
-			appendBufferLine('"' + packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
-					+ packagifyClassName(usedClass) + '"');
+			if(!Utilities.packagifyClassName(usedClass).startsWith("java.")){
+			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
+					+ Utilities.packagifyClassName(usedClass) + '"');
 			}
 		}
 
@@ -92,7 +94,7 @@ public class GVOutputStream implements IVisitor {
 		} else if (accessLevel.equals("default")) {
 			accessModifier = '~';
 		}
-		this.sb.append(accessModifier + " " + f.getFieldName() + " : " + f.getType() + "<br/>");
+		this.sb.append(accessModifier + " " + f.getFieldName() + " : " + f.getType() + "\\l");
 	}
 
 	public void visit(String s) {
@@ -118,35 +120,26 @@ public class GVOutputStream implements IVisitor {
 		this.sb.append("(");
 		int pCount = 0;
 		for (String pType : m.getParamTypes()) {
-			String pTypeName = getLastPartOfType(pType);
+			String pTypeName = Utilities.getLastPartOfType(pType);
 			this.sb.append(String.valueOf(pTypeName.toLowerCase().charAt(0)) + pCount + ": ");
 			this.sb.append(pTypeName);
 			pCount++;
 		}
-		String rTypeName = getLastPartOfType(m.getReturnType());
-		this.sb.append("): " + rTypeName + "<br/>");
+		String rTypeName = Utilities.getLastPartOfType(m.getReturnType());
+		this.sb.append("): " + rTypeName + "\\l");
 	}
 
 	public void visit(IClassDeclaration cd) {
 		if (cd.isInterface()) {
-			sb.append("«interface»<br/>");
+			sb.append("«interface»\\n");
 
 		} else if (cd.isAbstract()) {
-			sb.append("«abstract»<br/>");
+			sb.append("«abstract»\\n");
 		}
-		sb.append(packagifyClassName(cd.getClassName()));
+		sb.append(Utilities.packagifyClassName(cd.getClassName()));
 		if (!cd.isInterface()) {
 			sb.append("|");
 		}
-	}
-
-	private String getLastPartOfType(String type) {
-		String[] typeParts = type.split("\\.");
-		return typeParts[typeParts.length - 1];
-	}
-
-	private String packagifyClassName(String className) {
-		return className.replaceAll("[/]", ".");
 	}
 
 	@Override

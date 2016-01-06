@@ -74,6 +74,9 @@ The project follows the following design principles:
 | zxqdx          | Description of the design of the tool.                                                      | 10m    |
 | yangh1         | Description of design principles that we followed.                                          | 5m     |
 | zxqdx          | Refined the discussion of design principles.                                                | 5m     |
+| zxqdx          | Changed class list to hashmap. Added parameter support. Experimented with VisitMethodInsn.  | 10m    |
+| Sasha          | Add output for use arrows                                                                   | 10m    |
+| yangh1         | Fixed display issue and fixed incomplete use arrows.                                        | 20m    |
 
 ## Usage / Instructions
 ### Before we start
