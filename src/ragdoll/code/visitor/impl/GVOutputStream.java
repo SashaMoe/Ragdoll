@@ -1,5 +1,8 @@
 package ragdoll.code.visitor.impl;
 
+import java.util.List;
+import java.util.Set;
+
 import ragdoll.code.api.IClass;
 import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.api.IField;
@@ -61,6 +64,18 @@ public class GVOutputStream implements IVisitor {
 		if (!packagifyClassName(cd.getNameOfSuperClass()).equals("java.lang.Object")) {
 			appendBufferLine('"' + packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
 					+ packagifyClassName(cd.getNameOfSuperClass()) + '"');
+		}
+		
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"dashed\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("]");
+		Set<String> useList = c.getUseSet();
+		for (String usedClass : useList) {
+			if(!packagifyClassName(usedClass).startsWith("java.")){
+			appendBufferLine('"' + packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
+					+ packagifyClassName(usedClass) + '"');
+			}
 		}
 
 	}

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,9 @@ public class GVOutputStreamTest {
 	public GVOutputStreamTest() throws IOException {
 		gvOS = null;
 		String className = "ragdoll.asm.test.sample.SampleClass";
-		newClass = new Klass(className);
+		Map<String, IClass> iClasses = new HashMap<>();
+		newClass = new Klass(className, iClasses);
+		iClasses.put(className, newClass);
 		ClassReader reader = new ClassReader(className);
 
 		ClassVisitor declVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, newClass);

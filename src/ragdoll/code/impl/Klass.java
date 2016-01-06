@@ -2,7 +2,10 @@ package ragdoll.code.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import ragdoll.code.api.IClass;
 import ragdoll.code.api.IClassDeclaration;
@@ -11,17 +14,19 @@ import ragdoll.code.api.IMethod;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class Klass implements IClass {
+	private Map<String, IClass> iClasses;
 	private String name;
 	private List<IMethod> methodList;
-	private List<String> useList;
+	private Set<String> useSet;
 	private HashMap<String, IField> fieldMap;
 	private IClassDeclaration declaration;
 
-	public Klass(String name) {
+	public Klass(String name, Map<String, IClass> iClasses) {
 		super();
 		this.name = name;
+		this.iClasses = iClasses;
 		this.methodList = new ArrayList<>();
-		this.useList = new ArrayList<>();
+		this.useSet = new HashSet<String>();
 		this.fieldMap = new HashMap<>();
 	}
 
@@ -30,7 +35,7 @@ public class Klass implements IClass {
 	}
 	
 	public void addUse(String className) {
-		this.useList.add(className);
+		this.useSet.add(className);
 	}
 
 	public void addField(IField field) {
@@ -64,11 +69,23 @@ public class Klass implements IClass {
 		for (IMethod m : this.methodList){
 			m.accept(v);
 		}
+		Set<String> filteredUseSet = new HashSet<>();
+		for (String usedClass : useSet){
+			if(iClasses.containsKey(usedClass)){
+				filteredUseSet.add(usedClass);
+			}
+		}
+		useSet = filteredUseSet;
 		v.postVisit(this);
 	}
 
 	public String getName() {
 		return this.name;
+	}
+
+	@Override
+	public Set<String> getUseSet() {
+		return useSet;
 	}
 
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -52,7 +53,10 @@ public class KlassTest {
 		
 		methodList.add(method1);
 		
-		klass = new Klass(name);
+
+		Map<String, IClass> iClasses = new HashMap<>();
+		klass = new Klass(name, iClasses);
+		iClasses.put(name, klass);
 		klass.addField(f1);
 		klass.addField(f2);
 		klass.addMethod(method1);

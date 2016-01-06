@@ -56,8 +56,6 @@ public class ClassMethodVisitor extends ClassVisitor {
 		
 		MethodVisitor oriMv = new MethodVisitor(Opcodes.ASM5) {
 		};
-		System.out.println("Class = " + this.c.getName());
-		System.out.println("Name = " + name);
 		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, oriMv) {
 			@Override
 			public void visitMethodInsn(int opcode,
@@ -65,9 +63,9 @@ public class ClassMethodVisitor extends ClassVisitor {
                     String name,
                     String desc,
                     boolean itf) {
-				System.out.println("  owner = " + owner);
-				System.out.println("  name = " + name);
-				System.out.println("  desc = " + desc);
+				if(name.equals("<init>")) {
+					ClassMethodVisitor.this.c.addUse(owner);
+				}
 			}
 		};
 		return instMv;

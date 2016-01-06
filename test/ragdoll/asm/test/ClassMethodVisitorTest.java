@@ -3,7 +3,9 @@ package ragdoll.asm.test;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.objectweb.asm.ClassReader;
@@ -24,7 +26,9 @@ public class ClassMethodVisitorTest {
 	public ClassMethodVisitorTest() throws IOException {
 		className = "ragdoll.asm.test.sample.SampleClass";
 		reader = new ClassReader(className);
-		c = new Klass(className);
+		Map<String, IClass> iClasses = new HashMap<>();
+		c = new Klass(className, iClasses);
+		iClasses.put(className, c);
 		methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, c);
 	}
 

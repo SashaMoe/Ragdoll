@@ -37,7 +37,7 @@ public class Ragdoll {
 					|| className.endsWith("Test") || className.endsWith("Tests")) {
 				continue;
 			}
-			IClass newClass = new Klass(className);
+			IClass newClass = new Klass(className, iClasses);
 			ClassReader reader = new ClassReader(className);
 
 			ClassVisitor declVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, newClass);
