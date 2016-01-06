@@ -1,0 +1,105 @@
+digraph G {
+fontname = "Times New Roman"
+fontsize = 12
+node [
+fontname = "Times New Roman"
+fontsize = 12
+shape = "record"
+]
+"problem.AppLauncher" [
+label = <{problem.AppLauncher|- watcher : java.nio.file.WatchService<br/>- processes : java.util.List<br/>- stop : boolean<br/>- dir : java.nio.file.Path<br/>- observers : java.util.List<br/>|+ run(): void<br/># clearEverything(): void<br/>+ stopGracefully(): void<br/>+ isRunning(): boolean<br/>+ getApplicationsCount(): int<br/>+ launchCommand(s0: Strings1: String): void<br/>+ main(s0: String[]): void<br/>+ registerObserver(o0: Observer): void<br/>+ removeObserver(o0: Observer): void<br/>+ notifyObserver(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.AppLauncher" -> "problem.Subject"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.AppLauncher" -> "java.lang.Thread"
+"problem.FileAddedObserver" [
+label = <{problem.FileAddedObserver|- launcher : problem.AppLauncher<br/>|+ update(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.FileAddedObserver" -> "problem.Observer"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.ImageFileObserver" [
+label = <{problem.ImageFileObserver|- launcher : problem.AppLauncher<br/>|+ update(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.ImageFileObserver" -> "problem.Observer"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.Observer" [
+label = <{«interface»<br/>problem.Observer|+ update(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.Subject" [
+label = <{«interface»<br/>problem.Subject|+ registerObserver(o0: Observer): void<br/>+ removeObserver(o0: Observer): void<br/>+ notifyObserver(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.TextFileModifiedObserver" [
+label = <{problem.TextFileModifiedObserver|- launcher : problem.AppLauncher<br/>|+ update(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.TextFileModifiedObserver" -> "problem.Observer"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.TextFileObserver" [
+label = <{problem.TextFileObserver|- launcher : problem.AppLauncher<br/>|+ update(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.TextFileObserver" -> "problem.Observer"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.WebPageObserver" [
+label = <{problem.WebPageObserver|- launcher : problem.AppLauncher<br/>|+ update(s0: Stringp1: Path): void<br/>}>
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.WebPageObserver" -> "problem.Observer"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+}
+

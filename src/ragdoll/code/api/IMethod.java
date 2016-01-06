@@ -1,5 +1,15 @@
 package ragdoll.code.api;
 
-public interface IMethod extends IClassComponent {
+import java.util.List;
 
+public interface IMethod extends IClassComponent {
+	public String getMethodName();
+
+	public String getAccessLevel();
+
+	public String getReturnType();
+
+	public List<String> getParamTypes();
+
+	public List<String> getExceptions();
 }
