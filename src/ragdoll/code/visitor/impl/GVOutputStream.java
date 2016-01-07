@@ -1,5 +1,7 @@
 package ragdoll.code.visitor.impl;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import ragdoll.code.api.IClass;
@@ -40,7 +42,7 @@ public class GVOutputStream implements IVisitor {
 
 	public void visit(IClass c) {
 		appendBufferLine('"' + c.getName() + '"' + " [");
-		//this.sb.append("label = <{");
+		// this.sb.append("label = <{");
 		this.sb.append("label = \"{");
 	}
 
@@ -67,17 +69,25 @@ public class GVOutputStream implements IVisitor {
 			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
 					+ Utilities.packagifyClassName(cd.getNameOfSuperClass()) + '"');
 		}
-		
+
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
 		appendBufferLine("arrowhead = \"vee\"");
 		appendBufferLine("]");
 		Set<String> useList = c.getUseSet();
 		for (String usedClass : useList) {
-			if(!Utilities.packagifyClassName(usedClass).startsWith("java.")){
-			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
-					+ Utilities.packagifyClassName(usedClass) + '"');
+			if (!Utilities.packagifyClassName(usedClass).startsWith("java.")) {
+				appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"'
+						+ Utilities.packagifyClassName(usedClass) + '"');
 			}
+		}
+
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("]");
+		for (String type : c.getAssociationType()) {
+			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"' + type + '"');
 		}
 
 	}

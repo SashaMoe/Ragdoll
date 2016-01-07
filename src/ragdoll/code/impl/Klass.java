@@ -12,6 +12,7 @@ import ragdoll.code.api.IClassDeclaration;
 import ragdoll.code.api.IField;
 import ragdoll.code.api.IMethod;
 import ragdoll.code.visitor.api.IVisitor;
+import ragdoll.util.Utilities;
 
 public class Klass implements IClass {
 	private Map<String, IClass> iClasses;
@@ -20,6 +21,8 @@ public class Klass implements IClass {
 	private Set<String> useSet;
 	private HashMap<String, IField> fieldMap;
 	private IClassDeclaration declaration;
+	private Set<String> associationFieldSet;
+	private Set<String> associationTypeSet;
 
 	public Klass(String name, Map<String, IClass> iClasses) {
 		super();
@@ -28,6 +31,12 @@ public class Klass implements IClass {
 		this.methodList = new ArrayList<>();
 		this.useSet = new HashSet<String>();
 		this.fieldMap = new HashMap<>();
+		this.associationFieldSet = new HashSet<String>();
+		this.associationTypeSet = new HashSet<>();
+	}
+	
+	public void addAssociationField(String fieldName) {
+		this.associationFieldSet.add(fieldName);
 	}
 
 	public void addMethod(IMethod method) {
@@ -76,6 +85,15 @@ public class Klass implements IClass {
 			}
 		}
 		useSet = filteredUseSet;
+		
+		Set<String> filteredTypeSet = new HashSet<>();
+		for (String af : associationFieldSet) {
+			if (fieldMap.containsKey(af) && iClasses.containsKey(fieldMap.get(af).getType())) {
+				filteredTypeSet.add(fieldMap.get(af).getType());
+			}
+		}
+		associationTypeSet = filteredTypeSet;
+		
 		v.postVisit(this);
 	}
 
@@ -83,9 +101,16 @@ public class Klass implements IClass {
 		return this.name;
 	}
 
-	@Override
 	public Set<String> getUseSet() {
 		return useSet;
+	}
+	
+	public Set<String> getAssociationField() {
+		return associationFieldSet;
+	}
+	
+	public Set<String> getAssociationType() {
+		return associationTypeSet;
 	}
 
 }

@@ -55,19 +55,23 @@ public class ClassMethodVisitor extends ClassVisitor {
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 		this.c.addMethod(method);
 
-		// System.out.println("Classname = " + c.getName());
-		// System.out.println("Methodname = " + name);
 		MethodVisitor oriMv = new MethodVisitor(Opcodes.ASM5) {
 		};
 		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, oriMv) {
 			@Override
 			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-				// System.out.println(" owner = " + owner);
-				// System.out.println(" name = " + name);
-				// System.out.println(" desc = " + desc);
 				if (name.equals("<init>")) {
 					ClassMethodVisitor.this.c.addUse(Utilities.packagifyClassName(owner));
 				}
+			}
+
+			@Override
+			public void visitFieldInsn(int opcode, String owner, String name, String desc) {
+				if (Opcodes.PUTFIELD != opcode) {
+					return;
+				}
+				ClassMethodVisitor.this.c.addAssociationField(name);
+				
 			}
 		};
 		return instMv;
