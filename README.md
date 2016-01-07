@@ -83,7 +83,7 @@ The project follows the following design principles:
 
 ## Usage / Instructions
 ### Before we start
-Please make sure that you have installed [Java](https://www.java.com/en/download/).
+Please make sure that you have installed [Java](https://www.java.com/en/download/) and [Eclipse](https://www.eclipse.org/downloads/).
 
 Also please make sure that you have installed [Git](https://git-scm.com/).
 
@@ -99,6 +99,9 @@ cd
 ```
 
 You should now have the entire project.
+
+### Build the project
+Import the project into your Eclipse. Then, single click on the project (Ragdoll), and choose `"Project" -> "Clean.."`. This will let Eclipse build the `bin/` folder.
 
 ### Run the code
 To run the code using `java`, type:

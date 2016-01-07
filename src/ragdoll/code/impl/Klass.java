@@ -98,7 +98,7 @@ public class Klass implements IClass {
 			for (String tt : tempTypeArr) {
 				if (iClasses.containsKey(tt)) {
 					filteredTypeSet.add(tt);
-					filteredUseSet.remove(tt);
+					useSet.remove(tt);
 				}
 			}
 			
