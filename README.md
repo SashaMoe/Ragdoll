@@ -30,6 +30,8 @@ It consists of the following packages:
 
 Overall, the project uses Decorator Pattern as well as two Visitor Patterns.
 
+**Note**: In Milestone 1, we considered possible needs in the future to draw more types of arrows. Thus, we modified a little bit of Visitor Pattern in `GVOutputStream` class and allow it to visit `String`s. Therefore, in Milestone 2, we don't see a strong demand of completely redesigning of our design patterns. We choose to keep using our existing one.
+
 ### Design Principles
 The project follows the following design principles:
 * *Identify the aspects of your application that vary and separate them from what stays the same.* According to the above discussion, we separated the read-in functionality from the write-out functionality.

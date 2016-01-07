@@ -30,8 +30,34 @@ public class ClassMethodVisitor extends ClassVisitor {
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-		String returnType = Type.getReturnType(desc).getClassName();
+		MethodVisitor toDecorate = super.visitMethod(access, name, desc, signature, exceptions);
+		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, toDecorate) {
+			@Override
+			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+				if (name.equals("<init>")) {
+					ClassMethodVisitor.this.c.addUse(Utilities.packagifyClassName(owner));
+				}
+			}
 
+			@Override
+			public void visitFieldInsn(int opcode, String owner, String name, String desc) {
+				if (Opcodes.PUTFIELD != opcode) {
+					return;
+				}
+				ClassMethodVisitor.this.c.addAssociationField(name);
+				
+			}
+		};
+		
+		if (name.contains("$")) {
+			return toDecorate;
+		}
+		
+//		System.out.println("ClassName = " + c.getName());
+//		System.out.println("  name = " + name);
+		
+		String returnType = Type.getReturnType(desc).getClassName();
+		
 		Type[] argTypes = Type.getArgumentTypes(desc);
 		List<String> sTypes = new ArrayList<>();
 		for (Type t : argTypes) {
@@ -55,25 +81,6 @@ public class ClassMethodVisitor extends ClassVisitor {
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 		this.c.addMethod(method);
 
-		MethodVisitor oriMv = new MethodVisitor(Opcodes.ASM5) {
-		};
-		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, oriMv) {
-			@Override
-			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-				if (name.equals("<init>")) {
-					ClassMethodVisitor.this.c.addUse(Utilities.packagifyClassName(owner));
-				}
-			}
-
-			@Override
-			public void visitFieldInsn(int opcode, String owner, String name, String desc) {
-				if (Opcodes.PUTFIELD != opcode) {
-					return;
-				}
-				ClassMethodVisitor.this.c.addAssociationField(name);
-				
-			}
-		};
 		return instMv;
 	}
 
