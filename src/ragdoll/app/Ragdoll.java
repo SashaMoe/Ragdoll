@@ -1,7 +1,9 @@
 package ragdoll.app;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -21,20 +23,21 @@ public class Ragdoll {
 			throw new Exception("Please specify at least one package name!");
 		}
 
+		// Traverse classes
 		List<Class<?>> classes = ClassFinder.find(args[0]);		
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
 			classNames.add(c.getName());
 		}
 		GVOutputStream gvOS = new GVOutputStream();
-		List<IClass> iClasses = new ArrayList<IClass>();
+		Map<String, IClass> iClasses = new HashMap<>();
 
 		for (String className : classNames) {
-			if (className.contains(".test.") 
-					|| className.endsWith("Test") || className.endsWith("Tests")) {
+			if (className.contains(".test.") || className.endsWith("Test")
+				|| className.endsWith("Tests") || className.contains("$")) {
 				continue;
 			}
-			IClass newClass = new Klass(className);
+			IClass newClass = new Klass(className, iClasses);
 			ClassReader reader = new ClassReader(className);
 
 			ClassVisitor declVisitor = new ClassDeclarationVisitor(Opcodes.ASM5, newClass);
@@ -42,12 +45,13 @@ public class Ragdoll {
 			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, newClass);
 
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-			iClasses.add(newClass);
+			iClasses.put(className, newClass);
 		}
 
+		// Output
 		gvOS.initBuffer();
-		for (IClass c : iClasses) {
-			c.accept(gvOS);
+		for (String c : iClasses.keySet()) {
+			iClasses.get(c).accept(gvOS);
 		}
 		gvOS.endBuffer();
 		System.out.println(gvOS.toString());

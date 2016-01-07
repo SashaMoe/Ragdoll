@@ -30,6 +30,8 @@ It consists of the following packages:
 
 Overall, the project uses Decorator Pattern as well as two Visitor Patterns.
 
+**Note**: In Milestone 1, we considered possible needs in the future to draw more types of arrows. Thus, we modified a little bit of Visitor Pattern in `GVOutputStream` class and allow it to visit `String`s. Therefore, in Milestone 2, we don't see a strong demand of completely redesigning of our design patterns. We choose to keep using our existing one.
+
 ### Design Principles
 The project follows the following design principles:
 * *Identify the aspects of your application that vary and separate them from what stays the same.* According to the above discussion, we separated the read-in functionality from the write-out functionality.
@@ -74,10 +76,16 @@ The project follows the following design principles:
 | zxqdx          | Description of the design of the tool.                                                      | 10m    |
 | yangh1         | Description of design principles that we followed.                                          | 5m     |
 | zxqdx          | Refined the discussion of design principles.                                                | 5m     |
+| zxqdx          | Changed class list to hashmap. Added parameter support. Experimented with VisitMethodInsn.  | 10m    |
+| Sasha          | Add output for use arrows                                                                   | 10m    |
+| yangh1         | Fixed display issue and fixed incomplete use arrows.                                        | 20m    |
+| zxqdx          | Added output for association arrows.                                                        | 15m    |
+| Sasha & yangh1 | Added support for nested types in association.                                              | 20m    |
+| zxqdx          | Fixed an issue where it displays association arrow and use arrow at the same time.          | 5m     |
 
 ## Usage / Instructions
 ### Before we start
-Please make sure that you have installed [Java](https://www.java.com/en/download/).
+Please make sure that you have installed [Java](https://www.java.com/en/download/) and [Eclipse](https://www.eclipse.org/downloads/).
 
 Also please make sure that you have installed [Git](https://git-scm.com/).
 
@@ -93,6 +101,9 @@ cd
 ```
 
 You should now have the entire project.
+
+### Build the project
+Import the project into your Eclipse. Then, single click on the project (Ragdoll), and choose `"Project" -> "Clean.."`. This will let Eclipse build the `bin/` folder.
 
 ### Run the code
 To run the code using `java`, type:

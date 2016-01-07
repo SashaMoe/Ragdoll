@@ -6,4 +6,6 @@ public interface IField extends IClassComponent {
 	public String getAccessLevel();
 
 	public String getType();
+	
+	public String getSignature();
 }

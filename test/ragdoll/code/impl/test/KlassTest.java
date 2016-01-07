@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -30,8 +31,8 @@ public class KlassTest {
 		methodList = new ArrayList<IMethod>();
 		fieldMap = new HashMap<>();
 		
-		IField f1 = new Field("F1", "public", "T1");
-		IField f2 = new Field("F2", "priavte", "T2");
+		IField f1 = new Field("F1", "public", "T1", null);
+		IField f2 = new Field("F2", "priavte", "T2", null);
 		fieldMap.put("F1", f1);
 		fieldMap.put("F2", f2);
 		
@@ -52,7 +53,10 @@ public class KlassTest {
 		
 		methodList.add(method1);
 		
-		klass = new Klass(name);
+
+		Map<String, IClass> iClasses = new HashMap<>();
+		klass = new Klass(name, iClasses);
+		iClasses.put(name, klass);
 		klass.addField(f1);
 		klass.addField(f2);
 		klass.addMethod(method1);
