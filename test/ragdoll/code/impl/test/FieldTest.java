@@ -10,12 +10,14 @@ public class FieldTest {
 	private final String accessLevel;
 	private final String type;
 	private final String fieldName;
+	private final String signature;
 	
 	public FieldTest() {
 		accessLevel = "private";
 		type = "ragdoll.test.Type";
 		fieldName = "test";
-		field = new Field(fieldName, accessLevel, type);
+		signature = null;
+		field = new Field(fieldName, accessLevel, type, signature);
 	}
 	
 	@Test
@@ -31,6 +33,11 @@ public class FieldTest {
 	@Test
 	public void testGetFieldName() {
 		assertEquals(this.fieldName, this.field.getFieldName());
+	}
+	
+	@Test
+	public void testGetSignature() {
+		assertEquals(this.signature, this.field.getSignature());
 	}
 	
 }

@@ -31,8 +31,8 @@ public class KlassTest {
 		methodList = new ArrayList<IMethod>();
 		fieldMap = new HashMap<>();
 		
-		IField f1 = new Field("F1", "public", "T1");
-		IField f2 = new Field("F2", "priavte", "T2");
+		IField f1 = new Field("F1", "public", "T1", null);
+		IField f2 = new Field("F2", "priavte", "T2", null);
 		fieldMap.put("F1", f1);
 		fieldMap.put("F2", f2);
 		

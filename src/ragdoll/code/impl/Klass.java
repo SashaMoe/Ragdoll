@@ -88,9 +88,19 @@ public class Klass implements IClass {
 		
 		Set<String> filteredTypeSet = new HashSet<>();
 		for (String af : associationFieldSet) {
-			if (fieldMap.containsKey(af) && iClasses.containsKey(fieldMap.get(af).getType())) {
-				filteredTypeSet.add(fieldMap.get(af).getType());
+			IField field = fieldMap.get(af);
+			ArrayList<String> tempTypeArr = new ArrayList<>();
+			if (field.getSignature() == null) {
+				tempTypeArr.add(field.getType());
+			} else {
+				tempTypeArr = Utilities.explodeSignature(field.getSignature());
 			}
+			for (String tt : tempTypeArr) {
+				if (iClasses.containsKey(tt)) {
+					filteredTypeSet.add(tt);
+				}
+			}
+			
 		}
 		associationTypeSet = filteredTypeSet;
 		

@@ -26,6 +26,7 @@ public class ClassFieldVisitor extends ClassVisitor {
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
 		FieldVisitor toDecorate = super.visitField(access, name, desc, signature, value);
 		String type = Type.getType(desc).getClassName();
+		
 		String level = "";
 		if ((access & Opcodes.ACC_PUBLIC) != 0) {
 			level = "public";
@@ -37,7 +38,7 @@ public class ClassFieldVisitor extends ClassVisitor {
 			level = "default";
 		}
 
-		IField field = new Field(name, level, type);
+		IField field = new Field(name, level, type, signature);
 		this.c.addField(field);
 		return toDecorate;
 	}
