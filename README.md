@@ -77,6 +77,9 @@ The project follows the following design principles:
 | zxqdx          | Changed class list to hashmap. Added parameter support. Experimented with VisitMethodInsn.  | 10m    |
 | Sasha          | Add output for use arrows                                                                   | 10m    |
 | yangh1         | Fixed display issue and fixed incomplete use arrows.                                        | 20m    |
+| zxqdx          | Added output for association arrows.                                                        | 15m    |
+| Sasha & yangh1 | Added support for nested types in association.                                              | 20m    |
+| zxqdx          | Fixed an issue where it displays association arrow and use arrow at the same time.          | 5m     |
 
 ## Usage / Instructions
 ### Before we start

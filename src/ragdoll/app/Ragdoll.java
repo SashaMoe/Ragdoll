@@ -48,8 +48,6 @@ public class Ragdoll {
 			iClasses.put(className, newClass);
 		}
 
-		// Add Interface --> Class relationship
-		
 		// Output
 		gvOS.initBuffer();
 		for (String c : iClasses.keySet()) {
