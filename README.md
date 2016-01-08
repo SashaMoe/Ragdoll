@@ -41,50 +41,53 @@ The project follows the following design principles:
 * *Each method should be either a command or a query.* We tried our best to make methods that we implemented in the project to either be a Command Method (Performs an action but has no return value) or a Query Method (Returns data but has no side effects).
 
 ## Who-Did-What table:
-| *Name*         | *Who did what*                                                                              | *Time* |
-|----------------|---------------------------------------------------------------------------------------------|--------|
-| zxqdx          | init project(asm parser)                                                                    | 20m    |
-| SashaMoe       | create project                                                                              | 5m     |
-| zxqdx / yangh1 | Setup git environment w/ Yangh1                                                             | 10m    |
-| Sasha          | Setup interfaces and packages for ragdoll.code                                              | 5m     |
-| yangh1         | Setup packages for ragdoll.code.visitor & fix typo                                          | 10m    |
-| zxqdx          | Create Class' classes                                                                       | 10m    |
-| yangh1         | Create ClassDeclaration constructor and fields                                              | 10m    |
-| Sasha          | Create Method constructor and fields                                                        | 10m    |
-| zxqdx          | Create Field constructor and fields. Added getters for all class components                 | 10m    |
-| Sasha          | Implemented one visitor setup method. Fixed interface issues.                               | 10m    |
-| yangh1         | Create Ragdoll main class and added instantiation process of IClass.                        | 10m    |
-| Sasha          | In asm, added IClassComponents to IClass. Implemented part of the IVisitor methods.         | 10m    |
-| zxqdx          | Added visit logic for Fields and Methods.                                                   | 10m    |
-| yangh1         | implement visit logic for class declaration                                                 | 10m    |
-| Sasha          | implement accept logics                                                                     | 10m    |
-| zxqdx          | Added main() for it to generate gv code                                                     | 10m    |
-| Sasha          | Added test packages. Added test for ClassDeclaration.                                       | 10m    |
-| yangh1         | Added test for Field.                                                                       | 8m     |
-| zxqdx          | Added test for Method.                                                                      | 10m    |
-| Sasha          | Added test for Klass.                                                                       | 10m    |
-| yangh1         | Added sample classes and interface for testing asm. Added test for ClassDeclarationVisitor. | 10m    |
-| zxqdx          | Added test for ClassFieldVisitor.                                                           | 10m    |
-| Sasha          | Added test for ClassMethodVisitor.                                                          | 10m    |
-| yangh1         | Added test cases for init/end buffer of GVOutputStream.                                     | 10m    |
-| zxqdx          | Added test cases for visiting class & declaration of GVOutputStream.                        | 10m    |
-| Sasha          | Added test cases for visiting fields & methods of GVOutputStream.                           | 8m     |
-| yangh1         | UML diagram for the project (manually)                                                      | 20m    |
-| zxqdx          | UML diagram for the project (generated)                                                     | 10m    |
-| Sasha          | UML diagrams for Lab1-3 (Using zxqdx's solution for Lab1-3)                                 | 10m    |
-| yangh1         | Instruction for downloading & using project.                                                | 15m    |
-| zxqdx          | Description of the design of the tool.                                                      | 10m    |
-| yangh1         | Description of design principles that we followed.                                          | 5m     |
-| zxqdx          | Refined the discussion of design principles.                                                | 5m     |
-| zxqdx          | Changed class list to hashmap. Added parameter support. Experimented with VisitMethodInsn.  | 10m    |
-| Sasha          | Add output for use arrows                                                                   | 10m    |
-| yangh1         | Fixed display issue and fixed incomplete use arrows.                                        | 20m    |
-| zxqdx          | Added output for association arrows.                                                        | 15m    |
-| Sasha & yangh1 | Added support for nested types in association.                                              | 20m    |
-| zxqdx          | Fixed an issue where it displays association arrow and use arrow at the same time.          | 5m     |
-| Sasha          | Minor bug fix; Create UML for PizzaFactory                                                  | 10m    |
-| yangh1         | Updated manually created UML diagram for project.                                           | 15m    |
-| zxqdx          | Updated tests & Added tests for tricky abstract factory pattern packages.                   | 15m    |
+| *Name*         | *Who did what*                                                                                                        | *Time* |
+|----------------|-----------------------------------------------------------------------------------------------------------------------|--------|
+| zxqdx          | init project(asm parser)                                                                                              | 20m    |
+| SashaMoe       | create project                                                                                                        | 5m     |
+| zxqdx / yangh1 | Setup git environment w/ Yangh1                                                                                       | 10m    |
+| Sasha          | Setup interfaces and packages for ragdoll.code                                                                        | 5m     |
+| yangh1         | Setup packages for ragdoll.code.visitor & fix typo                                                                    | 10m    |
+| zxqdx          | Create Class' classes                                                                                                 | 10m    |
+| yangh1         | Create ClassDeclaration constructor and fields                                                                        | 10m    |
+| Sasha          | Create Method constructor and fields                                                                                  | 10m    |
+| zxqdx          | Create Field constructor and fields. Added getters for all class components                                           | 10m    |
+| Sasha          | Implemented one visitor setup method. Fixed interface issues.                                                         | 10m    |
+| yangh1         | Create Ragdoll main class and added instantiation process of IClass.                                                  | 10m    |
+| Sasha          | In asm, added IClassComponents to IClass. Implemented part of the IVisitor methods.                                   | 10m    |
+| zxqdx          | Added visit logic for Fields and Methods.                                                                             | 10m    |
+| yangh1         | implement visit logic for class declaration                                                                           | 10m    |
+| Sasha          | implement accept logics                                                                                               | 10m    |
+| zxqdx          | Added main() for it to generate gv code                                                                               | 10m    |
+| Sasha          | Added test packages. Added test for ClassDeclaration.                                                                 | 10m    |
+| yangh1         | Added test for Field.                                                                                                 | 8m     |
+| zxqdx          | Added test for Method.                                                                                                | 10m    |
+| Sasha          | Added test for Klass.                                                                                                 | 10m    |
+| yangh1         | Added sample classes and interface for testing asm. Added test for ClassDeclarationVisitor.                           | 10m    |
+| zxqdx          | Added test for ClassFieldVisitor.                                                                                     | 10m    |
+| Sasha          | Added test for ClassMethodVisitor.                                                                                    | 10m    |
+| yangh1         | Added test cases for init/end buffer of GVOutputStream.                                                               | 10m    |
+| zxqdx          | Added test cases for visiting class & declaration of GVOutputStream.                                                  | 10m    |
+| Sasha          | Added test cases for visiting fields & methods of GVOutputStream.                                                     | 8m     |
+| yangh1         | UML diagram for the project (manually)                                                                                | 20m    |
+| zxqdx          | UML diagram for the project (generated)                                                                               | 10m    |
+| Sasha          | UML diagrams for Lab1-3 (Using zxqdx's solution for Lab1-3)                                                           | 10m    |
+| yangh1         | Instruction for downloading & using project.                                                                          | 15m    |
+| zxqdx          | Description of the design of the tool.                                                                                | 10m    |
+| yangh1         | Description of design principles that we followed.                                                                    | 5m     |
+| zxqdx          | Refined the discussion of design principles.                                                                          | 5m     |
+| zxqdx          | Changed class list to hashmap. Added parameter support. Experimented with VisitMethodInsn.                            | 10m    |
+| Sasha          | Add output for use arrows                                                                                             | 10m    |
+| yangh1         | Fixed display issue and fixed incomplete use arrows.                                                                  | 20m    |
+| zxqdx          | Added output for association arrows.                                                                                  | 15m    |
+| Sasha & yangh1 | Added support for nested types in association.                                                                        | 20m    |
+| zxqdx          | Fixed an issue where it displays association arrow and use arrow at the same time.                                    | 5m     |
+| Sasha          | Minor bug fix; Create UML for PizzaFactory                                                                            | 10m    |
+| yangh1         | Updated manually created UML diagram for project.                                                                     | 15m    |
+| zxqdx          | Updated tests & Added tests for tricky abstract factory pattern packages.                                             | 15m    |
+| all            | Fixed assoc arrow issue. Added new tests for use & assoc arrows. Added new tests for tricky abstract factory pattern. | 10m    |
+| yangh1         | Updated manually created UML diagram for project.                                                                     | 10m    |
+| zxqdx          | Regenerate all UML diagrams.                                                                                          | 5m     |
 
 ## Usage / Instructions
 ### Before we start
