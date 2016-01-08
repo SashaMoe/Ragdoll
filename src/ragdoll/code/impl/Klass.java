@@ -34,7 +34,7 @@ public class Klass implements IClass {
 		this.associationFieldSet = new HashSet<String>();
 		this.associationTypeSet = new HashSet<>();
 	}
-	
+
 	public void addAssociationField(String fieldName) {
 		this.associationFieldSet.add(fieldName);
 	}
@@ -42,7 +42,7 @@ public class Klass implements IClass {
 	public void addMethod(IMethod method) {
 		this.methodList.add(method);
 	}
-	
+
 	public void addUse(String className) {
 		this.useSet.add(className);
 	}
@@ -75,36 +75,39 @@ public class Klass implements IClass {
 			f.accept(v);
 		}
 		v.visit("|");
-		for (IMethod m : this.methodList){
+		for (IMethod m : this.methodList) {
 			m.accept(v);
 		}
 		Set<String> filteredUseSet = new HashSet<>();
-		for (String usedClass : useSet){
-			if(iClasses.containsKey(usedClass)){
+		for (String usedClass : useSet) {
+			if (iClasses.containsKey(usedClass)) {
 				filteredUseSet.add(usedClass);
 			}
 		}
 		useSet = filteredUseSet;
-		
+
 		Set<String> filteredTypeSet = new HashSet<>();
 		for (String af : associationFieldSet) {
-			IField field = fieldMap.get(af);
-			ArrayList<String> tempTypeArr = new ArrayList<>();
-			if (field.getSignature() == null) {
-				tempTypeArr.add(field.getType());
-			} else {
-				tempTypeArr = Utilities.explodeSignature(field.getSignature());
-			}
-			for (String tt : tempTypeArr) {
-				if (iClasses.containsKey(tt)) {
-					filteredTypeSet.add(tt);
-					useSet.remove(tt);
+			if (fieldMap.containsKey(af)) {
+				IField field = fieldMap.get(af);
+				ArrayList<String> tempTypeArr = new ArrayList<>();
+				if (field.getSignature() == null) {
+					tempTypeArr.add(field.getType());
+				} else {
+					tempTypeArr = Utilities.explodeSignature(field.getSignature());
+				}
+				for (String tt : tempTypeArr) {
+					if (iClasses.containsKey(tt)) {
+						filteredTypeSet.add(tt);
+						useSet.remove(tt);
+					}
 				}
 			}
-			
+
 		}
+
 		associationTypeSet = filteredTypeSet;
-		
+
 		v.postVisit(this);
 	}
 
@@ -115,11 +118,11 @@ public class Klass implements IClass {
 	public Set<String> getUseSet() {
 		return useSet;
 	}
-	
+
 	public Set<String> getAssociationField() {
 		return associationFieldSet;
 	}
-	
+
 	public Set<String> getAssociationType() {
 		return associationTypeSet;
 	}
