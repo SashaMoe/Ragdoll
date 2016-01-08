@@ -110,11 +110,16 @@ public class GVOutputStreamTest {
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
+	// Tests use and assoc arrow in abstract factory pattern
 	@Test
 	public void testPostVisitIClass() {
 		// Tests headfirst.factory.pizzafm.ChicagoStyleCheesePizza
-		gvOS.postVisit(iClasses.get("headfirst.factory.pizzafm.ChicagoStyleCheesePizza"));
+		IClass klass = iClasses.get("headfirst.factory.pizzafm.ChicagoStyleCheesePizza");
+		klass.filterUseSet();
+		klass.filterTypeSet();
+		gvOS.postVisit(klass);
 
+		
 		appendBufferLine("}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
@@ -138,6 +143,43 @@ public class GVOutputStreamTest {
 		
 		assertEquals(sb.toString(), gvOS.toString());
 	}
+	
+	@Test
+	public void testPostVisitIClass2() {
+		// Tests headfirst.factory.pizzafm.ChicagoStyleCheesePizza
+		IClass klass = iClasses.get("headfirst.factory.pizzaaf.Pizza");
+		klass.filterUseSet();
+		klass.filterTypeSet();
+		gvOS.postVisit(klass);
+
+		appendBufferLine("}\"");
+		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"dashed\"");
+		appendBufferLine("arrowhead = \"empty\"");
+		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"empty\"");
+		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"dashed\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("]");
+		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Clams\"");
+		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Pepperoni\"");
+		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Dough\"");
+		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Cheese\"");
+		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Sauce\"");
+
+		assertEquals(sb.toString(), gvOS.toString());
+	}
+	
+	
 
 	@Test
 	public void testVisitIClassDeclaration() {

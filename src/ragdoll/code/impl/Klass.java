@@ -21,7 +21,6 @@ public class Klass implements IClass {
 	private Set<String> useSet;
 	private HashMap<String, IField> fieldMap;
 	private IClassDeclaration declaration;
-	private Set<String> associationFieldSet;
 	private Set<String> associationTypeSet;
 
 	public Klass(String name, Map<String, IClass> iClasses) {
@@ -31,12 +30,7 @@ public class Klass implements IClass {
 		this.methodList = new ArrayList<>();
 		this.useSet = new HashSet<String>();
 		this.fieldMap = new HashMap<>();
-		this.associationFieldSet = new HashSet<String>();
 		this.associationTypeSet = new HashSet<>();
-	}
-
-	public void addAssociationField(String fieldName) {
-		this.associationFieldSet.add(fieldName);
 	}
 
 	public void addMethod(IMethod method) {
@@ -78,6 +72,14 @@ public class Klass implements IClass {
 		for (IMethod m : this.methodList) {
 			m.accept(v);
 		}
+		
+		filterUseSet();
+		filterTypeSet();
+
+		v.postVisit(this);
+	}
+
+	public void filterUseSet() {
 		Set<String> filteredUseSet = new HashSet<>();
 		for (String usedClass : useSet) {
 			if (iClasses.containsKey(usedClass)) {
@@ -85,42 +87,34 @@ public class Klass implements IClass {
 			}
 		}
 		useSet = filteredUseSet;
-
+	}
+	
+	public void filterTypeSet() {
 		Set<String> filteredTypeSet = new HashSet<>();
-		for (String af : associationFieldSet) {
-			if (fieldMap.containsKey(af)) {
-				IField field = fieldMap.get(af);
-				ArrayList<String> tempTypeArr = new ArrayList<>();
-				if (field.getSignature() == null) {
-					tempTypeArr.add(field.getType());
-				} else {
-					tempTypeArr = Utilities.explodeSignature(field.getSignature());
-				}
-				for (String tt : tempTypeArr) {
-					if (iClasses.containsKey(tt)) {
-						filteredTypeSet.add(tt);
-						useSet.remove(tt);
-					}
+		for (String af : fieldMap.keySet()) {
+			IField field = fieldMap.get(af);
+			ArrayList<String> tempTypeArr = new ArrayList<>();
+			if (field.getSignature() == null) {
+				tempTypeArr.add(field.getType());
+			} else {
+				tempTypeArr = Utilities.explodeSignature(field.getSignature());
+			}
+			for (String tt : tempTypeArr) {
+				if (iClasses.containsKey(tt)) {
+					filteredTypeSet.add(tt);
+					useSet.remove(tt);
 				}
 			}
-
 		}
-
 		associationTypeSet = filteredTypeSet;
-
-		v.postVisit(this);
 	}
-
+	
 	public String getName() {
 		return this.name;
 	}
 
 	public Set<String> getUseSet() {
 		return useSet;
-	}
-
-	public Set<String> getAssociationField() {
-		return associationFieldSet;
 	}
 
 	public Set<String> getAssociationType() {

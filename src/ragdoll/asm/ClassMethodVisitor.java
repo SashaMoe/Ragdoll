@@ -34,18 +34,12 @@ public class ClassMethodVisitor extends ClassVisitor {
 		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, toDecorate) {
 			@Override
 			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+				// NOTE: Here, we check if name is <init>, not owner is <init>.
+				// Therefore, we are checking the case in the code where `new` keyword is presented.
+				// We are NOT only checking the constructor method.
 				if (name.equals("<init>")) {
 					ClassMethodVisitor.this.c.addUse(Utilities.packagifyClassName(owner));
 				}
-			}
-
-			@Override
-			public void visitFieldInsn(int opcode, String owner, String name, String desc) {
-				if (Opcodes.PUTFIELD != opcode) {
-					return;
-				}
-				ClassMethodVisitor.this.c.addAssociationField(name);
-				
 			}
 		};
 		

@@ -12,8 +12,6 @@ public interface IClass extends ITraverser {
 	public void addField(IField field);
 	
 	public void addUse(String className); // M2
-	
-	public void addAssociationField(String fieldName); //M2
 
 	public void setDeclaration(IClassDeclaration declaration);
 
@@ -25,9 +23,11 @@ public interface IClass extends ITraverser {
 	
 	public Set<String> getUseSet(); //M2
 	
-	public Set<String> getAssociationField(); //M2
-	
 	public Set<String> getAssociationType(); // M2
+	
+	public void filterUseSet(); // M2
+	
+	public void filterTypeSet(); // M2
 
 	public String getName();
 }
