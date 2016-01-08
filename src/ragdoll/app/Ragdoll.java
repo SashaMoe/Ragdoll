@@ -24,7 +24,7 @@ public class Ragdoll {
 		}
 
 		// Traverse classes
-		List<Class<?>> classes = ClassFinder.find(args[0]);		
+		List<Class<?>> classes = ClassFinder.find(args[0]);
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
 			classNames.add(c.getName());

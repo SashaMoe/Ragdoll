@@ -82,6 +82,9 @@ The project follows the following design principles:
 | zxqdx          | Added output for association arrows.                                                        | 15m    |
 | Sasha & yangh1 | Added support for nested types in association.                                              | 20m    |
 | zxqdx          | Fixed an issue where it displays association arrow and use arrow at the same time.          | 5m     |
+| Sasha          | Minor bug fix; Create UML for PizzaFactory                                                  | 10m    |
+| yangh1         | Updated manually created UML diagram for project.                                           | 15m    |
+| zxqdx          | Updated tests & Added tests for tricky abstract factory pattern packages.                   | 15m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -146,3 +149,7 @@ This will generate a png image file (the UML diagram) in your current directory.
 
 #### Generated UML diagram
 ![UML Diagram](/img/ProjectUMLGenerated.png "")
+
+### Textbook Pizza Factory
+#### Generated UML diagram
+![UML Diagram](/img/PizzaFactoryUMLGenerated.png "")
