@@ -1,6 +1,7 @@
 package ragdoll.app;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,15 @@ public class Ragdoll {
 		}
 
 		// Traverse classes
-		List<Class<?>> classes = ClassFinder.find(args[0]);
+		// List<Class<?>> classes = ClassFinder.find(args[0]);
+		List<Class<?>> classes = new ArrayList<>();
+		for (int i = 0; i < args.length; i++) {
+			try {
+				classes.add(Class.forName(args[i]));
+			} catch (Exception e) {
+//				e.printStackTrace();
+			}
+		}
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
 			classNames.add(c.getName());
@@ -33,8 +42,8 @@ public class Ragdoll {
 		Map<String, IClass> iClasses = new HashMap<>();
 
 		for (String className : classNames) {
-			if (className.contains(".test.") || className.endsWith("Test")
-				|| className.endsWith("Tests") || className.contains("$")) {
+			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
+					|| className.contains("$")) {
 				continue;
 			}
 			IClass newClass = new Klass(className, iClasses);
