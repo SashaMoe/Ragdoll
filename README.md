@@ -95,6 +95,8 @@ The project follows the following design principles:
 | yangh1         | Implemented main logic in GraphMethodVisitor.                                                                         | 15m    |
 | zxqdx          | Added DFS helper for CallGraph structure. Fixed several issues along the way.                                         | 15m    |
 | Sasha          | Implemented ITraverser logic for Node class. Refactored some code along the way.                                      | 15m    |
+| zxqdx          | Fixed issues related to SDEdit syntax. Added sdedit.jar.                                                              | 10m    |
+| yangh1         | Ignored the static cases. Updated the instructions.                                                                   | 10m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -146,7 +148,7 @@ java -classpath ./bin:./lib/asm-all-5.0.4.jar SD ragdoll.app.Ragdoll ragdoll.asm
 This will output the `ragdoll.asm.sd.test.sample.ClassA.methodA`'s generated Sequence Diagram in SDEdit format to the console.
 
 ### Generate the image
-To generate the image, type:
+To generate the UML image, type:
 ```
 <ragdoll_command> | dot -Tpng -o <output_png_path>
 ```
@@ -158,7 +160,19 @@ For example, by typing:
 ```
 java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll UML ragdoll | dot -Tpng -o outputUML.png
 ```
-This will generate a png image file (the UML diagram) in your current directory.
+This will generate a png image file `outputUML.png` (the UML diagram) in your current directory.
+
+To generate the SD image, type:
+```
+<ragdoll_command> > <temp_sd_file_store_path>; java -jar lib/sdedit-4.01.jar -o demo/test.png -t png <temp_sd_file_store_path>
+```
+You can specify the `<temp_sd_file_store_path>` whereever and whatever you want.
+
+For example, by typing:
+```
+java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll SD "java.util.Collections.shuffle(java.util.List)" 2 > demo/test.sd; java -jar lib/sdedit-4.01.jar -o demo/test.png -t png demo/test.sd
+```
+This will generate a png image file `test.png` (the SD diagram) in your `demo/` directory.
 
 ## Pictures comparisons
 ### Lab1-3

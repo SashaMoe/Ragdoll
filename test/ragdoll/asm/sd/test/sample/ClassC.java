@@ -1,5 +1,7 @@
 package ragdoll.asm.sd.test.sample;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class ClassC {
@@ -9,6 +11,6 @@ public class ClassC {
 	
 	public static void methodD(String s) {
 		ClassB.methodE();
-		new Random();
+		Collections.shuffle(new ArrayList<>());
 	}
 }

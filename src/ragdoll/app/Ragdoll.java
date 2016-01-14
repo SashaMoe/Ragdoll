@@ -3,12 +3,10 @@ package ragdoll.app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -55,40 +53,28 @@ public class Ragdoll {
 		Queue<INode> methodQueue = new LinkedList<INode>();
 		methodQueue.add(startMethod);
 
-		Set<String> createdClasses = new HashSet<>();
-
 		while (!methodQueue.isEmpty()) {
 			INode currentMethod = methodQueue.poll();
 			if (!classes.contains(currentMethod.getClassName())) {
 				classes.add(currentMethod.getClassName());
 			}
 			if (currentMethod.getDepth() < maxDepth) {
-				try {
-					reader = new ClassReader(currentMethod.getClassName());
-					ClassVisitor graphMethodVisitor = new GraphMethodVisitor(Opcodes.ASM5, currentMethod);
-					reader.accept(graphMethodVisitor, ClassReader.EXPAND_FRAMES);
-				} catch (Exception e) {
-					System.out.println("BOOMSHAKALAKA");
-					System.out.println(currentMethod.getClassName());
-				}
+				reader = new ClassReader(currentMethod.getClassName());
+				ClassVisitor graphMethodVisitor = new GraphMethodVisitor(Opcodes.ASM5, currentMethod);
+				reader.accept(graphMethodVisitor, ClassReader.EXPAND_FRAMES);
 				for (INode n : currentMethod.getAdjacencyList()) {
-					if (n.getMethodName().equals("<init>")) {
-						createdClasses.add(n.getClassName());
-					}
 					n.setDepth(currentMethod.getDepth() + 1);
 					methodQueue.add(n);
 				}
 			}
 		}
 
-		System.out.println(classes.size());
-		
 		SDOutputStream sdOS = new SDOutputStream();
-		sdOS.visit(classes, createdClasses);
+		sdOS.visit(classes);
 		sdOS.visit("\n");
 		startMethod.accept(sdOS);
 		System.out.println(sdOS.toString());
-		graphHelper(startMethod);
+//		graphHelper(startMethod);
 	}
 
 	public static void graphHelper(INode current) {
