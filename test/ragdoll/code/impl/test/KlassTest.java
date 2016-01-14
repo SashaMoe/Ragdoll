@@ -9,15 +9,14 @@ import java.util.Map;
 
 import org.junit.Test;
 
-
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IClassDeclaration;
-import ragdoll.code.api.IField;
-import ragdoll.code.api.IMethod;
-import ragdoll.code.impl.ClassDeclaration;
-import ragdoll.code.impl.Field;
-import ragdoll.code.impl.Klass;
-import ragdoll.code.impl.Method;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IClassDeclaration;
+import ragdoll.code.uml.api.IField;
+import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.uml.impl.ClassDeclaration;
+import ragdoll.code.uml.impl.Field;
+import ragdoll.code.uml.impl.Klass;
+import ragdoll.code.uml.impl.Method;
 
 public class KlassTest {
 	private final String name;

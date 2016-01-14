@@ -1,4 +1,4 @@
-package ragdoll.code.api;
+package ragdoll.code.uml.api;
 
 import java.util.HashMap;
 import java.util.List;

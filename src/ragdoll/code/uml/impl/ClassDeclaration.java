@@ -1,8 +1,8 @@
-package ragdoll.code.impl;
+package ragdoll.code.uml.impl;
 
 import java.util.List;
 
-import ragdoll.code.api.IClassDeclaration;
+import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class ClassDeclaration implements IClassDeclaration {

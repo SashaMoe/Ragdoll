@@ -13,11 +13,11 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
-import ragdoll.asm.ClassFieldVisitor;
-import ragdoll.asm.ClassMethodVisitor;
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IMethod;
-import ragdoll.code.impl.Klass;
+import ragdoll.asm.uml.ClassFieldVisitor;
+import ragdoll.asm.uml.ClassMethodVisitor;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.uml.impl.Klass;
 
 public class ClassMethodVisitorTest {
 	private final String className;
@@ -27,7 +27,7 @@ public class ClassMethodVisitorTest {
 	String packageName;
 
 	public ClassMethodVisitorTest() throws IOException {
-		packageName = "ragdoll.asm.test.sample.";
+		packageName = "ragdoll.asm.uml.test.sample.";
 		className = packageName + "SampleClass";
 		reader = new ClassReader(className);
 		Map<String, IClass> iClasses = new HashMap<>();
@@ -59,7 +59,7 @@ public class ClassMethodVisitorTest {
 		assertEquals("java/lang/Exception", exceptionList.get(0));
 
 		assertEquals("private", methodList.get(2).getAccessLevel());
-		assertEquals("ragdoll.asm.test.sample.SampleInterface", methodList.get(2).getReturnType());
+		assertEquals("ragdoll.asm.uml.test.sample.SampleInterface", methodList.get(2).getReturnType());
 		assertEquals("sampleMethod2", methodList.get(2).getMethodName());
 
 		assertEquals("protected", methodList.get(3).getAccessLevel());

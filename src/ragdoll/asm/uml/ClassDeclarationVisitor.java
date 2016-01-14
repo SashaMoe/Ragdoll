@@ -1,4 +1,4 @@
-package ragdoll.asm;
+package ragdoll.asm.uml;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -7,9 +7,9 @@ import java.util.Arrays;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IClassDeclaration;
-import ragdoll.code.impl.ClassDeclaration;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IClassDeclaration;
+import ragdoll.code.uml.impl.ClassDeclaration;
 
 public class ClassDeclarationVisitor extends ClassVisitor {
 

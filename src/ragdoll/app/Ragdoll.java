@@ -1,7 +1,8 @@
 package ragdoll.app;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,30 +11,43 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
-import ragdoll.asm.ClassDeclarationVisitor;
-import ragdoll.asm.ClassFieldVisitor;
-import ragdoll.asm.ClassMethodVisitor;
-import ragdoll.code.api.IClass;
-import ragdoll.code.impl.Klass;
+import ragdoll.asm.uml.ClassDeclarationVisitor;
+import ragdoll.asm.uml.ClassFieldVisitor;
+import ragdoll.asm.uml.ClassMethodVisitor;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
 public class Ragdoll {
 	public static void main(String[] args) throws Exception {
-		if (args.length == 0) {
+		if (args.length <= 1) {
 			throw new Exception("Please specify at least one package name!");
 		}
-
+		String diagramType = args[0];
+		if (diagramType.toUpperCase().equals("UML")) { // UML
+			generateUML(Arrays.copyOfRange(args, 1, args.length));
+		} else if (diagramType.toUpperCase().equals("SD")) { // SD is Sweet Dessert
+			generateSD(args[1]);
+		}
+	}
+	
+	public static void generateSD(String fullyQualifiedMethodName) {
+		
+	}
+	
+	public static void generateUML(String[] items) throws Exception {
 		// Traverse classes
 		// List<Class<?>> classes = ClassFinder.find(args[0]);
 		List<Class<?>> classes = new ArrayList<>();
-		for (int i = 0; i < args.length; i++) {
+		for (int i = 0; i < items.length; i++) {
 			try {
-				classes.add(Class.forName(args[i]));
+				classes.add(Class.forName(items[i]));
 			} catch (Exception e) {
-//				e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
+
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
 			classNames.add(c.getName());

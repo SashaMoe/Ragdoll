@@ -1,4 +1,4 @@
-package ragdoll.code.api;
+package ragdoll.code.uml.api;
 
 public interface IField extends IClassComponent {
 	public String getFieldName();

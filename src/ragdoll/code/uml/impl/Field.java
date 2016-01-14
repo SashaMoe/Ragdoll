@@ -1,6 +1,6 @@
-package ragdoll.code.impl;
+package ragdoll.code.uml.impl;
 
-import ragdoll.code.api.IField;
+import ragdoll.code.uml.api.IField;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class Field implements IField {

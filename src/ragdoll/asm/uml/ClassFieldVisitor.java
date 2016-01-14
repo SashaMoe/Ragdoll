@@ -1,13 +1,13 @@
-package ragdoll.asm;
+package ragdoll.asm.uml;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IField;
-import ragdoll.code.impl.Field;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IField;
+import ragdoll.code.uml.impl.Field;
 
 public class ClassFieldVisitor extends ClassVisitor {
 

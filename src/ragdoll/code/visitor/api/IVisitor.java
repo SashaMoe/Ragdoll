@@ -1,9 +1,9 @@
 package ragdoll.code.visitor.api;
 
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IClassDeclaration;
-import ragdoll.code.api.IField;
-import ragdoll.code.api.IMethod;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IClassDeclaration;
+import ragdoll.code.uml.api.IField;
+import ragdoll.code.uml.api.IMethod;
 
 public interface IVisitor {
 	void visit(IClass c);

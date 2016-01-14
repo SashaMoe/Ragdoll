@@ -1,4 +1,4 @@
-package ragdoll.code.impl;
+package ragdoll.code.uml.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IClassDeclaration;
-import ragdoll.code.api.IField;
-import ragdoll.code.api.IMethod;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IClassDeclaration;
+import ragdoll.code.uml.api.IField;
+import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.visitor.api.IVisitor;
 import ragdoll.util.Utilities;
 

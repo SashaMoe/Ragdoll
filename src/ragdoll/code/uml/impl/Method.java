@@ -1,8 +1,8 @@
-package ragdoll.code.impl;
+package ragdoll.code.uml.impl;
 
 import java.util.List;
 
-import ragdoll.code.api.IMethod;
+import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class Method implements IMethod {

@@ -10,10 +10,10 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
-import ragdoll.asm.ClassFieldVisitor;
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IField;
-import ragdoll.code.impl.Klass;
+import ragdoll.asm.uml.ClassFieldVisitor;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IField;
+import ragdoll.code.uml.impl.Klass;
 
 public class ClassFieldVisitorTest {
 	private final String className;
@@ -22,7 +22,7 @@ public class ClassFieldVisitorTest {
 	private final ClassVisitor fieldVisitor;
 	
 	public ClassFieldVisitorTest() throws IOException {
-		className = "ragdoll.asm.test.sample.SampleClass";
+		className = "ragdoll.asm.uml.test.sample.SampleClass";
 		reader = new ClassReader(className);
 		Map<String, IClass> iClasses = new HashMap<>();
 		c = new Klass(className, iClasses);

@@ -3,7 +3,7 @@ package ragdoll.code.impl.test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import ragdoll.code.impl.Field;
+import ragdoll.code.uml.impl.Field;
 
 public class FieldTest {
 	private final Field field;

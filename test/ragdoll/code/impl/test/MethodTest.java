@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import ragdoll.code.impl.Method;
+import ragdoll.code.uml.impl.Method;
 
 public class MethodTest {
 	private final Method method;

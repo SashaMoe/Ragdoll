@@ -1,4 +1,4 @@
-package ragdoll.asm;
+package ragdoll.asm.uml;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,9 +9,9 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import ragdoll.code.api.IClass;
-import ragdoll.code.api.IMethod;
-import ragdoll.code.impl.Method;
+import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.uml.impl.Method;
 import ragdoll.util.Utilities;
 
 public class ClassMethodVisitor extends ClassVisitor {
