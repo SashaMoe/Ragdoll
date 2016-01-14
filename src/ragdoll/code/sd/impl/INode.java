@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.objectweb.asm.Type;
 
-public interface INode {
+import ragdoll.code.visitor.api.ITraverser;
+
+public interface INode extends ITraverser {
 	public void addAdjacentNode(INode node);
 
 	public String getClassName();
@@ -23,8 +25,12 @@ public interface INode {
 	public int getDepth();
 
 	public void setDepth(int depth);
-	
+
 	public String getReturnType();
-	
+
 	public void setReturnType(String type);
+
+	public INode getCallerNode();
+
+	public void setCallerNode(INode callerNode);
 }

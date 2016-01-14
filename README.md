@@ -93,6 +93,8 @@ The project follows the following design principles:
 | zxqdx          | Added utility methods for method signature.                                                                           | 10m    |
 | Sasha          | Implemented the queue for BFS algorithm.                                                                              | 10m    |
 | yangh1         | Implemented main logic in GraphMethodVisitor.                                                                         | 15m    |
+| zxqdx          | Added DFS helper for CallGraph structure. Fixed several issues along the way.                                         | 15m    |
+| Sasha          | Implemented ITraverser logic for Node class. Refactored some code along the way.                                      | 15m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -119,27 +121,40 @@ Import the project into your Eclipse. Then, single click on the project (Ragdoll
 ### Run the code
 To run the code using `java`, type:
 ```
-java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll [<package_name>, ...]
+java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll <diagram_type> [<arguments>, ...]
 ```
+For `<diagram_type>`, you can replace it with the following:
+* **UML**: Generate the UML Diagram. Here, the arguments are `[<package_name>, ...]`.
+* **SD**: Generate the Sequance Diagram. Here, the argument is `<fully_qualified_method_signature>`
+
 For `[<package_name>, ...]`, you can replace it with one or more package names, and our program will traverse your entire package and get all classes in it except classes for testing purposes.
+
+For `<fully_qualified_method_signature>`, you must use this format: `<package_name>.<class_name>.<method_name>([<param_type>, ...])`
 
 For example, by typing:
 ```
-java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll ragdoll
+java -classpath ./bin:./lib/asm-all-5.0.4.jar UML ragdoll.app.Ragdoll ragdoll
 ```
-
 This will output the Ragdoll's generated UML textual representation in GraphicViz image format to the console.
+
+And by typing:
+```
+java -classpath ./bin:./lib/asm-all-5.0.4.jar SD ragdoll.app.Ragdoll ragdoll.asm.sd.test.sample.ClassA.methodA(int)
+```
+This will output the `ragdoll.asm.sd.test.sample.ClassA.methodA`'s generated Sequence Diagram in SDEdit format to the console.
 
 ### Generate the image
 To generate the image, type:
 ```
-java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll [<package_name>, ...] | dot -Tpng -o <output_png_path>
+<ragdoll_command> | dot -Tpng -o <output_png_path>
 ```
+For `<ragdoll_command>`, replace it with the command described above.
+
 For `<output_png_path>`, replace it with the path of the output png file.
 
 For example, by typing:
 ```
-java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll ragdoll | dot -Tpng -o outputUML.png
+java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll UML ragdoll | dot -Tpng -o outputUML.png
 ```
 This will generate a png image file (the UML diagram) in your current directory.
 

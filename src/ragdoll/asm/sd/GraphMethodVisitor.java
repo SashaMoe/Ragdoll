@@ -52,7 +52,8 @@ public class GraphMethodVisitor extends ClassVisitor {
 				MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, toDecorate) {
 					@Override
 					public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-						// Get class name, method name, return type and parameter
+						// Get class name, method name, return type and
+						// parameter
 						if (owner.equals("java/lang/Object")) {
 							return;
 						}
@@ -69,6 +70,7 @@ public class GraphMethodVisitor extends ClassVisitor {
 						newNode.setMethodName(methodName);
 						newNode.setReturnType(returnType);
 						newNode.setParamTypes(argTypes);
+						newNode.setCallerNode(GraphMethodVisitor.this.node);
 
 						// Add the node to current method's adjacency list
 						node.addAdjacentNode(newNode);

@@ -6,6 +6,10 @@ import java.util.List;
 import org.objectweb.asm.Type;
 
 import ragdoll.code.sd.impl.INode;
+import ragdoll.code.visitor.api.ISDVisitor;
+import ragdoll.code.visitor.api.IUMLVisitor;
+import ragdoll.code.visitor.api.IVisitor;
+import ragdoll.util.Utilities;
 
 public class Node implements INode {
 	private String className;
@@ -14,9 +18,18 @@ public class Node implements INode {
 	private ArrayList<INode> adjacencyList;
 	private int depth;
 	private String returnType;
+	private INode callerNode;
+
+	public INode getCallerNode() {
+		return callerNode;
+	}
+
+	public void setCallerNode(INode callerNode) {
+		this.callerNode = callerNode;
+	}
 
 	public Node(String className) {
-		this.className = className;
+		this.className = Utilities.packagifyClassName(className);
 		this.adjacencyList = new ArrayList<>();
 	}
 
@@ -44,10 +57,10 @@ public class Node implements INode {
 		this.returnType = type;
 	}
 
-	public String getReturnType(){
+	public String getReturnType() {
 		return this.returnType;
 	}
-	
+
 	public List<String> getParamTypes() {
 		return paramTypes;
 	}
@@ -63,5 +76,12 @@ public class Node implements INode {
 	public ArrayList<INode> getAdjacencyList() {
 		return adjacencyList;
 	}
-}
 
+	@Override
+	public void accept(IVisitor v) {
+		for (INode calleeNode : this.adjacencyList) {
+			((ISDVisitor) v).visit(calleeNode);
+			calleeNode.accept(v);
+		}
+	}
+}

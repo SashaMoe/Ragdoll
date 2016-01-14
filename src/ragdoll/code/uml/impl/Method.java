@@ -3,6 +3,7 @@ package ragdoll.code.uml.impl;
 import java.util.List;
 
 import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class Method implements IMethod {
@@ -12,7 +13,7 @@ public class Method implements IMethod {
 	private String returnType;
 	private List<String> paramTypes;
 	private List<String> exceptions;
-	
+
 	public Method(String methodName, String accessLevel, String returnType, List<String> paramTypes,
 			List<String> exceptions) {
 		super();
@@ -44,7 +45,7 @@ public class Method implements IMethod {
 	}
 
 	public void accept(IVisitor v) {
-		v.visit(this);
+		((IUMLVisitor) v).visit(this);
 	}
 
 }

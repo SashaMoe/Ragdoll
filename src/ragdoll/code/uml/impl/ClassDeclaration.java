@@ -3,6 +3,7 @@ package ragdoll.code.uml.impl;
 import java.util.List;
 
 import ragdoll.code.uml.api.IClassDeclaration;
+import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class ClassDeclaration implements IClassDeclaration {
@@ -44,7 +45,7 @@ public class ClassDeclaration implements IClassDeclaration {
 	}
 
 	public void accept(IVisitor v) {
-		v.visit(this);
+		((IUMLVisitor) v).visit(this);
 	}
 
 }

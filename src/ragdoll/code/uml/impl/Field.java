@@ -1,6 +1,7 @@
 package ragdoll.code.uml.impl;
 
 import ragdoll.code.uml.api.IField;
+import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.code.visitor.api.IVisitor;
 
 public class Field implements IField {
@@ -17,7 +18,7 @@ public class Field implements IField {
 		this.type = type;
 		this.signature = signature;
 	}
-	
+
 	public String getSignature() {
 		return signature;
 	}
@@ -35,7 +36,7 @@ public class Field implements IField {
 	}
 
 	public void accept(IVisitor v) {
-		v.visit(this);
+		((IUMLVisitor) v).visit(this);
 	}
 
 }

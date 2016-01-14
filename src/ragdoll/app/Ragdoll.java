@@ -44,6 +44,7 @@ public class Ragdoll {
 		List<String> paramTypes = Utilities.getParamTypesFromFullyQualifiedMethodSignature(fullyQualifiedMethodName);
 
 		ClassReader reader;
+		List<String> classes = new ArrayList<>();
 		INode startMethod = new Node(className);
 		startMethod.setMethodName(methodName);
 		startMethod.setParamTypes(paramTypes);
@@ -53,6 +54,9 @@ public class Ragdoll {
 
 		while (!methodQueue.isEmpty()) {
 			INode currentMethod = methodQueue.poll();
+			if (!classes.contains(currentMethod.getClassName())) {
+				classes.add(currentMethod.getClassName());
+			}
 			reader = new ClassReader(currentMethod.getClassName());
 			if (currentMethod.getDepth() < maxDepth) {
 				ClassVisitor graphMethodVisitor = new GraphMethodVisitor(Opcodes.ASM5, currentMethod);
@@ -71,7 +75,10 @@ public class Ragdoll {
 		for (int i = 0; i < current.getDepth(); i++) {
 			System.out.print("  ");
 		}
-		System.out.println("[" + current.getDepth() + "]" + current.getClassName() + "." + current.getMethodName());
+		System.out.println("[" + current.getDepth() + "]"
+				+ (current.getCallerNode() != null ? (current.getCallerNode().getClassName() + ".") : "")
+				+ (current.getCallerNode() != null ? (current.getCallerNode().getMethodName()  + ":") : "") + " "
+				+ current.getClassName() + "." + current.getMethodName());
 		for (INode node : current.getAdjacencyList()) {
 			graphHelper(node);
 		}
@@ -79,15 +86,15 @@ public class Ragdoll {
 
 	public static void generateUML(String[] items) throws Exception {
 		// Traverse classes
-		// List<Class<?>> classes = ClassFinder.find(args[0]);
-		List<Class<?>> classes = new ArrayList<>();
-		for (int i = 0; i < items.length; i++) {
-			try {
-				classes.add(Class.forName(items[i]));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		 List<Class<?>> classes = ClassFinder.find(items[0]);
+//		List<Class<?>> classes = new ArrayList<>();
+//		for (int i = 0; i < items.length; i++) {
+//			try {
+//				classes.add(Class.forName(items[i]));
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {

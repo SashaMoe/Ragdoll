@@ -36,13 +36,13 @@ public class Utilities {
 		}
 		return className;
 	}
-	
+
 	public static String getMethodNameFromFullyQualifiedMethodSignature(String signature) {
 		String[] tempArr = signature.split("\\(")[0].split("\\.");
 		String methodName = tempArr[tempArr.length - 1].split("\\(")[0];
 		return methodName;
 	}
-	
+
 	public static List<String> getParamTypesFromFullyQualifiedMethodSignature(String signature) {
 		String[] tempArr = signature.split("\\(")[1].split("\\)")[0].split("\\,");
 		ArrayList<String> types = new ArrayList<>();
@@ -50,5 +50,23 @@ public class Utilities {
 			types.add(tempArr[i].trim());
 		}
 		return types;
+	}
+
+	public static String getSDInstanceName(String className) {
+		return (className + "").replaceAll("\\.", "D");
+	}
+
+	public static String getParamString(List<String> paramTypes) {
+		int count = 0;
+		String params = "";
+		if (paramTypes.size() == 0) {
+			return params;
+		}
+		for (String pType : paramTypes) {
+			params += pType.charAt(0) + "" + count + " : " + pType + ", ";
+			count++;
+		}
+		params = params.substring(0, params.length() - 2);
+		return params;
 	}
 }

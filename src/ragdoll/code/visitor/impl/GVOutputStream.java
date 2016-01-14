@@ -1,24 +1,18 @@
 package ragdoll.code.visitor.impl;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
-import ragdoll.code.visitor.api.IVisitor;
+import ragdoll.code.visitor.api.AOutputStream;
+import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.util.Utilities;
 
-public class GVOutputStream implements IVisitor {
+public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 
-	private StringBuffer sb;
-
-	public GVOutputStream() {
-		this.sb = new StringBuffer();
-	}
-
+	@Override
 	public void initBuffer() {
 		appendBufferLine("digraph G {");
 		appendBufferLine("rankdir=BT;");
@@ -32,12 +26,9 @@ public class GVOutputStream implements IVisitor {
 		appendBufferLine("]");
 	}
 
+	@Override
 	public void endBuffer() {
 		appendBufferLine("}");
-	}
-
-	private void appendBufferLine(String s) {
-		this.sb.append(s + "\n");
 	}
 
 	public void visit(IClass c) {
@@ -128,13 +119,7 @@ public class GVOutputStream implements IVisitor {
 		}
 		this.sb.append(accessModifier + " " + m.getMethodName());
 		this.sb.append("(");
-		int pCount = 0;
-		for (String pType : m.getParamTypes()) {
-			String pTypeName = Utilities.getLastPartOfType(pType);
-			this.sb.append(String.valueOf(pTypeName.toLowerCase().charAt(0)) + pCount + ": ");
-			this.sb.append(pTypeName);
-			pCount++;
-		}
+		this.sb.append(Utilities.getParamString(m.getParamTypes()));
 		String rTypeName = Utilities.getLastPartOfType(m.getReturnType());
 		this.sb.append("): " + rTypeName + "\\l");
 	}
@@ -152,8 +137,4 @@ public class GVOutputStream implements IVisitor {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return this.sb.toString();
-	}
 }

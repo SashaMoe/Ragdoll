@@ -11,6 +11,7 @@ import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.code.visitor.api.IVisitor;
 import ragdoll.util.Utilities;
 
@@ -62,21 +63,22 @@ public class Klass implements IClass {
 	}
 
 	public void accept(IVisitor v) {
-		v.visit(this);
+		IUMLVisitor newV = (IUMLVisitor) v;
+		newV.visit(this);
 		declaration.accept(v);
 		for (String fieldName : this.fieldMap.keySet()) {
 			IField f = this.fieldMap.get(fieldName);
 			f.accept(v);
 		}
-		v.visit("|");
+		newV.visit("|");
 		for (IMethod m : this.methodList) {
 			m.accept(v);
 		}
-		
+
 		filterUseSet();
 		filterTypeSet();
 
-		v.postVisit(this);
+		newV.postVisit(this);
 	}
 
 	public void filterUseSet() {
@@ -88,7 +90,7 @@ public class Klass implements IClass {
 		}
 		useSet = filteredUseSet;
 	}
-	
+
 	public void filterTypeSet() {
 		Set<String> filteredTypeSet = new HashSet<>();
 		for (String af : fieldMap.keySet()) {
@@ -108,7 +110,7 @@ public class Klass implements IClass {
 		}
 		associationTypeSet = filteredTypeSet;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
