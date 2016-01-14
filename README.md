@@ -97,6 +97,7 @@ The project follows the following design principles:
 | Sasha          | Implemented ITraverser logic for Node class. Refactored some code along the way.                                      | 15m    |
 | zxqdx          | Fixed issues related to SDEdit syntax. Added sdedit.jar.                                                              | 10m    |
 | yangh1         | Ignored the static cases. Updated the instructions.                                                                   | 10m    |
+| zxqdx          | Updated README.md. Added generated SD diagram for Collections.shuffle and Ragdoll.generateSD.                         | 10m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -148,6 +149,7 @@ java -classpath ./bin:./lib/asm-all-5.0.4.jar SD ragdoll.app.Ragdoll ragdoll.asm
 This will output the `ragdoll.asm.sd.test.sample.ClassA.methodA`'s generated Sequence Diagram in SDEdit format to the console.
 
 ### Generate the image
+#### Generate UML image
 To generate the UML image, type:
 ```
 <ragdoll_command> | dot -Tpng -o <output_png_path>
@@ -162,6 +164,7 @@ java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll UML ragdoll | 
 ```
 This will generate a png image file `outputUML.png` (the UML diagram) in your current directory.
 
+#### Generate SD image
 To generate the SD image, type:
 ```
 <ragdoll_command> > <temp_sd_file_store_path>; java -jar lib/sdedit-4.01.jar -o demo/test.png -t png <temp_sd_file_store_path>
@@ -189,6 +192,19 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 #### Generated UML diagram
 ![UML Diagram](/img/ProjectUMLGenerated.png "")
 
+#### Manually created SD diagram
+TBA
+
+#### Generated SD diagram
+![UML Diagram](/img/ProjectSDGenerated.png "")
+
 ### Textbook Pizza Factory
 #### Generated UML diagram
 ![UML Diagram](/img/PizzaFactoryUMLGenerated.png "")
+
+### Collections.shuffle(List)
+#### Manually created SD diagram
+TBA
+
+#### Generated SD diagram
+![UML Diagram](/img/CollectionsShuffleGenerated.png "")

@@ -1,21 +1,103 @@
-java\.util\.collections:java.util.Collections[a]
-java\.util\.random:java.util.Random[a]
-java\.lang\.system:java.lang.System[a]
+ragdoll\.app\.ragdoll:ragdoll.app.Ragdoll[a]
+ragdoll\.util\.utilities:ragdoll.util.Utilities[a]
+java\.util\.arraylist:java.util.ArrayList[a]
+ragdoll\.code\.sd\.api\.node:ragdoll.code.sd.api.Node[a]
+ragdoll\.code\.sd\.impl\.inode:ragdoll.code.sd.impl.INode[a]
+java\.util\.linkedlist:java.util.LinkedList[a]
+java\.util\.queue:java.util.Queue[a]
 java\.util\.list:java.util.List[a]
-java\.util\.listiterator:java.util.ListIterator[a]
+org\.objectweb\.asm\.classreader:org.objectweb.asm.ClassReader[a]
+ragdoll\.asm\.sd\.graphmethodvisitor:ragdoll.asm.sd.GraphMethodVisitor[a]
+java\.util\.iterator:java.util.Iterator[a]
+ragdoll\.code\.visitor\.impl\.sdoutputstream:ragdoll.code.visitor.impl.SDOutputStream[a]
+java\.io\.printstream:java.io.PrintStream[a]
+java\.lang\.string:java.lang.String[a]
+java\.lang\.stringbuilder:java.lang.StringBuilder[a]
+java\.util\.abstractlist:java.util.AbstractList[a]
+java\.util\.abstractsequentiallist:java.util.AbstractSequentialList[a]
+java\.lang\.stringbuffer:java.lang.StringBuffer[a]
+java\.lang\.classloader:java.lang.ClassLoader[a]
+org\.objectweb\.asm\.classvisitor:org.objectweb.asm.ClassVisitor[a]
+java\.util\.arraylist$itr:java.util.ArrayList$Itr[a]
+ragdoll\.code\.visitor\.api\.aoutputstream:ragdoll.code.visitor.api.AOutputStream[a]
 
-java\.util\.collections:void=java\.util\.random.<init>()
-java\.util\.random:long=java\.util\.random.seedUniquifier()
-java\.util\.random:long=java\.lang\.system.nanoTime()
-java\.util\.random:void=java\.util\.random.<init>(l0 : long)
-java\.util\.collections:void=java\.util\.collections.shuffle(j0 : java\.util\.List, j1 : java\.util\.Random)
-java\.util\.collections:int=java\.util\.list.size()
-java\.util\.collections:int=java\.util\.random.nextInt(i0 : int)
-java\.util\.collections:void=java\.util\.collections.swap(j0 : java\.util\.List, i1 : int, i2 : int)
-java\.util\.collections:java\.lang\.Object[]=java\.util\.list.toArray()
-java\.util\.collections:int=java\.util\.random.nextInt(i0 : int)
-java\.util\.collections:void=java\.util\.collections.swap(j0 : java\.lang\.Object[], i1 : int, i2 : int)
-java\.util\.collections:java\.util\.ListIterator=java\.util\.list.listIterator()
-java\.util\.collections:java\.lang\.Object=java\.util\.listiterator.next()
-java\.util\.collections:void=java\.util\.listiterator.set(j0 : java\.lang\.Object)
+ragdoll\.app\.ragdoll:java\.lang\.String=ragdoll\.util\.utilities.getClassNameFromFullyQualifiedMethodSignature(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String=java\.lang\.string.valueOf(j0 : java\.lang\.Object)
+ragdoll\.util\.utilities:void=java\.lang\.stringbuilder.<init>(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.StringBuilder=java\.lang\.stringbuilder.append(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.StringBuilder=java\.lang\.stringbuilder.append(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String=java\.lang\.stringbuilder.toString()
+ragdoll\.app\.ragdoll:java\.lang\.String=ragdoll\.util\.utilities.getMethodNameFromFullyQualifiedMethodSignature(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.app\.ragdoll:java\.util\.List=ragdoll\.util\.utilities.getParamTypesFromFullyQualifiedMethodSignature(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:java\.lang\.String[]=java\.lang\.string.split(j0 : java\.lang\.String)
+ragdoll\.util\.utilities:void=java\.util\.arraylist.<init>()
+ragdoll\.util\.utilities:java\.lang\.String=java\.lang\.string.trim()
+ragdoll\.util\.utilities:boolean=java\.util\.arraylist.add(j0 : java\.lang\.Object)
+ragdoll\.app\.ragdoll:void=java\.util\.arraylist.<init>()
+java\.util\.arraylist:void=java\.util\.abstractlist.<init>()
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.sd\.api\.node.<init>(j0 : java\.lang\.String)
+ragdoll\.code\.sd\.api\.node:java\.lang\.String=ragdoll\.util\.utilities.packagifyClassName(j0 : java\.lang\.String)
+ragdoll\.code\.sd\.api\.node:void=java\.util\.arraylist.<init>()
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.sd\.impl\.inode.setMethodName(j0 : java\.lang\.String)
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.sd\.impl\.inode.setParamTypes(j0 : java\.util\.List)
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.sd\.impl\.inode.setDepth(i0 : int)
+ragdoll\.app\.ragdoll:void=java\.util\.linkedlist.<init>()
+java\.util\.linkedlist:void=java\.util\.abstractsequentiallist.<init>()
+ragdoll\.app\.ragdoll:boolean=java\.util\.queue.add(j0 : java\.lang\.Object)
+ragdoll\.app\.ragdoll:java\.lang\.Object=java\.util\.queue.poll()
+ragdoll\.app\.ragdoll:java\.lang\.String=ragdoll\.code\.sd\.impl\.inode.getClassName()
+ragdoll\.app\.ragdoll:boolean=java\.util\.list.contains(j0 : java\.lang\.Object)
+ragdoll\.app\.ragdoll:java\.lang\.String=ragdoll\.code\.sd\.impl\.inode.getClassName()
+ragdoll\.app\.ragdoll:boolean=java\.util\.list.add(j0 : java\.lang\.Object)
+ragdoll\.app\.ragdoll:int=ragdoll\.code\.sd\.impl\.inode.getDepth()
+ragdoll\.app\.ragdoll:java\.lang\.String=ragdoll\.code\.sd\.impl\.inode.getClassName()
+ragdoll\.app\.ragdoll:void=org\.objectweb\.asm\.classreader.<init>(j0 : java\.lang\.String)
+org\.objectweb\.asm\.classreader:void=java\.lang\.stringbuffer.<init>()
+org\.objectweb\.asm\.classreader:java\.lang\.String=java\.lang\.string.replace(c0 : char, c1 : char)
+org\.objectweb\.asm\.classreader:java\.lang\.StringBuffer=java\.lang\.stringbuffer.append(j0 : java\.lang\.String)
+org\.objectweb\.asm\.classreader:java\.lang\.StringBuffer=java\.lang\.stringbuffer.append(j0 : java\.lang\.String)
+org\.objectweb\.asm\.classreader:java\.lang\.String=java\.lang\.stringbuffer.toString()
+org\.objectweb\.asm\.classreader:java\.io\.InputStream=java\.lang\.classloader.getSystemResourceAsStream(j0 : java\.lang\.String)
+org\.objectweb\.asm\.classreader:byte[]=org\.objectweb\.asm\.classreader.a(j0 : java\.io\.InputStream, b1 : boolean)
+org\.objectweb\.asm\.classreader:void=org\.objectweb\.asm\.classreader.<init>(b0 : byte[])
+ragdoll\.app\.ragdoll:void=ragdoll\.asm\.sd\.graphmethodvisitor.<init>(i0 : int, r1 : ragdoll\.code\.sd\.impl\.INode)
+ragdoll\.asm\.sd\.graphmethodvisitor:void=org\.objectweb\.asm\.classvisitor.<init>(i0 : int)
+ragdoll\.app\.ragdoll:void=org\.objectweb\.asm\.classreader.accept(o0 : org\.objectweb\.asm\.ClassVisitor, i1 : int)
+org\.objectweb\.asm\.classreader:void=org\.objectweb\.asm\.classreader.accept(o0 : org\.objectweb\.asm\.ClassVisitor, o1 : org\.objectweb\.asm\.Attribute[], i2 : int)
+ragdoll\.app\.ragdoll:java\.util\.ArrayList=ragdoll\.code\.sd\.impl\.inode.getAdjacencyList()
+ragdoll\.app\.ragdoll:java\.util\.Iterator=java\.util\.arraylist.iterator()
+java\.util\.arraylist:void=java\.util\.arraylist$itr.<init>(j0 : java\.util\.ArrayList, j1 : java\.util\.ArrayList$1)
+ragdoll\.app\.ragdoll:java\.lang\.Object=java\.util\.iterator.next()
+ragdoll\.app\.ragdoll:int=ragdoll\.code\.sd\.impl\.inode.getDepth()
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.sd\.impl\.inode.setDepth(i0 : int)
+ragdoll\.app\.ragdoll:boolean=java\.util\.queue.add(j0 : java\.lang\.Object)
+ragdoll\.app\.ragdoll:boolean=java\.util\.iterator.hasNext()
+ragdoll\.app\.ragdoll:boolean=java\.util\.queue.isEmpty()
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.visitor\.impl\.sdoutputstream.<init>()
+ragdoll\.code\.visitor\.impl\.sdoutputstream:void=ragdoll\.code\.visitor\.api\.aoutputstream.<init>()
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.visitor\.impl\.sdoutputstream.visit(j0 : java\.util\.List)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.util\.Iterator=java\.util\.list.iterator()
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.lang\.Object=java\.util\.iterator.next()
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.lang\.String=ragdoll\.util\.utilities.getSDInstanceName(j0 : java\.lang\.String)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.lang\.String=java\.lang\.string.valueOf(j0 : java\.lang\.Object)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:void=java\.lang\.stringbuilder.<init>(j0 : java\.lang\.String)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.lang\.StringBuilder=java\.lang\.stringbuilder.append(j0 : java\.lang\.String)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.lang\.StringBuilder=java\.lang\.stringbuilder.append(j0 : java\.lang\.String)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.lang\.StringBuilder=java\.lang\.stringbuilder.append(j0 : java\.lang\.String)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:java\.lang\.String=java\.lang\.stringbuilder.toString()
+ragdoll\.code\.visitor\.impl\.sdoutputstream:void=ragdoll\.code\.visitor\.impl\.sdoutputstream.appendBufferLine(j0 : java\.lang\.String)
+ragdoll\.code\.visitor\.impl\.sdoutputstream:boolean=java\.util\.iterator.hasNext()
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.visitor\.impl\.sdoutputstream.visit(j0 : java\.lang\.String)
+ragdoll\.app\.ragdoll:void=ragdoll\.code\.sd\.impl\.inode.accept(r0 : ragdoll\.code\.visitor\.api\.IVisitor)
+ragdoll\.app\.ragdoll:java\.lang\.String=ragdoll\.code\.visitor\.impl\.sdoutputstream.toString()
+ragdoll\.app\.ragdoll:void=java\.io\.printstream.println(j0 : java\.lang\.String)
+java\.io\.printstream:void=java\.io\.printstream.print(j0 : java\.lang\.String)
+java\.io\.printstream:void=java\.io\.printstream.newLine()
 

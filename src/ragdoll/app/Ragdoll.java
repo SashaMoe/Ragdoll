@@ -74,6 +74,7 @@ public class Ragdoll {
 		sdOS.visit("\n");
 		startMethod.accept(sdOS);
 		System.out.println(sdOS.toString());
+		
 //		graphHelper(startMethod);
 	}
 
