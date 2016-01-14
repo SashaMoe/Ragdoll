@@ -88,6 +88,11 @@ The project follows the following design principles:
 | all            | Fixed assoc arrow issue. Added new tests for use & assoc arrows. Added new tests for tricky abstract factory pattern. | 10m    |
 | yangh1         | Updated manually created UML diagram for project.                                                                     | 10m    |
 | zxqdx          | Regenerate all UML diagrams.                                                                                          | 5m     |
+| Sasha          | Node class & Edge class.                                                                                              | 10m    |
+| yangh1         | Added logic for GraphMethodVisitor. Removed Edge class.                                                               | 10m    |
+| zxqdx          | Added utility methods for method signature.                                                                           | 10m    |
+| Sasha          | Implemented the queue for BFS algorithm.                                                                              | 10m    |
+| yangh1         | Implemented main logic in GraphMethodVisitor.                                                                         | 15m    |
 
 ## Usage / Instructions
 ### Before we start

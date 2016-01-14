@@ -33,7 +33,7 @@ public class Ragdoll {
 		if (diagramType.toUpperCase().equals("UML")) { // UML
 			generateUML(Arrays.copyOfRange(args, 1, args.length));
 		} else if (diagramType.toUpperCase().equals("SD")) { // Sequance Diagram
-			int maxDepth = args.length < 2 ? 5 : Integer.valueOf(args[2]);
+			int maxDepth = args.length < 3 ? 5 : Integer.valueOf(args[2]);
 			generateSD(args[1], maxDepth);
 		}
 	}
@@ -43,7 +43,7 @@ public class Ragdoll {
 		String methodName = Utilities.getMethodNameFromFullyQualifiedMethodSignature(fullyQualifiedMethodName);
 		List<String> paramTypes = Utilities.getParamTypesFromFullyQualifiedMethodSignature(fullyQualifiedMethodName);
 
-		ClassReader reader = new ClassReader(className);
+		ClassReader reader;
 		INode startMethod = new Node(className);
 		startMethod.setMethodName(methodName);
 		startMethod.setParamTypes(paramTypes);
@@ -53,14 +53,27 @@ public class Ragdoll {
 
 		while (!methodQueue.isEmpty()) {
 			INode currentMethod = methodQueue.poll();
+			reader = new ClassReader(currentMethod.getClassName());
 			if (currentMethod.getDepth() < maxDepth) {
 				ClassVisitor graphMethodVisitor = new GraphMethodVisitor(Opcodes.ASM5, currentMethod);
 				reader.accept(graphMethodVisitor, ClassReader.EXPAND_FRAMES);
 				for (INode n : currentMethod.getAdjacencyList()) {
-					n.setDepth(currentMethod.getDepth()+1);
+					n.setDepth(currentMethod.getDepth() + 1);
 					methodQueue.add(n);
 				}
 			}
+		}
+
+		graphHelper(startMethod);
+	}
+
+	public static void graphHelper(INode current) {
+		for (int i = 0; i < current.getDepth(); i++) {
+			System.out.print("  ");
+		}
+		System.out.println("[" + current.getDepth() + "]" + current.getClassName() + "." + current.getMethodName());
+		for (INode node : current.getAdjacencyList()) {
+			graphHelper(node);
 		}
 	}
 

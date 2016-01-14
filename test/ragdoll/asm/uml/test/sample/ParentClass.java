@@ -1,4 +1,4 @@
-package ragdoll.asm.test.sample;
+package ragdoll.asm.uml.test.sample;
 
 public class ParentClass implements SampleInterface {
 

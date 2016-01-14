@@ -1,4 +1,4 @@
-package ragdoll.asm.test;
+package ragdoll.asm.uml.test;
 
 import static org.junit.Assert.*;
 import java.io.IOException;

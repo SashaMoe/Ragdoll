@@ -1,4 +1,4 @@
-package ragdoll.asm.test.sample;
+package ragdoll.asm.uml.test.sample;
 
 import java.util.ArrayList;
 import java.util.HashMap;
