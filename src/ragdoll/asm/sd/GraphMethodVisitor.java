@@ -37,7 +37,7 @@ public class GraphMethodVisitor extends ClassVisitor {
 		}
 
 		// Check if it matches the current method
-		if (argTypes.size() == this.node.getParamTypes().size()) {
+		if (node.getMethodName().equals(name) && argTypes.size() == this.node.getParamTypes().size()) {
 			int count = 0;
 			for (int i = 0; i < argTypes.size(); i++) {
 				if (argTypes.get(i).equals(node.getParamTypes().get(i))) {

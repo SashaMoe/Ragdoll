@@ -53,7 +53,11 @@ public class Utilities {
 	}
 
 	public static String getSDInstanceName(String className) {
-		return (className + "").replaceAll("\\.", "D");
+		return getSDName(className).toLowerCase();
+	}
+	
+	public static String getSDName(String className) {
+		return (className + "").replaceAll("\\.", "\\\\.");
 	}
 
 	public static String getParamString(List<String> paramTypes) {

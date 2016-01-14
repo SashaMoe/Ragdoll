@@ -1,8 +1,12 @@
 package ragdoll.asm.sd.test.sample;
 
 public class ClassB {
-	public int methodB(int i, int j) {
+	public Integer methodB(int i, int j) {
 		ClassC.methodC();
 		return i + j;
+	}
+	
+	public static void methodE() {
+		Integer.valueOf(1);
 	}
 }

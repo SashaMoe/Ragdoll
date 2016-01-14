@@ -98,10 +98,6 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 		this.sb.append(accessModifier + " " + f.getFieldName() + " : " + f.getType() + "\\l");
 	}
 
-	public void visit(String s) {
-		this.sb.append(s);
-	}
-
 	public void visit(IMethod m) {
 		if (m.getMethodName().contains("<")) {
 			return;

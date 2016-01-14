@@ -125,11 +125,13 @@ java -classpath ./bin:./lib/asm-all-5.0.4.jar ragdoll.app.Ragdoll <diagram_type>
 ```
 For `<diagram_type>`, you can replace it with the following:
 * **UML**: Generate the UML Diagram. Here, the arguments are `[<package_name>, ...]`.
-* **SD**: Generate the Sequance Diagram. Here, the argument is `<fully_qualified_method_signature>`
+* **SD**: Generate the Sequance Diagram. Here, the argument is `<fully_qualified_method_signature> [<max_depth>]`
 
 For `[<package_name>, ...]`, you can replace it with one or more package names, and our program will traverse your entire package and get all classes in it except classes for testing purposes.
 
 For `<fully_qualified_method_signature>`, you must use this format: `<package_name>.<class_name>.<method_name>([<param_type>, ...])`
+
+For `<max_depth>`, you can specify the maximum depth that the program will traverse, or you can not specify it and it will use the default value `5`.
 
 For example, by typing:
 ```

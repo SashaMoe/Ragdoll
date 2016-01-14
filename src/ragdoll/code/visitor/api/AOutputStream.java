@@ -13,6 +13,10 @@ public abstract class AOutputStream {
 		this.sb.append(s + "\n");
 	}
 
+	public void visit(String s) {
+		this.sb.append(s);
+	}
+	
 	public String toString() {
 		return this.sb.toString();
 	}
