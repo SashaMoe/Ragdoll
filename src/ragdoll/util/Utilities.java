@@ -43,7 +43,7 @@ public class Utilities {
 		return methodName;
 	}
 	
-	public static List<String> getMethodTypesFromFullyQualifiedMethodSignature(String signature) {
+	public static List<String> getParamTypesFromFullyQualifiedMethodSignature(String signature) {
 		String[] tempArr = signature.split("\\(")[1].split("\\)")[0].split("\\,");
 		ArrayList<String> types = new ArrayList<>();
 		for (int i = 0; i < tempArr.length; i++) {

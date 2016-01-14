@@ -1,23 +1,28 @@
 package ragdoll.app;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ragdoll.asm.sd.GraphMethodVisitor;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
 import ragdoll.asm.uml.ClassFieldVisitor;
 import ragdoll.asm.uml.ClassMethodVisitor;
+import ragdoll.code.sd.api.Node;
+import ragdoll.code.sd.impl.INode;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
+import ragdoll.util.Utilities;
 
 public class Ragdoll {
 	public static void main(String[] args) throws Exception {
@@ -27,15 +32,38 @@ public class Ragdoll {
 		String diagramType = args[0];
 		if (diagramType.toUpperCase().equals("UML")) { // UML
 			generateUML(Arrays.copyOfRange(args, 1, args.length));
-		} else if (diagramType.toUpperCase().equals("SD")) { // SD is Sweet Dessert
-			generateSD(args[1]);
+		} else if (diagramType.toUpperCase().equals("SD")) { // Sequance Diagram
+			int maxDepth = args.length < 2 ? 5 : Integer.valueOf(args[2]);
+			generateSD(args[1], maxDepth);
 		}
 	}
-	
-	public static void generateSD(String fullyQualifiedMethodName) {
-		
+
+	public static void generateSD(String fullyQualifiedMethodName, int maxDepth) throws Exception {
+		String className = Utilities.getClassNameFromFullyQualifiedMethodSignature(fullyQualifiedMethodName);
+		String methodName = Utilities.getMethodNameFromFullyQualifiedMethodSignature(fullyQualifiedMethodName);
+		List<String> paramTypes = Utilities.getParamTypesFromFullyQualifiedMethodSignature(fullyQualifiedMethodName);
+
+		ClassReader reader = new ClassReader(className);
+		INode startMethod = new Node(className);
+		startMethod.setMethodName(methodName);
+		startMethod.setParamTypes(paramTypes);
+		startMethod.setDepth(0);
+		Queue<INode> methodQueue = new LinkedList<INode>();
+		methodQueue.add(startMethod);
+
+		while (!methodQueue.isEmpty()) {
+			INode currentMethod = methodQueue.poll();
+			if (currentMethod.getDepth() < maxDepth) {
+				ClassVisitor graphMethodVisitor = new GraphMethodVisitor(Opcodes.ASM5, currentMethod);
+				reader.accept(graphMethodVisitor, ClassReader.EXPAND_FRAMES);
+				for (INode n : currentMethod.getAdjacencyList()) {
+					n.setDepth(currentMethod.getDepth()+1);
+					methodQueue.add(n);
+				}
+			}
+		}
 	}
-	
+
 	public static void generateUML(String[] items) throws Exception {
 		// Traverse classes
 		// List<Class<?>> classes = ClassFinder.find(args[0]);

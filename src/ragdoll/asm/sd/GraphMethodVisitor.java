@@ -9,16 +9,18 @@ import org.objectweb.asm.Type;
 
 import ragdoll.asm.uml.ClassMethodVisitor;
 import ragdoll.code.sd.api.Node;
+import ragdoll.code.sd.impl.INode;
 import ragdoll.util.Utilities;
 
 public class GraphMethodVisitor extends ClassVisitor {
-	private Node node;
+	private INode node;
 	
-	public GraphMethodVisitor(int arg0) {
+	public GraphMethodVisitor(int arg0, INode currentMethod) {
 		super(arg0);
+		this.node = currentMethod;
 	}
 
-	public GraphMethodVisitor(int arg0, ClassVisitor arg1, Node node) {
+	public GraphMethodVisitor(int arg0, ClassVisitor arg1, INode node) {
 		super(arg0, arg1);
 		this.node = node;
 	}
@@ -29,27 +31,49 @@ public class GraphMethodVisitor extends ClassVisitor {
 		MethodVisitor instMv = new MethodVisitor(Opcodes.ASM5, toDecorate) {
 			@Override
 			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-				// NOTE: Here, we check if name is <init>, not owner is <init>.
-				// Therefore, we are checking the case in the code where `new` keyword is presented.
-				// We are NOT only checking the constructor method.
-				if (name.equals("<init>")) {
-//					.addUse(Utilities.packagifyClassName(owner));
+				// Get class name, method name, return type and parameter
+				String className = owner;
+				String methodName = name;
+				String returnType = Type.getReturnType(desc).getClassName();
+				Type[] argTypesArray = Type.getArgumentTypes(desc);
+				ArrayList<String> argTypes = new ArrayList<String>();
+				for(Type type: argTypesArray){
+					argTypes.add(type.getClassName());
 				}
+				// Create a new Node
+				Node newNode = new Node(className);
+				newNode.setMethodName(methodName);
+				newNode.setReturnType(returnType);
+				newNode.setParamTypes(argTypes);
+				
+				// Add the node to current method's adjacency list
+				node.addAdjacentNode(node);
+				
 			}
 		};
 		
+		// Get return type and param types
 		String returnType = Type.getReturnType(desc).getClassName();
 		Type[] argTypesArray = Type.getArgumentTypes(desc);
-		ArrayList<Type> argTypes = new ArrayList<Type>();
+		ArrayList<String> argTypes = new ArrayList<String>();
 		for(Type type: argTypesArray){
-			argTypes.add(type);
+			argTypes.add(type.getClassName());
 		}
+
+		// Check if it matches the current method
+		if(node.getParamTypes().toString().equals(argTypes.toString()) && node.getReturnType().equals(returnType)){
+			// If yes, update the return type of current method
+			node.setReturnType(returnType);
+		}
+		
+		
+		
 		
 		System.out.println(argTypes.get(0));
 		
 //		Edge edge = new Edge(toClass, name, returnType, argTypes);
 		
-		return null;
+		return instMv;
 	}
 
 }

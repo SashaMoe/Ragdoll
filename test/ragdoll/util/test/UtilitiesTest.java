@@ -27,7 +27,7 @@ public class UtilitiesTest {
 	
 	@Test
 	public void testGetMethodTypesFromFullyQualifiedMethodSignature() {
-		List<String> types = Utilities.getMethodTypesFromFullyQualifiedMethodSignature(signature);
+		List<String> types = Utilities.getParamTypesFromFullyQualifiedMethodSignature(signature);
 		assertEquals("int", types.get(0));
 		assertEquals("boolean", types.get(1));
 		assertEquals("java.util.ArrayList", types.get(2));
