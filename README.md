@@ -190,7 +190,7 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 ![UML Diagram](/img/ProjectUMLManually.png "")
 
 #### Generated UML diagram
-![UML Diagram](/img/ProjectUMLGenerated.png "")
+TBA
 
 #### Manually created SD diagram
 TBA
