@@ -19,18 +19,29 @@ Since asm is designed in visitor pattern, we need to implement its `visit` metho
 It consists of the following packages:
 * ragdoll.app
 * ragdoll.util
-* ragdoll.asm
+* ragdoll.asm.*
 
-The second part is designed to use our own visitor pattern to output the class structure in [GraphicViz](#http://www.graphviz.org/) format.
+The second part is designed to use our own visitor pattern to output the class structure in either [GraphicViz](#http://www.graphviz.org/) format, or [SDEdit](#http://sdedit.sourceforge.net/) format.
 It consists of the following packages:
-* ragdoll.code.api
-* ragdoll.code.impl
+* ragdoll.code.*.api
+* ragdoll.code.*.impl
 * ragdoll.code.visitor.api
 * ragdoll.code.visitor.impl
 
-Overall, the project uses Decorator Pattern as well as two Visitor Patterns.
+Overall, the project uses Decorator Pattern as well as two aspects of Visitor Patterns.
 
+### Evolution of the design
 **Note**: In Milestone 1, we considered possible needs in the future to draw more types of arrows. Thus, we modified a little bit of Visitor Pattern in `GVOutputStream` class and allow it to visit `String`s. Therefore, in Milestone 2, we don't see a strong demand of completely redesigning of our design patterns. We choose to keep using our existing one.
+
+In Milestone 3, we recognized the need to properly extend our project's structure. We went through a brainstorm activity during the meeting, and came with the following reasonings:
+* This milestone is about to build an entirely different tool.
+* At the first glance, we thought we may share some data structure or common classes with the existing one. Indeed, we figured out that the following classes and interfaces could be shared:
+ * ragdoll.app.Ragdoll
+ * ragdoll.code.visitor.api.IVisitor
+ * ragdoll.code.visitor.impl.AOutputStream
+ * Some test cases
+* For some data structure, such as `ragdoll.code.uml.api.IMethod`, we firstly tended to reuse it in SD tool. However, it added a level of confusion in implementing `Method` class because it doesn't make sense to let a UML drawing tool to have getter and setter to deal with method's depth. It also doesn't make sense to let a SD drawing tool to keep track of method's access level and exceptions, because as long as the code compiles, we will just traverse the compiled code and form the [Call Graph](#https://en.wikipedia.org/wiki/Call_graph).
+Therefore, we kept a low level of coupling between these two drawing tools. These are indicated by their own package names.
 
 ### Design Principles
 The project follows the following design principles:
@@ -100,6 +111,7 @@ The project follows the following design principles:
 | zxqdx          | Updated README.md. Added generated SD diagram for Collections.shuffle and Ragdoll.generateSD.                         | 10m    |
 | Sasha          | Added an automated tricky edge case test for SD tool.                                                                 | 15m    |
 | yangh1         | Manually created SD diagrams for both project and java.util.Collections.shuffle(List)                                 | 20m    |
+| zxqdx          | Updated the design evolution description.                                                                             | 10m    |
 
 ## Usage / Instructions
 ### Before we start
