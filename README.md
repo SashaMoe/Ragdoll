@@ -14,14 +14,14 @@ CSSE374 Term Project
 ![UML Diagram](/img/ProjectUMLManually.png "UML Diagram")
 As the UML Diagram shows above, the project consists of two major parts.
 
-The first part is designed to read code from specified java files to parse them using [asm](#http://asm.ow2.org/download/index.html).
+The first part is designed to read code from specified java files to parse them using [asm](http://asm.ow2.org/download/index.html).
 Since asm is designed in visitor pattern, we need to implement its `visit` methods for ClassDeclarations, ClassFields and ClassMethods.
 It consists of the following packages:
 * ragdoll.app
 * ragdoll.util
 * ragdoll.asm.*
 
-The second part is designed to use our own visitor pattern to output the class structure in either [GraphicViz](#http://www.graphviz.org/) format, or [SDEdit](#http://sdedit.sourceforge.net/) format.
+The second part is designed to use our own visitor pattern to output the class structure in either [GraphicViz](http://www.graphviz.org/) format, or [SDEdit](http://sdedit.sourceforge.net/) format.
 It consists of the following packages:
 * ragdoll.code.*.api
 * ragdoll.code.*.impl
@@ -40,7 +40,8 @@ In Milestone 3, we recognized the need to properly extend our project's structur
  * ragdoll.code.visitor.api.IVisitor
  * ragdoll.code.visitor.impl.AOutputStream
  * Some test cases
-* For some data structure, such as `ragdoll.code.uml.api.IMethod`, we firstly tended to reuse it in SD tool. However, it added a level of confusion in implementing `Method` class because it doesn't make sense to let a UML drawing tool to have getter and setter to deal with method's depth. It also doesn't make sense to let a SD drawing tool to keep track of method's access level and exceptions, because as long as the code compiles, we will just traverse the compiled code and form the [Call Graph](#https://en.wikipedia.org/wiki/Call_graph).
+* For some data structure, such as `ragdoll.code.uml.api.IMethod`, we firstly tended to reuse it in SD tool. However, it added a level of confusion in implementing `Method` class because it doesn't make sense to let a UML drawing tool to have getter and setter to deal with method's depth. It also doesn't make sense to let a SD drawing tool to keep track of method's access level and exceptions, because as long as the code compiles, we will just traverse the compiled code and form the [Call Graph](https://en.wikipedia.org/wiki/Call_graph).
+
 Therefore, we kept a low level of coupling between these two drawing tools. These are indicated by their own package names.
 
 ### Design Principles
