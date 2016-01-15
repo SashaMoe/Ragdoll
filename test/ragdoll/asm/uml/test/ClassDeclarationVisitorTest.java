@@ -39,9 +39,9 @@ public class ClassDeclarationVisitorTest {
 		IClassDeclaration classDeclaration = c.getDeclaration();
 		List<String> nameOfInterfaces = classDeclaration.getNameOfInterfaces();
 
-		assertEquals("ragdoll/asm/test/sample/SampleClass", classDeclaration.getClassName());
-		assertEquals("ragdoll/asm/test/sample/ParentClass", classDeclaration.getNameOfSuperClass());
-		assertEquals("ragdoll/asm/test/sample/SampleInterface", nameOfInterfaces.get(0));
+		assertEquals("ragdoll/asm/uml/test/sample/SampleClass", classDeclaration.getClassName());
+		assertEquals("ragdoll/asm/uml/test/sample/ParentClass", classDeclaration.getNameOfSuperClass());
+		assertEquals("ragdoll/asm/uml/test/sample/SampleInterface", nameOfInterfaces.get(0));
 		assertEquals(true, classDeclaration.isAbstract());
 		assertEquals(false, classDeclaration.isInterface());
 	}

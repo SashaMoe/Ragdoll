@@ -98,6 +98,8 @@ The project follows the following design principles:
 | zxqdx          | Fixed issues related to SDEdit syntax. Added sdedit.jar.                                                              | 10m    |
 | yangh1         | Ignored the static cases. Updated the instructions.                                                                   | 10m    |
 | zxqdx          | Updated README.md. Added generated SD diagram for Collections.shuffle and Ragdoll.generateSD.                         | 10m    |
+| Sasha          | Added an automated tricky edge case test for SD tool.                                                                 | 15m    |
+| yangh1         | Manually created SD diagrams for both project and java.util.Collections.shuffle(List)                                 | 20m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -179,32 +181,32 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 
 ## Pictures comparisons
 ### Lab1-3
-#### Manually created UML diagram
+#### Manually created UML diagram V2
 ![UML Diagram](/img/Lab1-3UMLManually.png "")
 
-#### Generated UML diagram
+#### Generated UML diagram V2
 ![UML Diagram](/img/Lab1-3UMLGenerated.png "")
 
 ### Project
-#### Manually created UML diagram
+#### Manually created UML diagram V3
 ![UML Diagram](/img/ProjectUMLManually.png "")
 
-#### Generated UML diagram
-TBA
+#### Generated UML diagram V3
+![UML Diagram](/img/ProjectUMLGenerated.png "")
 
-#### Manually created SD diagram
-TBA
+#### Manually created SD diagram V1
+![SD Diagram](/img/ProjectSDManually.png "")
 
-#### Generated SD diagram
-![UML Diagram](/img/ProjectSDGenerated.png "")
+#### Generated SD diagram V1
+![SD Diagram](/img/ProjectSDGenerated.png "")
 
 ### Textbook Pizza Factory
-#### Generated UML diagram
+#### Generated UML diagram V2
 ![UML Diagram](/img/PizzaFactoryUMLGenerated.png "")
 
 ### Collections.shuffle(List)
-#### Manually created SD diagram
-TBA
+#### Manually created SD diagram V1
+![SD Diagram](/img/CollectionsShuffleManually.png "")
 
 #### Generated SD diagram
-![UML Diagram](/img/CollectionsShuffleGenerated.png "")
+![SD Diagram](/img/CollectionsShuffleGenerated.png "")
