@@ -115,6 +115,7 @@ The project follows the following design principles:
 | zxqdx          | Updated the design evolution description.                                                                             | 10m    |
 | yangh1         | Added condition checks for singleton.                                                                                 | 10m    |
 | Sasha          | Moved isSingleton logic to ClassDelaration and added visit logic to GVOutputStream                                    | 15m    |
+| zxqdx          | Added support for eager singleton & changed border color to blue.                                                     | 15m    |
 
 ## Usage / Instructions
 ### Before we start

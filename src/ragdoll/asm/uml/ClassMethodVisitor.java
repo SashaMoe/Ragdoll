@@ -35,32 +35,39 @@ public class ClassMethodVisitor extends ClassVisitor {
 			@Override
 			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
 				// NOTE: Here, we check if name is <init>, not owner is <init>.
-				// Therefore, we are checking the case in the code where `new` keyword is presented.
+				// Therefore, we are checking the case in the code where `new`
+				// keyword is presented.
 				// We are NOT only checking the constructor method.
 				if (name.equals("<init>")) {
 					ClassMethodVisitor.this.c.addUse(Utilities.packagifyClassName(owner));
 				}
 			}
 		};
-		
 		MethodVisitor getInstanceMv = new MethodVisitor(Opcodes.ASM5, instMv) {
 			@Override
 			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-				if(name.equals("<init>")){
-					ClassMethodVisitor.this.c.setHasGetInstanceMethod(true);
+				if (Utilities.packagifyClassName(owner).equals(ClassMethodVisitor.this.c.getName())
+						&& name.equals("<init>")) {
+					ClassMethodVisitor.this.c.setHasLazyGetInstanceMethod(true);
 				}
 			}
 		};
-		
+		MethodVisitor initMv = new MethodVisitor(Opcodes.ASM5, instMv) {
+			@Override
+			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+				if (Utilities.packagifyClassName(owner).equals(ClassMethodVisitor.this.c.getName())
+						&& name.equals("<init>")) {
+					ClassMethodVisitor.this.c.setHasEagerInit(true);
+				}
+			}
+		};
+
 		if (name.contains("$")) {
 			return toDecorate;
 		}
-		
-//		System.out.println("ClassName = " + c.getName());
-//		System.out.println("  name = " + name);
-		
+
 		String returnType = Type.getReturnType(desc).getClassName();
-		
+
 		Type[] argTypes = Type.getArgumentTypes(desc);
 		List<String> sTypes = new ArrayList<>();
 		for (Type t : argTypes) {
@@ -83,8 +90,12 @@ public class ClassMethodVisitor extends ClassVisitor {
 				: new ArrayList<>(Arrays.asList(exceptions));
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 		this.c.addMethod(method);
-		
+
+		if (name.equals("<clinit>")) {
+			return initMv;
+		}
 		if (Utilities.packagifyClassName(returnType).equals(this.c.getName())) {
+			this.c.setHasGetInstanceMethod(true);
 			return getInstanceMv;
 		}
 

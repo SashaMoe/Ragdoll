@@ -33,7 +33,7 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 
 	public void visit(IClass c) {
 		appendBufferLine('"' + c.getName() + '"' + " [");
-		// this.sb.append("label = <{");
+		appendBufferLine("color=" + (c.getDeclaration().isSingleton() ? "blue" : "black"));
 		this.sb.append("label = \"{");
 	}
 
@@ -129,7 +129,7 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 		}
 		sb.append(Utilities.packagifyClassName(cd.getClassName()));
 		if (cd.isSingleton()) {
-			sb.append("«singleton»\\n");
+			sb.append("\n«singleton»\\n");
 		}
 		if (!cd.isInterface()) {
 			sb.append("|");

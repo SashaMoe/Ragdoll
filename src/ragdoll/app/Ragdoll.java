@@ -111,10 +111,10 @@ public class Ragdoll {
 		Map<String, IClass> iClasses = new HashMap<>();
 
 		for (String className : classNames) {
-			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
-					|| className.contains("$")) {
-				continue;
-			}
+//			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
+//					|| className.contains("$")) {
+//				continue;
+//			}
 			IClass newClass = new Klass(className, iClasses);
 			ClassReader reader = new ClassReader(className);
 

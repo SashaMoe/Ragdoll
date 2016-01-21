@@ -24,7 +24,9 @@ public class Klass implements IClass {
 	private HashMap<String, IField> fieldMap;
 	private IClassDeclaration declaration;
 	private Set<String> associationTypeSet;
+	private boolean hasLazyGetInstanceMethod;
 	private boolean hasGetInstanceMethod;
+	private boolean hasEagerInit;
 
 	public Klass(String name, Map<String, IClass> iClasses) {
 		super();
@@ -34,13 +36,21 @@ public class Klass implements IClass {
 		this.useSet = new HashSet<String>();
 		this.fieldMap = new HashMap<>();
 		this.associationTypeSet = new HashSet<>();
-		this.hasGetInstanceMethod = false;
+		this.hasLazyGetInstanceMethod = false;
 	}
 
+	public void setHasLazyGetInstanceMethod(boolean hasLazyGetInstanceMethod) {
+		this.hasLazyGetInstanceMethod = hasLazyGetInstanceMethod;
+	}
+	
 	public void setHasGetInstanceMethod(boolean hasGetInstanceMethod) {
 		this.hasGetInstanceMethod = hasGetInstanceMethod;
 	}
 
+	public void setHasEagerInit(boolean hasEagerInit) {
+		this.hasEagerInit = hasEagerInit;
+	}
+	
 	public void addMethod(IMethod method) {
 		this.methodList.add(method);
 	}
@@ -148,9 +158,10 @@ public class Klass implements IClass {
 		return false;
 	}
 
-	@Override
 	public void updateIsSingleton() {
 		this.declaration.setIsSingleton(!this.declaration.isAbstract() && !this.declaration.isInterface()
-				&& checkHasPrivateConstructor() && checkHasPrivateFiledOfItself() && this.hasGetInstanceMethod);
+				&& checkHasPrivateConstructor() && checkHasPrivateFiledOfItself() && this.hasGetInstanceMethod &&
+				(this.hasLazyGetInstanceMethod || this.hasEagerInit));
 	}
+
 }

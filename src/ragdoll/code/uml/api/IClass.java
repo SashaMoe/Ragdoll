@@ -31,7 +31,11 @@ public interface IClass extends ITraverser {
 
 	public String getName();
 	
-	public void setHasGetInstanceMethod(boolean hasGetInstanceMethod);
+	public void setHasLazyGetInstanceMethod(boolean hasLazyGetInstanceMethod);
 
 	public void updateIsSingleton();
+
+	public void setHasGetInstanceMethod(boolean hasGetInstanceMethod);
+
+	public void setHasEagerInit(boolean hasEagerInit);
 }
