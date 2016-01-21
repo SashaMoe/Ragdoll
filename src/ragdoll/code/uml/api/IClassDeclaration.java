@@ -12,4 +12,8 @@ public interface IClassDeclaration extends IClassComponent {
 	public String getNameOfSuperClass();
 
 	public List<String> getNameOfInterfaces();
+
+	public void setIsSingleton(boolean isSingleton);
+	
+	public boolean isSingleton();
 }

@@ -128,6 +128,9 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 			sb.append("«abstract»\\n");
 		}
 		sb.append(Utilities.packagifyClassName(cd.getClassName()));
+		if (cd.isSingleton()) {
+			sb.append("«singleton»\\n");
+		}
 		if (!cd.isInterface()) {
 			sb.append("|");
 		}

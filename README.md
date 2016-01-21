@@ -113,6 +113,8 @@ The project follows the following design principles:
 | Sasha          | Added an automated tricky edge case test for SD tool.                                                                 | 15m    |
 | yangh1         | Manually created SD diagrams for both project and java.util.Collections.shuffle(List)                                 | 20m    |
 | zxqdx          | Updated the design evolution description.                                                                             | 10m    |
+| yangh1         | Added condition checks for singleton.                                                                                 | 10m    |
+| Sasha          | Moved isSingleton logic to ClassDelaration and added visit logic to GVOutputStream                                    | 15m    |
 
 ## Usage / Instructions
 ### Before we start

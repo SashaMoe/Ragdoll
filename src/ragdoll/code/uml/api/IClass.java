@@ -30,4 +30,8 @@ public interface IClass extends ITraverser {
 	public void filterTypeSet(); // M2
 
 	public String getName();
+	
+	public void setHasGetInstanceMethod(boolean hasGetInstanceMethod);
+
+	public void updateIsSingleton();
 }

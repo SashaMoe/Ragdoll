@@ -16,12 +16,7 @@ import ragdoll.code.visitor.api.IVisitor;
 import ragdoll.util.Utilities;
 
 public class Klass implements IClass {
-	private static final int HAS_PRIVATE_CONSTRUCTOR = 1;
-	private static final int HAS_PRIVATE_FIELD_OF_ITSELF = 2;
-	private static final int HAS_PUBLIC_GET_INSTANCE_METHOD = 4;
-	private static final int GET_INSTANCE_METHOD_INITS_ITSELF = 8;
-	private Set<Integer> SingletonStatesSet;
-	
+
 	private Map<String, IClass> iClasses;
 	private String name;
 	private List<IMethod> methodList;
@@ -29,6 +24,7 @@ public class Klass implements IClass {
 	private HashMap<String, IField> fieldMap;
 	private IClassDeclaration declaration;
 	private Set<String> associationTypeSet;
+	private boolean hasGetInstanceMethod;
 
 	public Klass(String name, Map<String, IClass> iClasses) {
 		super();
@@ -38,6 +34,11 @@ public class Klass implements IClass {
 		this.useSet = new HashSet<String>();
 		this.fieldMap = new HashMap<>();
 		this.associationTypeSet = new HashSet<>();
+		this.hasGetInstanceMethod = false;
+	}
+
+	public void setHasGetInstanceMethod(boolean hasGetInstanceMethod) {
+		this.hasGetInstanceMethod = hasGetInstanceMethod;
 	}
 
 	public void addMethod(IMethod method) {
@@ -129,31 +130,27 @@ public class Klass implements IClass {
 		return associationTypeSet;
 	}
 
-	public boolean SingletonStatesCheck(){
-		int StateCount = 0;
-		int CompletedState = this.GET_INSTANCE_METHOD_INITS_ITSELF+this.HAS_PRIVATE_CONSTRUCTOR+
-				this.HAS_PRIVATE_FIELD_OF_ITSELF+this.HAS_PUBLIC_GET_INSTANCE_METHOD;
-		if(!(!this.declaration.isAbstract() && !this.declaration.isInterface())) return false;
-		if(CheckHasPrivateConstruction()) StateCount+=this.HAS_PRIVATE_CONSTRUCTOR;
-	
-		
-		
-		return StateCount == CompletedState;
-	}
-	
-	public boolean CheckHasPrivateConstruction(){
-		for(IMethod method : this.methodList){
-			if(method.getAccessLevel()=="private" && method.getMethodName()== this.getName()){
+	public boolean checkHasPrivateConstructor() {
+		for (IMethod method : this.methodList) {
+			if (method.getAccessLevel().equals("private") && method.getMethodName().equals("<init>")) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public boolean CheckHasPrivateFiledOfItself(){
-//		for(IField field : this.fieldMap.values()){
-//			if(field.getAccessLevel()=="private" && field.getType())
-//		}
-		return true;
+
+	public boolean checkHasPrivateFiledOfItself() {
+		for (IField field : this.fieldMap.values()) {
+			if (field.getAccessLevel().equals("private") && field.getType().equals(this.name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void updateIsSingleton() {
+		this.declaration.setIsSingleton(!this.declaration.isAbstract() && !this.declaration.isInterface()
+				&& checkHasPrivateConstructor() && checkHasPrivateFiledOfItself() && this.hasGetInstanceMethod);
 	}
 }

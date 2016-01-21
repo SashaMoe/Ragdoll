@@ -43,6 +43,15 @@ public class ClassMethodVisitor extends ClassVisitor {
 			}
 		};
 		
+		MethodVisitor getInstanceMv = new MethodVisitor(Opcodes.ASM5, instMv) {
+			@Override
+			public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+				if(name.equals("<init>")){
+					ClassMethodVisitor.this.c.setHasGetInstanceMethod(true);
+				}
+			}
+		};
+		
 		if (name.contains("$")) {
 			return toDecorate;
 		}
@@ -74,6 +83,10 @@ public class ClassMethodVisitor extends ClassVisitor {
 				: new ArrayList<>(Arrays.asList(exceptions));
 		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
 		this.c.addMethod(method);
+		
+		if (Utilities.packagifyClassName(returnType).equals(this.c.getName())) {
+			return getInstanceMv;
+		}
 
 		return instMv;
 	}

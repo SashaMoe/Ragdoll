@@ -13,6 +13,7 @@ public class ClassDeclaration implements IClassDeclaration {
 	private String className;
 	private String nameOfSuperClass;
 	private List<String> nameOfInterfaces;
+	private boolean isSingleton;
 
 	public ClassDeclaration(boolean isAbstract, boolean isInterface, String className, String nameOfSuperClass,
 			List<String> nameOfInterfaces) {
@@ -46,6 +47,14 @@ public class ClassDeclaration implements IClassDeclaration {
 
 	public void accept(IVisitor v) {
 		((IUMLVisitor) v).visit(this);
+	}
+
+	public void setIsSingleton(boolean isSingleton) {
+		this.isSingleton = isSingleton;
+	}
+
+	public boolean isSingleton() {
+		return isSingleton;
 	}
 
 }
