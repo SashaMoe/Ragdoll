@@ -31,8 +31,9 @@ It consists of the following packages:
 Overall, the project uses Decorator Pattern as well as two aspects of Visitor Patterns.
 
 ### Evolution of the design
-**Note**: In Milestone 1, we considered possible needs in the future to draw more types of arrows. Thus, we modified a little bit of Visitor Pattern in `GVOutputStream` class and allow it to visit `String`s. Therefore, in Milestone 2, we don't see a strong demand of completely redesigning of our design patterns. We choose to keep using our existing one.
-
+#### Milestone 1 & 2
+In Milestone 1, we considered possible needs in the future to draw more types of arrows. Thus, we modified a little bit of Visitor Pattern in `GVOutputStream` class and allow it to visit `String`s. Therefore, in Milestone 2, we don't see a strong demand of completely redesigning of our design patterns. We choose to keep using our existing one.
+#### Milestone 3
 In Milestone 3, we recognized the need to properly extend our project's structure. We went through a brainstorm activity during the meeting, and came with the following reasonings:
 * This milestone is about to build an entirely different tool.
 * At the first glance, we thought we may share some data structure or common classes with the existing one. Indeed, we figured out that the following classes and interfaces could be shared:
@@ -40,9 +41,10 @@ In Milestone 3, we recognized the need to properly extend our project's structur
  * ragdoll.code.visitor.api.IVisitor
  * ragdoll.code.visitor.impl.AOutputStream
  * Some test cases
-* For some data structure, such as `ragdoll.code.uml.api.IMethod`, we firstly tended to reuse it in SD tool. However, it added a level of confusion in implementing `Method` class because it doesn't make sense to let a UML drawing tool to have getter and setter to deal with method's depth. It also doesn't make sense to let a SD drawing tool to keep track of method's access level and exceptions, because as long as the code compiles, we will just traverse the compiled code and form the [Call Graph](https://en.wikipedia.org/wiki/Call_graph).
-
-Therefore, we kept a low level of coupling between these two drawing tools. These are indicated by their own package names.
+* For some data structure, such as `ragdoll.code.uml.api.IMethod`, we firstly tended to reuse it in SD tool. However, it added a level of confusion in implementing `Method` class because it doesn't make sense to let a UML drawing tool to have getter and setter to deal with method's depth. It also doesn't make sense to let a SD drawing tool to keep track of method's access level and exceptions, because as long as the code compiles, we will just traverse the compiled code and form the [Call Graph](https://en.wikipedia.org/wiki/Call_graph).  
+Therefore, we kept a low level of coupling between these two drawing tools. These are indicated by their own package names.  
+#### Milestone 4
+In Milestone 4, we added some methods in IClass and IClassDeclaration to support detection for Singleton Pattern. We find that our design allows us to make modifications without changing the structure of the design.
 
 ### Design Principles
 The project follows the following design principles:
@@ -116,6 +118,7 @@ The project follows the following design principles:
 | yangh1         | Added condition checks for singleton.                                                                                 | 10m    |
 | Sasha          | Moved isSingleton logic to ClassDelaration and added visit logic to GVOutputStream                                    | 15m    |
 | zxqdx          | Added support for eager singleton & changed border color to blue.                                                     | 15m    |
+| zxqdx          | Added contents for evolution of design principle.                                                                     | 10m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -226,3 +229,8 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 
 #### Generated SD diagram
 ![SD Diagram](/img/CollectionsShuffleGenerated.png "")
+
+### ChocolateBoiler
+#### Generated UML diagram V1
+![UML Diagram](/img/ChocolateBoilerUMLGenerated.png "")  
+**Note**: This is a UML diagram for our sample test classes. Highlighted in blue, both lazy and eager singleton classes for ChocolateBoiler are displayed.
