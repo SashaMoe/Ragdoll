@@ -42,7 +42,8 @@ In Milestone 3, we recognized the need to properly extend our project's structur
  * ragdoll.code.visitor.impl.AOutputStream
  * Some test cases
 * For some data structure, such as `ragdoll.code.uml.api.IMethod`, we firstly tended to reuse it in SD tool. However, it added a level of confusion in implementing `Method` class because it doesn't make sense to let a UML drawing tool to have getter and setter to deal with method's depth. It also doesn't make sense to let a SD drawing tool to keep track of method's access level and exceptions, because as long as the code compiles, we will just traverse the compiled code and form the [Call Graph](https://en.wikipedia.org/wiki/Call_graph).  
-Therefore, we kept a low level of coupling between these two drawing tools. These are indicated by their own package names.  
+Therefore, we kept a low level of coupling between these two drawing tools. These are indicated by their own package names.
+
 #### Milestone 4
 In Milestone 4, we added some methods in IClass and IClassDeclaration to support detection for Singleton Pattern. We find that our design allows us to make modifications without changing the structure of the design.
 
@@ -118,6 +119,8 @@ The project follows the following design principles:
 | yangh1         | Added condition checks for singleton.                                                                                 | 10m    |
 | Sasha          | Moved isSingleton logic to ClassDelaration and added visit logic to GVOutputStream                                    | 15m    |
 | zxqdx          | Added support for eager singleton & changed border color to blue.                                                     | 15m    |
+| yangh1         | Updated project UML diagram.                                                                                          | 10m    |
+| Sasha          | Added tests for singleton cases.                                                                                      | 15m    |
 | zxqdx          | Added contents for evolution of design principle.                                                                     | 10m    |
 
 ## Usage / Instructions
@@ -207,10 +210,10 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 ![UML Diagram](/img/Lab1-3UMLGenerated.png "")
 
 ### Project
-#### Manually created UML diagram V3
+#### Manually created UML diagram V4
 ![UML Diagram](/img/ProjectUMLManually.png "")
 
-#### Generated UML diagram V3
+#### Generated UML diagram V4
 ![UML Diagram](/img/ProjectUMLGenerated.png "")
 
 #### Manually created SD diagram V1
