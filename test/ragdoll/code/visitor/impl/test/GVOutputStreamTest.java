@@ -5,10 +5,8 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +24,6 @@ import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
-import ragdoll.util.Utilities;
 
 public class GVOutputStreamTest {
 
@@ -106,6 +103,7 @@ public class GVOutputStreamTest {
 		// Tests headfirst.factory.pizzafm.Pizza
 		gvOS.visit(iClasses.get("headfirst.factory.pizzafm.Pizza"));
 		appendBufferLine("\"headfirst.factory.pizzafm.Pizza\" [");
+		appendBufferLine("color=black");
 		appendBuffer("label = \"{");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
