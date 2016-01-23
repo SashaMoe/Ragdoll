@@ -31,7 +31,7 @@ public class GVOutputStreamTest {
 	private final Map<String, IClass> iClasses;
 	private StringBuffer sb;
 
-	public GVOutputStreamTest() throws IOException {
+	public GVOutputStreamTest() throws IOException, ClassNotFoundException {
 		// Tests a tricky abstract factory pattern package.
 		gvOS = null;
 		String packageName = "headfirst";

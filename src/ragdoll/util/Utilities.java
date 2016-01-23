@@ -73,4 +73,5 @@ public class Utilities {
 		params = params.substring(0, params.length() - 2);
 		return params;
 	}
+	
 }

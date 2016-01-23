@@ -19,21 +19,21 @@ import ragdoll.asm.uml.ClassFieldVisitor;
 import ragdoll.asm.uml.ClassMethodVisitor;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
-import ragdoll.code.uml.api.IField;
-import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
-public class GVOSSingletonTest {
+public class GVOSJavaSingletonTest {
+	private static final String RUNTIME_CLASS_NAME = "java.lang.Runtime";
+
 	private GVOutputStream gvOS;
 	private final Map<String, IClass> iClasses;
 	private StringBuffer sb;
 
-	public GVOSSingletonTest() throws IOException {
+	public GVOSJavaSingletonTest() throws IOException, ClassNotFoundException {
 		// Tests a tricky abstract factory pattern package.
 		gvOS = null;
-		String packageName = "ragdoll.asm.uml.test.sample";
+		String packageName = RUNTIME_CLASS_NAME;
 		List<Class<?>> classes = ClassFinder.find(packageName);
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
@@ -75,22 +75,12 @@ public class GVOSSingletonTest {
 	}
 
 	@Test
-	public void testLazySingleton() {
-		IClassDeclaration classDeclaration = iClasses.get("ragdoll.asm.uml.test.sample.ChocolateBoiler")
-				.getDeclaration();
+	public void testRuntimeSingleton() {
+		IClassDeclaration classDeclaration = iClasses.get(RUNTIME_CLASS_NAME).getDeclaration();
 		classDeclaration.accept(gvOS);
-		appendBufferLine("ragdoll.asm.uml.test.sample.ChocolateBoiler");
+		appendBufferLine(RUNTIME_CLASS_NAME);
 		appendBuffer("«singleton»\\n|");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
-	
-	@Test
-	public void testEagerSingleton() {
-		IClassDeclaration classDeclaration = iClasses.get("ragdoll.asm.uml.test.sample.ChocolateBoilerEager")
-				.getDeclaration();
-		classDeclaration.accept(gvOS);
-		appendBufferLine("ragdoll.asm.uml.test.sample.ChocolateBoilerEager");
-		appendBuffer("«singleton»\\n|");
-		assertEquals(sb.toString(), gvOS.toString());
-	}
+
 }
