@@ -17,7 +17,8 @@ public class ClassFinder {
 	private static final String CLASS_SUFFIX = ".class";
 	
 	public static List<Class<?>> find(String scannedPackage) throws ClassNotFoundException {
-		String[] scannedPathArr = scannedPackage.split("\\,");
+		String[] scannedPathArr = scannedPackage.split(",");
+		System.out.println(scannedPathArr.length);
 
 		List<Class<?>> classes = new ArrayList<>();
 		for (String name : scannedPathArr) {
@@ -26,7 +27,7 @@ public class ClassFinder {
 			URL scannedUrl = Thread.currentThread().getContextClassLoader().getResource(scannedPath);
 			if (scannedUrl == null) {
 				classes.add(Class.forName(fullName));
-				break;
+				continue;
 			}
 			File scannedDir = new File(scannedUrl.getFile());
 			for (File file : scannedDir.listFiles()) {
