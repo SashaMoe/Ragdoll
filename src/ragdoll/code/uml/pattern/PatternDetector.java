@@ -8,11 +8,13 @@ import ragdoll.code.uml.api.IClass;
 public class PatternDetector implements IClassInfo {
 	private Map<String, IClass> classes;
 	private Map<String, IPattern> patterns;
+	private Map<String, NodeAttrinute> nodeAttributeMap;
 	private volatile static PatternDetector instance;
 
 	private PatternDetector() {
 		this.classes = new HashMap<>();
 		this.patterns = new HashMap<>();
+		nodeAttributeMap = new HashMap<>();
 	}
 
 	public static PatternDetector getInstance() {
@@ -34,6 +36,17 @@ public class PatternDetector implements IClassInfo {
 		for(String key: this.patterns.keySet()){
 			this.patterns.get(key).detectPattern();
 		}
+		for (String className : this.classes.keySet()) {
+			NodeAttrinute nodeAttrinute = new NodeAttrinute();
+			for (String patternName : this.patterns.keySet()) {
+				this.patterns.get(patternName).getClassNodeAttribute(className, nodeAttrinute);
+			}
+			this.nodeAttributeMap.put(className, nodeAttrinute);
+		}
+	}
+	
+	public NodeAttrinute getAttribute(String className) {
+		return this.nodeAttributeMap.get(className);
 	}
 	
 	public Map<String, IClass> getClasses() {

@@ -123,6 +123,10 @@ The project follows the following design principles:
 | Sasha          | Added tests for singleton cases.                                                                                      | 15m    |
 | zxqdx          | Added contents for evolution of design principle.                                                                     | 10m    |
 | zxqdx          | Added support for multiple packages/classes.                                                                          | 10m    |
+| yangh1         | Added tests for built-in java classes.                                                                                | 15m    |
+| Sasha          | Added PatternDector and IPattern.                                                                                     | 15m    |
+| yangh1         | Implemented the SingletonPattern.                                                                                     | 15m    |
+| zxqdx          | Added uniform NodeAttribute object for rendering nodes.                                                               | 10m    |
 
 ## Usage / Instructions
 ### Before we start

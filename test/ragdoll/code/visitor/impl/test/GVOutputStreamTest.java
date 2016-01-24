@@ -22,6 +22,8 @@ import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.impl.Klass;
+import ragdoll.code.uml.pattern.PatternDetector;
+import ragdoll.code.uml.pattern.SingletonPattern;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
@@ -58,6 +60,13 @@ public class GVOutputStreamTest {
 			iClasses.put(className, newClass);
 		}
 
+		// pattern detection
+		PatternDetector patternDetector = PatternDetector.getInstance();
+		patternDetector.setClasses(iClasses);
+		SingletonPattern singletonPattern = new SingletonPattern(patternDetector);
+		patternDetector.addPattern("singletonPattern", singletonPattern);
+		patternDetector.detectAllPatterns();
+		
 	}
 
 	private final void appendBufferLine(String s) {

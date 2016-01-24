@@ -20,6 +20,8 @@ import ragdoll.asm.uml.ClassMethodVisitor;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.impl.Klass;
+import ragdoll.code.uml.pattern.PatternDetector;
+import ragdoll.code.uml.pattern.SingletonPattern;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
@@ -40,10 +42,6 @@ public class GVOSChocolateSingletonTest {
 		iClasses = new HashMap<>();
 
 		for (String className : classNames) {
-			// if (className.contains(".test.") || className.endsWith("Test")
-			// || className.endsWith("Tests") || className.contains("$")) {
-			// continue;
-			// }
 			IClass newClass = new Klass(className, iClasses);
 			ClassReader reader = new ClassReader(className);
 
@@ -52,9 +50,15 @@ public class GVOSChocolateSingletonTest {
 			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, newClass);
 
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-			newClass.updateIsSingleton();
 			iClasses.put(className, newClass);
 		}
+
+		// pattern detection
+		PatternDetector patternDetector = PatternDetector.getInstance();
+		patternDetector.setClasses(iClasses);
+		SingletonPattern singletonPattern = new SingletonPattern(patternDetector);
+		patternDetector.addPattern("singletonPattern", singletonPattern);
+		patternDetector.detectAllPatterns();
 
 	}
 

@@ -6,6 +6,8 @@ import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.uml.pattern.NodeAttrinute;
+import ragdoll.code.uml.pattern.PatternDetector;
 import ragdoll.code.visitor.api.AOutputStream;
 import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.util.Utilities;
@@ -32,8 +34,10 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 	}
 
 	public void visit(IClass c) {
+		NodeAttrinute nodeAttrinute = PatternDetector.getInstance().getAttribute(c.getName());
+		
 		appendBufferLine('"' + c.getName() + '"' + " [");
-		appendBufferLine("color=" + (c.getDeclaration().isSingleton() ? "blue" : "black"));
+		appendBufferLine("color=" + nodeAttrinute.getBorderColor());
 		this.sb.append("label = \"{");
 	}
 
@@ -121,16 +125,20 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 	}
 
 	public void visit(IClassDeclaration cd) {
+		NodeAttrinute nodeAttrinute = PatternDetector.getInstance().getAttribute(Utilities.packagifyClassName(cd.getClassName()));
+		
 		if (cd.isInterface()) {
-			sb.append("«interface»\\n");
+			this.sb.append("«interface»\\n");
 
 		} else if (cd.isAbstract()) {
-			sb.append("«abstract»\\n");
+			this.sb.append("«abstract»\\n");
 		}
 		sb.append(Utilities.packagifyClassName(cd.getClassName()));
-		if (cd.isSingleton()) {
-			sb.append("\n«singleton»\\n");
+		
+		if (!nodeAttrinute.getPatternName().isEmpty()) {
+			this.sb.append("\n" + nodeAttrinute.getPatternName() + "\\n");
 		}
+		
 		if (!cd.isInterface()) {
 			sb.append("|");
 		}

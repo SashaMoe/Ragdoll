@@ -31,7 +31,7 @@ public class SingletonPattern implements IPattern {
 		boolean isSingleton = singletonSet.contains(className);
 		if(isSingleton){
 			nodeAttrinute.setBorderColor("blue");
-			nodeAttrinute.setPatternName("singleton");
+			nodeAttrinute.setPatternName("«singleton»");
 		}
 	}
 

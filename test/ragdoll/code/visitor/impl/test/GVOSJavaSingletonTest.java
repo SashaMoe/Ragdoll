@@ -20,6 +20,8 @@ import ragdoll.asm.uml.ClassMethodVisitor;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.impl.Klass;
+import ragdoll.code.uml.pattern.PatternDetector;
+import ragdoll.code.uml.pattern.SingletonPattern;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
@@ -59,9 +61,15 @@ public class GVOSJavaSingletonTest {
 			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, newClass);
 
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-			newClass.updateIsSingleton();
 			iClasses.put(className, newClass);
 		}
+		
+		// pattern detection
+		PatternDetector patternDetector = PatternDetector.getInstance();
+		patternDetector.setClasses(iClasses);
+		SingletonPattern singletonPattern = new SingletonPattern(patternDetector);
+		patternDetector.addPattern("singletonPattern", singletonPattern);
+		patternDetector.detectAllPatterns();
 
 	}
 
@@ -100,8 +108,9 @@ public class GVOSJavaSingletonTest {
 	@Test
 	public void testDesktopSingleton() {
 		// This is indeed a multiton.
-		// FYI: http://stackoverflow.com/questions/3061328/singleton-class-in-java-api
-		
+		// FYI:
+		// http://stackoverflow.com/questions/3061328/singleton-class-in-java-api
+
 		IClassDeclaration classDeclaration = iClasses.get(DESKTOP_CLASS_NAME).getDeclaration();
 		classDeclaration.accept(gvOS);
 		appendBufferLine(DESKTOP_CLASS_NAME);

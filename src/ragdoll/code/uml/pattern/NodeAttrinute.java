@@ -4,11 +4,21 @@ public class NodeAttrinute {
 	private String bgColor;
 	private String borderColor;
 	private String patternName;
+	private String associationArrowText;
 	
+	public String getAssociationArrowText() {
+		return associationArrowText;
+	}
+
+	public void setAssociationArrowText(String associationArrowText) {
+		this.associationArrowText = associationArrowText;
+	}
+
 	public NodeAttrinute(){
 		this.bgColor = "white";
 		this.borderColor = "black";
 		this.patternName = "";
+		this.associationArrowText = "";
 	}
 
 	public String getBgColor() {

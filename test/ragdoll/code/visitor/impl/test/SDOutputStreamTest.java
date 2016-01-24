@@ -94,7 +94,6 @@ public class SDOutputStreamTest {
 	@Test
 	public void testVisitClasses(){
 		sdOS.visit(classes);
-		System.out.println(sdOS.toString());
 		
 		appendBufferLine("ragdoll\\.asm\\.sd\\.test\\.sample\\.classa:ragdoll.asm.sd.test.sample.ClassA[a]");
 		appendBufferLine("ragdoll\\.asm\\.sd\\.test\\.sample\\.classb:ragdoll.asm.sd.test.sample.ClassB[a]");

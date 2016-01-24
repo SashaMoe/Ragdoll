@@ -18,8 +18,7 @@ public class ClassFinder {
 	
 	public static List<Class<?>> find(String scannedPackage) throws ClassNotFoundException {
 		String[] scannedPathArr = scannedPackage.split(",");
-		System.out.println(scannedPathArr.length);
-
+		
 		List<Class<?>> classes = new ArrayList<>();
 		for (String name : scannedPathArr) {
 			String fullName = name.trim();
@@ -31,7 +30,7 @@ public class ClassFinder {
 			}
 			File scannedDir = new File(scannedUrl.getFile());
 			for (File file : scannedDir.listFiles()) {
-				classes.addAll(find(file, scannedPath));
+				classes.addAll(find(file, fullName));
 			}
 		}
 		return classes;

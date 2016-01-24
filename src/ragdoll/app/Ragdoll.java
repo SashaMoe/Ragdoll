@@ -21,6 +21,7 @@ import ragdoll.code.sd.impl.INode;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.PatternDetector;
+import ragdoll.code.uml.pattern.SingletonPattern;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.code.visitor.impl.SDOutputStream;
 import ragdoll.util.ClassFinder;
@@ -130,7 +131,9 @@ public class Ragdoll {
 		// pattern detection
 		PatternDetector patternDetector = PatternDetector.getInstance();
 		patternDetector.setClasses(iClasses);
-		
+		SingletonPattern singletonPattern = new SingletonPattern(patternDetector);
+		patternDetector.addPattern("singletonPattern", singletonPattern);
+		patternDetector.detectAllPatterns();
 		
 		// Output
 		gvOS.initBuffer();
