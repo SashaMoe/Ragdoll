@@ -20,6 +20,7 @@ import ragdoll.code.sd.api.Node;
 import ragdoll.code.sd.impl.INode;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.impl.Klass;
+import ragdoll.code.uml.pattern.PatternDetector;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.code.visitor.impl.SDOutputStream;
 import ragdoll.util.ClassFinder;
@@ -123,10 +124,14 @@ public class Ragdoll {
 			ClassVisitor methodVisitor = new ClassMethodVisitor(Opcodes.ASM5, fieldVisitor, newClass);
 
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-			newClass.updateIsSingleton();
 			iClasses.put(className, newClass);
 		}
 
+		// pattern detection
+		PatternDetector patternDetector = PatternDetector.getInstance();
+		patternDetector.setClasses(iClasses);
+		
+		
 		// Output
 		gvOS.initBuffer();
 		for (String c : iClasses.keySet()) {

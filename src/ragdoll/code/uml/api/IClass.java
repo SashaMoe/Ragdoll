@@ -33,9 +33,17 @@ public interface IClass extends ITraverser {
 	
 	public void setHasLazyGetInstanceMethod(boolean hasLazyGetInstanceMethod);
 
-	public void updateIsSingleton();
-
 	public void setHasGetInstanceMethod(boolean hasGetInstanceMethod);
 
 	public void setHasEagerInit(boolean hasEagerInit);
+	
+	public boolean checkHasPrivateConstructor();
+	
+	public boolean checkHasPrivateFiledOfItself();
+	
+	public boolean hasLazyGetInstanceMethod();
+	
+	public boolean hasGetInstanceMethod();
+	
+	public boolean hasEagerInit();
 }

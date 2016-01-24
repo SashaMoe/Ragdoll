@@ -39,6 +39,18 @@ public class Klass implements IClass {
 		this.hasLazyGetInstanceMethod = false;
 	}
 
+	public boolean hasLazyGetInstanceMethod() {
+		return hasLazyGetInstanceMethod;
+	}
+
+	public boolean hasGetInstanceMethod() {
+		return hasGetInstanceMethod;
+	}
+
+	public boolean hasEagerInit() {
+		return hasEagerInit;
+	}
+
 	public void setHasLazyGetInstanceMethod(boolean hasLazyGetInstanceMethod) {
 		this.hasLazyGetInstanceMethod = hasLazyGetInstanceMethod;
 	}
@@ -156,12 +168,6 @@ public class Klass implements IClass {
 			}
 		}
 		return false;
-	}
-
-	public void updateIsSingleton() {
-		this.declaration.setIsSingleton(!this.declaration.isAbstract() && !this.declaration.isInterface()
-				&& checkHasPrivateConstructor() && checkHasPrivateFiledOfItself() && this.hasGetInstanceMethod &&
-				(this.hasLazyGetInstanceMethod || this.hasEagerInit));
 	}
 
 }
