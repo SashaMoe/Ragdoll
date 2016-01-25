@@ -127,6 +127,7 @@ The project follows the following design principles:
 | Sasha          | Added PatternDector and IPattern.                                                                                     | 15m    |
 | yangh1         | Implemented the SingletonPattern.                                                                                     | 15m    |
 | zxqdx          | Added uniform NodeAttribute object for rendering nodes.                                                               | 10m    |
+| yangh1         | Updated project manually / generated UML diagrams.                                                                    | 15m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -215,10 +216,10 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 ![UML Diagram](/img/Lab1-3UMLGenerated.png "")
 
 ### Project
-#### Manually created UML diagram V4
+#### Manually created UML diagram V5
 ![UML Diagram](/img/ProjectUMLManually.png "")
 
-#### Generated UML diagram V4
+#### Generated UML diagram V5
 ![UML Diagram](/img/ProjectUMLGenerated.png "")
 
 #### Manually created SD diagram V1
