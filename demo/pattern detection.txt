@@ -1,0 +1,70 @@
+A. Adapter
+  Iterate through concrete classes, and see if a class satisfy the following requirements
+    i. It implements an Interface
+    ii. It stores one or more classes in the scope (L: List of such classes)
+    iii. In the methods that are from the Interface, count the method calls for each classes in L
+    iv. If there exists one class that is used in every method that are from the Interface
+      a. The interface is <<target>>
+      b. The class is <<adapter>>
+      c. The class where adapter stores is <<adaptee>>
+
+      (?) What if more than one "adaptee-like" classes exist?
+          In different patterns
+      (?) What if the "adaptee" is not called in every method that are from the Interface?
+          Add a threshold parameter / constant to the pattern detector
+      (?) Could the adapter be an abstract class?
+          No
+      (?) What if the "adapter" implements more than one interface?
+          Possible
+      (?) What if the adapter is another system's adaptee?
+          Possible
+
+B. Decorator
+  Iterate through classes & abstract classes, and see if one satisfy the following requirements
+    i. It either implements one interface, or extends one class
+    ii. From the top of its inheritance / implement chain in the scope, see if its constructor takes one of it as parameter
+      If true, temporarily mark it as the <<component>>
+    iii. Iterate through all methods that is overridden from the component
+      If in all methods, there exists one method call that has the same name as its name, then itself and its subclasses are all decorators.
+
+    (?) Is InputStreamReader using an decorator pattern? http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/io/InputStreamReader.java
+        Half Adapter, Half Decorator
+    (?) What about its super classes?
+        No
+    (?) Say we have an abstract class A that takes an interface as parameter, stores it in a protected field P, implement methodA() in the interface, and its subclass B implement methodB() in the interface where it delegates that to P, while its subclass C implement methodB() by simply throwing the UnsupportedOperationException. What are decorators?
+        NVM
+
+
+Ragdoll
+  1. Create PatternController
+  2. Add all IPatternDetector.class
+  3. Add all IFormatConsumer.class
+  4. PatternController.detectAllPatterns()
+
+PatternController (old PatternDetector)
+  - detectAllPatterns()
+    1. Construct all IPatternDetectors by passing in the IClassInfo
+    2. Create HashMap<patternType, List<IPattern>>
+    3. Construct all IFormatConsumers by passing in the hash map
+
+IPatternDetector (old IPattern)
+  Need to register in PatternController
+  - List<IPattern>
+  - Constructor(IClassInfo)
+    Detect all patterns and store into IPattern list.
+
+IFormatConsumer
+  Need to register in PatternController
+  - Singleton
+  - Constructor(HashMap<patternType, List<IPattern>>)
+    Store the output info somehow that matches the logic in FormatOutputStream visitor
+
+IPattern
+  Stores the detected patterns
+  - HashMap<className, role>
+  - HashMap<HashMap<fromClassName, toClassName>, relation>
+
+FormatOutputStream
+  1. IFormatConsumer.getInstance()
+  2. Use its data to render specific patterns
+
