@@ -136,7 +136,7 @@ public class Ragdoll {
 		patternController.setClasses(iClasses);
 		
 		APatternDetector singletonPattern = new SingletonPattern(patternController);
-		patternController.registerPatternDetector("singletonPattern", singletonPattern);
+		patternController.registerPatternDetector("singleton", singletonPattern);
 		
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
 		patternController.registerFormatConsumer(gvFormatConsumer);

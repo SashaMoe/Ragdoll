@@ -31,7 +31,7 @@ public class GVFormatConsumer implements IFormatConsumer {
 	public void parse(Map<String, List<Pattern>> patternMap) {
 		for (String patternType : patternMap.keySet()) {
 			List<Pattern> patterns = patternMap.get(patternType);
-			if (patternType.equals("Singleton")) {
+			if (patternType.toLowerCase().equals("singleton")) {
 				for (Pattern pattern : patterns) {
 					String className = pattern.getRoleMap().keySet().iterator().next();
 					NodeAttrinute node = getClassNodeAttribute(className);

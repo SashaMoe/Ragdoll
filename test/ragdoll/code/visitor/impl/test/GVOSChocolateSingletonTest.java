@@ -14,6 +14,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ragdoll.app.pattern.GVFormatConsumer;
 import ragdoll.app.pattern.SingletonPattern;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
 import ragdoll.asm.uml.ClassFieldVisitor;
@@ -21,6 +22,8 @@ import ragdoll.asm.uml.ClassMethodVisitor;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.impl.Klass;
+import ragdoll.code.uml.pattern.APatternDetector;
+import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
@@ -53,12 +56,17 @@ public class GVOSChocolateSingletonTest {
 			iClasses.put(className, newClass);
 		}
 
-		// pattern detection
-		PatternController patternDetector = PatternController.getInstance();
-		patternDetector.setClasses(iClasses);
-		SingletonPattern singletonPattern = new SingletonPattern(patternDetector);
-		patternDetector.addPattern("singletonPattern", singletonPattern);
-		patternDetector.detectAllPatterns();
+		// Pattern Detection
+		PatternController patternController = new PatternController();
+		patternController.setClasses(iClasses);
+
+		APatternDetector singletonPattern = new SingletonPattern(patternController);
+		patternController.registerPatternDetector("singleton", singletonPattern);
+
+		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
+		patternController.registerFormatConsumer(gvFormatConsumer);
+
+		patternController.detectAllPatterns();
 
 	}
 

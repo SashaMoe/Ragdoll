@@ -14,6 +14,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ragdoll.app.pattern.GVFormatConsumer;
 import ragdoll.app.pattern.SingletonPattern;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
 import ragdoll.asm.uml.ClassFieldVisitor;
@@ -23,6 +24,8 @@ import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.impl.Klass;
+import ragdoll.code.uml.pattern.APatternDetector;
+import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
@@ -43,10 +46,10 @@ public class GVOutputStreamTest {
 			classNames.add(c.getName());
 		}
 		iClasses = new HashMap<>();
-		
+
 		for (String className : classNames) {
-			if (className.contains(".test.") || className.endsWith("Test")
-				|| className.endsWith("Tests") || className.contains("$")) {
+			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
+					|| className.contains("$")) {
 				continue;
 			}
 			IClass newClass = new Klass(className, iClasses);
@@ -60,13 +63,18 @@ public class GVOutputStreamTest {
 			iClasses.put(className, newClass);
 		}
 
-		// pattern detection
-		PatternController patternDetector = PatternController.getInstance();
-		patternDetector.setClasses(iClasses);
-		SingletonPattern singletonPattern = new SingletonPattern(patternDetector);
-		patternDetector.addPattern("singletonPattern", singletonPattern);
-		patternDetector.detectAllPatterns();
-		
+		// Pattern Detection
+		PatternController patternController = new PatternController();
+		patternController.setClasses(iClasses);
+
+		APatternDetector singletonPattern = new SingletonPattern(patternController);
+		patternController.registerPatternDetector("singleton", singletonPattern);
+
+		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
+		patternController.registerFormatConsumer(gvFormatConsumer);
+
+		patternController.detectAllPatterns();
+
 	}
 
 	private final void appendBufferLine(String s) {
@@ -88,7 +96,8 @@ public class GVOutputStreamTest {
 		gvOS.initBuffer();
 
 		appendBufferLine("digraph G {");
-		appendBufferLine("rankdir=BT;");;
+		appendBufferLine("rankdir=BT;");
+		;
 		appendBufferLine("fontname = \"Times New Roman\"");
 		appendBufferLine("fontsize = 12");
 		appendBufferLine("node [");
@@ -126,7 +135,6 @@ public class GVOutputStreamTest {
 		klass.filterTypeSet();
 		gvOS.postVisit(klass);
 
-		
 		appendBufferLine("}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
@@ -137,20 +145,22 @@ public class GVOutputStreamTest {
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"empty\"");
 		appendBufferLine("]");
-		appendBufferLine("\"headfirst.factory.pizzafm.ChicagoStyleCheesePizza\" -> \"headfirst.factory.pizzafm.Pizza\"");
+		appendBufferLine(
+				"\"headfirst.factory.pizzafm.ChicagoStyleCheesePizza\" -> \"headfirst.factory.pizzafm.Pizza\"");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
 		appendBufferLine("arrowhead = \"vee\"");
 		appendBufferLine("]");
-		appendBufferLine("\"headfirst.factory.pizzafm.ChicagoStyleCheesePizza\" -> \"headfirst.factory.pizzafm.Pizza\"");
+		appendBufferLine(
+				"\"headfirst.factory.pizzafm.ChicagoStyleCheesePizza\" -> \"headfirst.factory.pizzafm.Pizza\"");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"vee\"");
 		appendBufferLine("]");
-		
+
 		assertEquals(sb.toString(), gvOS.toString());
 	}
-	
+
 	@Test
 	public void testPostVisitIClass2() {
 		// Tests headfirst.factory.pizzafm.ChicagoStyleCheesePizza
@@ -185,8 +195,6 @@ public class GVOutputStreamTest {
 
 		assertEquals(sb.toString(), gvOS.toString());
 	}
-	
-	
 
 	@Test
 	public void testVisitIClassDeclaration() {
@@ -206,7 +214,7 @@ public class GVOutputStreamTest {
 			IField f = fieldMap.get(fieldName);
 			f.accept(gvOS);
 		}
-		
+
 		appendBuffer("~ name : java.lang.String\\l");
 		appendBuffer("~ sauce : headfirst.factory.pizzaaf.Sauce\\l");
 		appendBuffer("~ clam : headfirst.factory.pizzaaf.Clams\\l");
@@ -214,25 +222,26 @@ public class GVOutputStreamTest {
 		appendBuffer("~ pepperoni : headfirst.factory.pizzaaf.Pepperoni\\l");
 		appendBuffer("~ dough : headfirst.factory.pizzaaf.Dough\\l");
 		appendBuffer("~ cheese : headfirst.factory.pizzaaf.Cheese\\l");
-		
+
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
 	@Test
 	public void testVisitIMethod() {
 		// Tests headfirst.factory.pizzaaf.ChicagoPizzaIngredientFactory
-		List<IMethod> methodList = iClasses.get("headfirst.factory.pizzaaf.ChicagoPizzaIngredientFactory").getMethodList();
-		for (IMethod m : methodList){
+		List<IMethod> methodList = iClasses.get("headfirst.factory.pizzaaf.ChicagoPizzaIngredientFactory")
+				.getMethodList();
+		for (IMethod m : methodList) {
 			m.accept(gvOS);
 		}
-		
+
 		appendBuffer("+ createDough(): Dough\\l");
 		appendBuffer("+ createSauce(): Sauce\\l");
 		appendBuffer("+ createCheese(): Cheese\\l");
 		appendBuffer("+ createVeggies(): Veggies[]\\l");
 		appendBuffer("+ createPepperoni(): Pepperoni\\l");
 		appendBuffer("+ createClam(): Clams\\l");
-		
+
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 

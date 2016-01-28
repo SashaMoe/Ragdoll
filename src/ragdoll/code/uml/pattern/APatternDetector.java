@@ -10,7 +10,6 @@ public abstract class APatternDetector {
 	protected APatternDetector(IClassInfo classInfo) {
 		this.classInfo = classInfo;
 		this.patterns = new ArrayList<>();
-		detectPattern();
 	}
 	protected void detectPattern() {}
 	protected void addPattern(Pattern pattern) {

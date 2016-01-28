@@ -8,6 +8,7 @@ public class SingletonPattern extends APatternDetector {
 
 	public SingletonPattern(IClassInfo classInfo) {
 		super(classInfo);
+		detectPattern();
 	}
 
 	@Override
@@ -16,7 +17,7 @@ public class SingletonPattern extends APatternDetector {
 			if (isSingleton(className)) {
 				Pattern pattern = new Pattern();
 				pattern.addRole(className, "singleton");
-				patterns.add(pattern);
+				addPattern(pattern);
 			}
 		}
 	}
