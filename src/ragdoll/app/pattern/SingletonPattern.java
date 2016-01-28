@@ -1,38 +1,31 @@
-package ragdoll.code.uml.pattern;
+package ragdoll.app.pattern;
 
-import java.util.HashSet;
-import java.util.Set;
+import ragdoll.code.uml.pattern.IClassInfo;
+import ragdoll.code.uml.pattern.APatternDetector;
+import ragdoll.code.uml.pattern.Pattern;
 
-public class SingletonPattern implements IPattern {
-	private IClassInfo classInfo;
-	private Set<String> singletonSet;
+public class SingletonPattern extends APatternDetector {
 
 	public SingletonPattern(IClassInfo classInfo) {
-		this.classInfo = classInfo;
-		this.singletonSet = new HashSet<>();
+		super(classInfo);
 	}
 
+	@Override
 	public void detectPattern() {
 		for (String className : classInfo.getClasses().keySet()) {
 			if (isSingleton(className)) {
-				singletonSet.add(className);
+				Pattern pattern = new Pattern();
+				pattern.addRole(className, "singleton");
+				patterns.add(pattern);
 			}
 		}
 	}
-
+	
 	private boolean isSingleton(String className) {
 		return !classInfo.isAbstract(className) && !classInfo.isInterface(className)
 				&& classInfo.checkHasPrivateConstructor(className) && classInfo.checkHasPrivateFiledOfItself(className)
 				&& classInfo.hasGetInstanceMethod(className)
 				&& (classInfo.hasLazyGetInstanceMethod(className) || classInfo.hasEagerInit(className));
-	}
-
-	public void getClassNodeAttribute(String className, NodeAttrinute nodeAttrinute) {
-		boolean isSingleton = singletonSet.contains(className);
-		if(isSingleton){
-			nodeAttrinute.setBorderColor("blue");
-			nodeAttrinute.setPatternName("«singleton»");
-		}
 	}
 
 }

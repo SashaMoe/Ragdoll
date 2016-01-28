@@ -14,6 +14,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ragdoll.app.pattern.SingletonPattern;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
 import ragdoll.asm.uml.ClassFieldVisitor;
 import ragdoll.asm.uml.ClassMethodVisitor;
@@ -22,8 +23,7 @@ import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.impl.Klass;
-import ragdoll.code.uml.pattern.PatternDetector;
-import ragdoll.code.uml.pattern.SingletonPattern;
+import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
@@ -61,7 +61,7 @@ public class GVOutputStreamTest {
 		}
 
 		// pattern detection
-		PatternDetector patternDetector = PatternDetector.getInstance();
+		PatternController patternDetector = PatternController.getInstance();
 		patternDetector.setClasses(iClasses);
 		SingletonPattern singletonPattern = new SingletonPattern(patternDetector);
 		patternDetector.addPattern("singletonPattern", singletonPattern);

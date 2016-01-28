@@ -1,7 +1,7 @@
 A. Adapter
   Iterate through concrete classes, and see if a class satisfy the following requirements
-    i. It implements an Interface
-    ii. It stores one or more classes in the scope (L: List of such classes)
+    i. It implements one or more Interface
+    ii. Its constructor takes and stores one or more classes in the scope (L: List of such classes)
     iii. In the methods that are from the Interface, count the method calls for each classes in L
     iv. If there exists one class that is used in every method that are from the Interface
       a. The interface is <<target>>
@@ -21,7 +21,7 @@ A. Adapter
 
 B. Decorator
   Iterate through classes & abstract classes, and see if one satisfy the following requirements
-    i. It either implements one interface, or extends one class
+    i. It implements one interface or extends one class
     ii. From the top of its inheritance / implement chain in the scope, see if its constructor takes one of it as parameter
       If true, temporarily mark it as the <<component>>
     iii. Iterate through all methods that is overridden from the component
@@ -35,36 +35,37 @@ B. Decorator
         NVM
 
 
-Ragdoll
-  1. Create PatternController
-  2. Add all IPatternDetector.class
-  3. Add all IFormatConsumer.class
-  4. PatternController.detectAllPatterns()
+Ragdoll [√]
+  1. Create PatternController [√]
+  2. Add all APatternDetector.class [√]
+  3. Add all IFormatConsumer.class [√]
+  4. PatternController.detectAllPatterns() [√]
 
-PatternController (old PatternDetector)
-  - detectAllPatterns()
-    1. Construct all IPatternDetectors by passing in the IClassInfo
-    2. Create HashMap<patternType, List<IPattern>>
-    3. Construct all IFormatConsumers by passing in the hash map
+PatternController (old PatternDetector) [√]
+  - detectAllPatterns() [√]
+    1. Construct all IPatternDetectors by passing in the IClassInfo [√]
+    2. Create and store HashMap<patternType, List<Pattern>> [√]
+    3. Call parse() on IFormatConsumers by passing in the hash map [√]
 
-IPatternDetector (old IPattern)
+APatternDetector (old IPattern)
   Need to register in PatternController
-  - List<IPattern>
-  - Constructor(IClassInfo)
-    Detect all patterns and store into IPattern list.
+  - List<Pattern> [√]
+  - ONLY Constructor(IClassInfo) [√]
+    call detectPattern() [√]
+      that detects all patterns and store into Pattern list. [√]
 
-IFormatConsumer
-  Need to register in PatternController
-  - Singleton
-  - Constructor(HashMap<patternType, List<IPattern>>)
-    Store the output info somehow that matches the logic in FormatOutputStream visitor
+IFormatConsumer [√]
+  Need to register in PatternController [√]
+  - Singleton [√]
+  - parse(HashMap<patternType, List<Pattern>>) [√]
+    Store the output info somehow that matches the logic in FormatOutputStream visitor [√]
 
-IPattern
-  Stores the detected patterns
-  - HashMap<className, role>
-  - HashMap<HashMap<fromClassName, toClassName>, relation>
+Pattern [√]
+  Stores the detected pattern [√]
+  - HashMap<className, role> [√]
+  - HashMap<List[fromClassName, toClassName], relation> [√]
 
-FormatOutputStream
-  1. IFormatConsumer.getInstance()
-  2. Use its data to render specific patterns
+FormatOutputStream [√]
+  1. IFormatConsumer.getInstance() [√]
+  2. Use its data to render specific patterns [√]
 

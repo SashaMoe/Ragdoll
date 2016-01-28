@@ -2,12 +2,12 @@ package ragdoll.code.visitor.impl;
 
 import java.util.Set;
 
+import ragdoll.app.pattern.GVFormatConsumer;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.pattern.NodeAttrinute;
-import ragdoll.code.uml.pattern.PatternDetector;
 import ragdoll.code.visitor.api.AOutputStream;
 import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.util.Utilities;
@@ -34,7 +34,8 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 	}
 
 	public void visit(IClass c) {
-		NodeAttrinute nodeAttrinute = PatternDetector.getInstance().getAttribute(c.getName());
+		GVFormatConsumer consumer = GVFormatConsumer.getInstance();
+		NodeAttrinute nodeAttrinute = consumer.getClassNodeAttribute(c.getName());
 		
 		appendBufferLine('"' + c.getName() + '"' + " [");
 		appendBufferLine("color=" + nodeAttrinute.getBorderColor());
@@ -125,7 +126,8 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 	}
 
 	public void visit(IClassDeclaration cd) {
-		NodeAttrinute nodeAttrinute = PatternDetector.getInstance().getAttribute(Utilities.packagifyClassName(cd.getClassName()));
+		GVFormatConsumer consumer = GVFormatConsumer.getInstance();
+		NodeAttrinute nodeAttrinute = consumer.getClassNodeAttribute(Utilities.packagifyClassName(cd.getClassName()));
 		
 		if (cd.isInterface()) {
 			this.sb.append("«interface»\\n");
