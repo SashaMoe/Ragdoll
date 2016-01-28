@@ -1,24 +1,27 @@
 package ragdoll.code.uml.pattern;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class NodeAttrinute {
 	private String bgColor;
 	private String borderColor;
-	private String patternName;
-	private String associationArrowText;
+	private ArrayList<String> patternNames;
+	private HashMap<String, String> associationArrowTextMap;
 	
-	public String getAssociationArrowText() {
-		return associationArrowText;
-	}
-
-	public void setAssociationArrowText(String associationArrowText) {
-		this.associationArrowText = associationArrowText;
-	}
-
 	public NodeAttrinute(){
 		this.bgColor = "white";
 		this.borderColor = "black";
-		this.patternName = "";
-		this.associationArrowText = "";
+		this.patternNames = new ArrayList<>();
+		this.associationArrowTextMap = new HashMap<>();
+	}
+	
+	public HashMap<String, String> getAssociationArrowText() {
+		return associationArrowTextMap;
+	}
+
+	public void addAssociationArrowText(String targetClassName, String associationArrowText) {
+		this.associationArrowTextMap.put(targetClassName, associationArrowText);
 	}
 
 	public String getBgColor() {
@@ -37,12 +40,12 @@ public class NodeAttrinute {
 		this.borderColor = borderColor;
 	}
 
-	public String getPatternName() {
-		return patternName;
+	public ArrayList<String> addPatternName() {
+		return this.patternNames;
 	}
 
-	public void setPatternName(String patternName) {
-		this.patternName = patternName;
+	public void addPatternName(String patternName) {
+		this.patternNames.add(patternName);
 	}
 	
 	

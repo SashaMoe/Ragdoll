@@ -11,12 +11,15 @@ import org.objectweb.asm.Type;
 
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.uml.api.IMethodCall;
 import ragdoll.code.uml.impl.Method;
+import ragdoll.code.uml.impl.MethodCall;
 import ragdoll.util.Utilities;
 
 public class ClassMethodVisitor extends ClassVisitor {
 
 	private IClass c;
+	private IMethod currentMethod;
 
 	public ClassMethodVisitor(int arg0, IClass c) {
 		super(arg0);
@@ -38,9 +41,12 @@ public class ClassMethodVisitor extends ClassVisitor {
 				// Therefore, we are checking the case in the code where `new`
 				// keyword is presented.
 				// We are NOT only checking the constructor method.
+				String className = Utilities.packagifyClassName(owner);
 				if (name.equals("<init>")) {
-					ClassMethodVisitor.this.c.addUse(Utilities.packagifyClassName(owner));
+					ClassMethodVisitor.this.c.addUse(className);
 				}
+				IMethodCall callee = new MethodCall(className, name);
+				ClassMethodVisitor.this.currentMethod.addCallees(callee);
 			}
 		};
 		MethodVisitor getInstanceMv = new MethodVisitor(Opcodes.ASM5, instMv) {
@@ -88,8 +94,8 @@ public class ClassMethodVisitor extends ClassVisitor {
 
 		List<String> exceptionList = exceptions == null ? new ArrayList<>()
 				: new ArrayList<>(Arrays.asList(exceptions));
-		IMethod method = new Method(name, level, returnType, sTypes, exceptionList);
-		this.c.addMethod(method);
+		this.currentMethod = new Method(name, level, returnType, sTypes, exceptionList);
+		this.c.addMethod(currentMethod);
 
 		if (name.equals("<clinit>")) {
 			return initMv;

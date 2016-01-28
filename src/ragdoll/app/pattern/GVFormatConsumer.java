@@ -36,9 +36,18 @@ public class GVFormatConsumer implements IFormatConsumer {
 					String className = pattern.getRoleMap().keySet().iterator().next();
 					NodeAttrinute node = getClassNodeAttribute(className);
 					node.setBorderColor("blue");
-					node.setPatternName("«singleton»");
+					node.addPatternName("«singleton»");
 				}
-				
+			} else if (patternType.toLowerCase().equals("adapter")) {
+				for(Pattern pattern : patterns){
+					for(String className : pattern.getRoleMap().keySet()){
+						String role = pattern.getRoleMap().get(className);
+						NodeAttrinute node = getClassNodeAttribute(className);
+						node.setBgColor("red");
+						node.addPatternName(role);
+					}
+					
+				}
 			}
 		}
 	}

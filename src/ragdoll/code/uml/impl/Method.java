@@ -1,8 +1,10 @@
 package ragdoll.code.uml.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ragdoll.code.uml.api.IMethod;
+import ragdoll.code.uml.api.IMethodCall;
 import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.code.visitor.api.IVisitor;
 
@@ -13,6 +15,7 @@ public class Method implements IMethod {
 	private String returnType;
 	private List<String> paramTypes;
 	private List<String> exceptions;
+	private List<IMethodCall> callees;
 
 	public Method(String methodName, String accessLevel, String returnType, List<String> paramTypes,
 			List<String> exceptions) {
@@ -22,6 +25,15 @@ public class Method implements IMethod {
 		this.returnType = returnType;
 		this.paramTypes = paramTypes;
 		this.exceptions = exceptions;
+		this.callees = new ArrayList<>();
+	}
+	
+	public void addCallees(IMethodCall callee) {
+		this.callees.add(callee);
+	}
+
+	public List<IMethodCall> getCallees() {
+		return callees;
 	}
 
 	public String getMethodName() {

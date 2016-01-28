@@ -46,4 +46,8 @@ public interface IClass extends ITraverser {
 	public boolean hasGetInstanceMethod();
 	
 	public boolean hasEagerInit();
+	
+	public List<String> getAggregatedClasses();
+
+	public List<IMethod> getOverriddenMethods(IClass superClass);
 }

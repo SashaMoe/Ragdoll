@@ -54,7 +54,7 @@ public class Klass implements IClass {
 	public void setHasLazyGetInstanceMethod(boolean hasLazyGetInstanceMethod) {
 		this.hasLazyGetInstanceMethod = hasLazyGetInstanceMethod;
 	}
-	
+
 	public void setHasGetInstanceMethod(boolean hasGetInstanceMethod) {
 		this.hasGetInstanceMethod = hasGetInstanceMethod;
 	}
@@ -62,7 +62,7 @@ public class Klass implements IClass {
 	public void setHasEagerInit(boolean hasEagerInit) {
 		this.hasEagerInit = hasEagerInit;
 	}
-	
+
 	public void addMethod(IMethod method) {
 		this.methodList.add(method);
 	}
@@ -168,6 +168,35 @@ public class Klass implements IClass {
 			}
 		}
 		return false;
+	}
+
+	public List<String> getAggregatedClasses() {
+		List<String> aggregatedClasses = new ArrayList<>();
+		for (IMethod method : methodList) {
+			if (method.getMethodName().equals("<init>")) {
+				List<String> paramTypes = method.getParamTypes();
+				for (String paramType : paramTypes) {
+					if (fieldMap.containsKey(paramType)) {
+						aggregatedClasses.add(paramType);
+					}
+				}
+			}
+		}
+		return aggregatedClasses;
+	}
+
+	@Override
+	public List<IMethod> getOverriddenMethods(IClass superClass) {
+		List<IMethod> overridedMethods = new ArrayList<>();
+		List<IMethod> superMethodList = superClass.getMethodList();
+		for (IMethod method : methodList) {
+			for (IMethod superMethod : superMethodList) {
+				if (superMethod.equals(method)) {
+					overridedMethods.add(method);
+				}
+			}
+		}
+		return overridedMethods;
 	}
 
 }

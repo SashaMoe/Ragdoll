@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IMethod;
 
 public class PatternController implements IClassInfo {
 	private Map<String, IClass> classes;
@@ -22,16 +23,16 @@ public class PatternController implements IClassInfo {
 		this.patternMap = new HashMap<>();
 		this.consumers = new ArrayList<>();
 	}
-	
-	public void registerPatternDetector(String patternType, APatternDetector pattern){
+
+	public void registerPatternDetector(String patternType, APatternDetector pattern) {
 		this.patternDetectors.put(patternType, pattern);
 	}
-	
+
 	public void registerFormatConsumer(IFormatConsumer consumer) {
 		this.consumers.add(consumer);
 	}
 
-	public void detectAllPatterns(){
+	public void detectAllPatterns() {
 		for (String patternType : patternDetectorClasses.keySet()) {
 			Class<? extends APatternDetector> patternDetector = patternDetectorClasses.get(patternType);
 			Constructor<?> ctor = patternDetector.getConstructors()[0];
@@ -50,7 +51,7 @@ public class PatternController implements IClassInfo {
 			consumer.parse(patternMap);
 		}
 	}
-	
+
 	public Map<String, IClass> getClasses() {
 		return classes;
 	}
@@ -85,6 +86,23 @@ public class PatternController implements IClassInfo {
 
 	public boolean isInterface(String className) {
 		return classes.get(className).getDeclaration().isInterface();
+	}
+
+	public List<String> getImplementedInterfaces(String className) {
+		return classes.get(className).getDeclaration().getNameOfInterfaces();
+	}
+
+	public List<String> getAggregatedClasses(String className) {
+		return classes.get(className).getAggregatedClasses();
+	}
+
+	public List<IMethod> getOverriddenMethods(String className, String superName) {
+		if (classes.get(className).getDeclaration().getNameOfSuperClass().equals(superName)
+				|| classes.get(className).getDeclaration().getNameOfInterfaces().contains(superName)) {
+			IClass superClass = classes.get(superName);
+			return classes.get(className).getOverriddenMethods(superClass);
+		}
+		return null;
 	}
 
 }
