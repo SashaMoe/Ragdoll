@@ -27,7 +27,7 @@ public class Method implements IMethod {
 		this.exceptions = exceptions;
 		this.callees = new ArrayList<>();
 	}
-	
+
 	public void addCallees(IMethodCall callee) {
 		this.callees.add(callee);
 	}
@@ -58,6 +58,18 @@ public class Method implements IMethod {
 
 	public void accept(IVisitor v) {
 		((IUMLVisitor) v).visit(this);
+	}
+
+	public boolean compareToMethod(IMethod method) {
+		List<String> comparedParamTypes = method.getParamTypes();
+		if (paramTypes.size() == comparedParamTypes.size()) {
+			for (int i = 0; i < paramTypes.size(); i++) {
+				if (!paramTypes.get(i).equals(comparedParamTypes.get(i))) {
+					return false;
+				}
+			}
+		}
+		return methodName.equals(method.getMethodName());
 	}
 
 }

@@ -7,35 +7,17 @@ fontname = "Times New Roman"
 fontsize = 12
 shape = "record"
 ]
-"ragdoll.code.visitor.api.ISDVisitor" [
-label = "{«interface»\nragdoll.code.visitor.api.ISDVisitor|+ visit(j0 : java.util.List, ): void\l+ visit(r0 : ragdoll.code.sd.impl.INode, ): void\l}"
+"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" [
+color=black
+bgcolor="red"
+label = "{ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter
+«Adapter»\n|- itr : java.util.Iterator\l|+ hasMoreElements(): boolean\l+ nextElement(): Object\l}"
 ]
 edge [
 style = "dashed"
 arrowhead = "empty"
 ]
-"ragdoll.code.visitor.api.ISDVisitor" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.api.ISDVisitor" -> "ragdoll.code.sd.impl.INode"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.api.IClassComponent" [
-label = "{«interface»\nragdoll.code.uml.api.IClassComponent|}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.api.IClassComponent" -> "ragdoll.code.visitor.api.ITraverser"
+"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" -> "java.util.Enumeration"
 edge [
 style = "solid"
 arrowhead = "empty"
@@ -48,35 +30,12 @@ edge [
 style = "solid"
 arrowhead = "vee"
 ]
-"ragdoll.app.Ragdoll" [
-label = "{ragdoll.app.Ragdoll||+ main(j0 : java.lang.String[], ): void\l+ generateSD(j0 : java.lang.String, i1 : int, ): void\l+ graphHelper(r0 : ragdoll.code.sd.impl.INode, ): void\l+ generateUML(j0 : java.lang.String[], ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.app.Ragdoll" -> "ragdoll.code.sd.impl.INode"
-"ragdoll.app.Ragdoll" -> "ragdoll.code.uml.impl.Klass"
-"ragdoll.app.Ragdoll" -> "ragdoll.asm.sd.GraphMethodVisitor"
-"ragdoll.app.Ragdoll" -> "ragdoll.asm.uml.ClassFieldVisitor"
-"ragdoll.app.Ragdoll" -> "ragdoll.asm.uml.ClassMethodVisitor"
-"ragdoll.app.Ragdoll" -> "ragdoll.code.visitor.impl.GVOutputStream"
-"ragdoll.app.Ragdoll" -> "ragdoll.code.sd.api.Node"
-"ragdoll.app.Ragdoll" -> "ragdoll.asm.uml.ClassDeclarationVisitor"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.api.IVisitor" [
-label = "{«interface»\nragdoll.code.visitor.api.IVisitor|}"
+"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" -> "java.util.Iterator"
+"java.util.Iterator" [
+color=black
+bgcolor="red"
+label = "{«interface»\njava.util.Iterator
+«Adaptee»\n|+ hasNext(): boolean\l+ next(): Object\l+ remove(): void\l+ forEachRemaining(j0 : java.util.function.Consumer): void\l}"
 ]
 edge [
 style = "dashed"
@@ -94,228 +53,11 @@ edge [
 style = "solid"
 arrowhead = "vee"
 ]
-"ragdoll.code.visitor.api.ITraverser" [
-label = "{«interface»\nragdoll.code.visitor.api.ITraverser|+ accept(r0 : ragdoll.code.visitor.api.IVisitor, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.api.ITraverser" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.sd.api.Node" [
-label = "{ragdoll.code.sd.api.Node|- depth : int\l- callerNode : ragdoll.code.sd.impl.INode\l- paramTypes : java.util.List\l- methodName : java.lang.String\l- className : java.lang.String\l- adjacencyList : java.util.ArrayList\l- returnType : java.lang.String\l|+ getCallerNode(): INode\l+ setCallerNode(r0 : ragdoll.code.sd.impl.INode, ): void\l+ getDepth(): int\l+ setDepth(i0 : int, ): void\l+ setParamTypes(j0 : java.util.List, ): void\l+ getMethodName(): String\l+ setMethodName(j0 : java.lang.String, ): void\l+ setReturnType(j0 : java.lang.String, ): void\l+ getReturnType(): String\l+ getParamTypes(): List\l+ addAdjacentNode(r0 : ragdoll.code.sd.impl.INode, ): void\l+ getClassName(): String\l+ getAdjacencyList(): ArrayList\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.sd.api.Node" -> "ragdoll.code.sd.impl.INode"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.sd.api.Node" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.sd.api.Node" -> "ragdoll.code.sd.impl.INode"
-"ragdoll.code.uml.impl.ClassDeclaration" [
-label = "{ragdoll.code.uml.impl.ClassDeclaration|- nameOfInterfaces : java.util.List\l- nameOfSuperClass : java.lang.String\l- className : java.lang.String\l- isAbstract : boolean\l- isInterface : boolean\l|+ isAbstract(): boolean\l+ isInterface(): boolean\l+ getClassName(): String\l+ getNameOfSuperClass(): String\l+ getNameOfInterfaces(): List\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.impl.ClassDeclaration" -> "ragdoll.code.uml.api.IClassDeclaration"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.impl.ClassDeclaration" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.api.IClass" [
-label = "{«interface»\nragdoll.code.uml.api.IClass|+ addMethod(r0 : ragdoll.code.uml.api.IMethod, ): void\l+ addField(r0 : ragdoll.code.uml.api.IField, ): void\l+ addUse(j0 : java.lang.String, ): void\l+ setDeclaration(r0 : ragdoll.code.uml.api.IClassDeclaration, ): void\l+ getDeclaration(): IClassDeclaration\l+ getMethodList(): List\l+ getFieldMap(): HashMap\l+ getUseSet(): Set\l+ getAssociationType(): Set\l+ filterUseSet(): void\l+ filterTypeSet(): void\l+ getName(): String\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.api.IClass" -> "ragdoll.code.visitor.api.ITraverser"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.api.IClass" -> "ragdoll.code.uml.api.IMethod"
-"ragdoll.code.uml.api.IClass" -> "ragdoll.code.uml.api.IClassDeclaration"
-"ragdoll.code.uml.api.IClass" -> "ragdoll.code.uml.api.IField"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.api.IMethod" [
-label = "{«interface»\nragdoll.code.uml.api.IMethod|+ getMethodName(): String\l+ getAccessLevel(): String\l+ getReturnType(): String\l+ getParamTypes(): List\l+ getExceptions(): List\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.api.IMethod" -> "ragdoll.code.uml.api.IClassComponent"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.sd.impl.INode" [
-label = "{«interface»\nragdoll.code.sd.impl.INode|+ addAdjacentNode(r0 : ragdoll.code.sd.impl.INode, ): void\l+ getClassName(): String\l+ getAdjacencyList(): ArrayList\l+ setParamTypes(j0 : java.util.List, ): void\l+ getMethodName(): String\l+ setMethodName(j0 : java.lang.String, ): void\l+ getParamTypes(): List\l+ getDepth(): int\l+ setDepth(i0 : int, ): void\l+ getReturnType(): String\l+ setReturnType(j0 : java.lang.String, ): void\l+ getCallerNode(): INode\l+ setCallerNode(r0 : ragdoll.code.sd.impl.INode, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.sd.impl.INode" -> "ragdoll.code.visitor.api.ITraverser"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.sd.impl.INode" -> "ragdoll.code.sd.impl.INode"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassFieldVisitor" [
-label = "{ragdoll.asm.uml.ClassFieldVisitor|- c : ragdoll.code.uml.api.IClass\l|+ visitField(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.Object, ): FieldVisitor\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-"ragdoll.asm.uml.ClassFieldVisitor" -> "org.objectweb.asm.ClassVisitor"
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassFieldVisitor" -> "ragdoll.code.uml.impl.Field"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassFieldVisitor" -> "ragdoll.code.uml.api.IClass"
-"ragdoll.code.uml.impl.Field" [
-label = "{ragdoll.code.uml.impl.Field|- fieldName : java.lang.String\l- accessLevel : java.lang.String\l- signature : java.lang.String\l- type : java.lang.String\l|+ getSignature(): String\l+ getFieldName(): String\l+ getAccessLevel(): String\l+ getType(): String\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.impl.Field" -> "ragdoll.code.uml.api.IField"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.impl.Field" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.api.IUMLVisitor" [
-label = "{«interface»\nragdoll.code.visitor.api.IUMLVisitor|+ visit(r0 : ragdoll.code.uml.api.IClass, ): void\l+ postVisit(r0 : ragdoll.code.uml.api.IClass, ): void\l+ visit(r0 : ragdoll.code.uml.api.IField, ): void\l+ visit(j0 : java.lang.String, ): void\l+ visit(r0 : ragdoll.code.uml.api.IMethod, ): void\l+ visit(r0 : ragdoll.code.uml.api.IClassDeclaration, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IClass"
-"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IMethod"
-"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IClassDeclaration"
-"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IField"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.impl.GVOutputStream" [
-label = "{ragdoll.code.visitor.impl.GVOutputStream||+ initBuffer(): void\l+ endBuffer(): void\l+ visit(r0 : ragdoll.code.uml.api.IClass, ): void\l+ postVisit(r0 : ragdoll.code.uml.api.IClass, ): void\l+ visit(r0 : ragdoll.code.uml.api.IField, ): void\l+ visit(j0 : java.lang.String, ): void\l+ visit(r0 : ragdoll.code.uml.api.IMethod, ): void\l+ visit(r0 : ragdoll.code.uml.api.IClassDeclaration, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.visitor.api.IUMLVisitor"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
-"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IClass"
-"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IMethod"
-"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IClassDeclaration"
-"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IField"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.api.AOutputStream" [
-label = "{«abstract»\nragdoll.code.visitor.api.AOutputStream|# sb : java.lang.StringBuffer\l|+ initBuffer(): void\l+ endBuffer(): void\l# appendBufferLine(j0 : java.lang.String, ): void\l+ toString(): String\l}"
+"java.util.Enumeration" [
+color=black
+bgcolor="red"
+label = "{«interface»\njava.util.Enumeration
+«Target»\n|+ hasMoreElements(): boolean\l+ nextElement(): Object\l}"
 ]
 edge [
 style = "dashed"
@@ -333,29 +75,10 @@ edge [
 style = "solid"
 arrowhead = "vee"
 ]
-"ragdoll.code.uml.impl.Method" [
-label = "{ragdoll.code.uml.impl.Method|- accessLevel : java.lang.String\l- paramTypes : java.util.List\l- methodName : java.lang.String\l- returnType : java.lang.String\l- exceptions : java.util.List\l|+ getMethodName(): String\l+ getAccessLevel(): String\l+ getReturnType(): String\l+ getParamTypes(): List\l+ getExceptions(): List\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.impl.Method" -> "ragdoll.code.uml.api.IMethod"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.impl.Method" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.util.Utilities" [
-label = "{ragdoll.util.Utilities||+ explodeSignature(j0 : java.lang.String, ): ArrayList\l+ packagifyClassName(j0 : java.lang.String, ): String\l+ getLastPartOfType(j0 : java.lang.String, ): String\l+ getClassNameFromFullyQualifiedMethodSignature(j0 : java.lang.String, ): String\l+ getMethodNameFromFullyQualifiedMethodSignature(j0 : java.lang.String, ): String\l+ getParamTypesFromFullyQualifiedMethodSignature(j0 : java.lang.String, ): List\l+ getSDInstanceName(j0 : java.lang.String, ): String\l+ getParamString(j0 : java.util.List, ): String\l}"
+"ragdoll.asm.uml.test.sample.adapter.LinearTransformer" [
+color=black
+bgcolor="white"
+label = "{ragdoll.asm.uml.test.sample.adapter.LinearTransformer|- enumTion : java.util.Enumeration\l|+ transform(j0 : java.io.OutputStream): void\l}"
 ]
 edge [
 style = "dashed"
@@ -373,76 +96,11 @@ edge [
 style = "solid"
 arrowhead = "vee"
 ]
-"ragdoll.code.uml.impl.Klass" [
-label = "{ragdoll.code.uml.impl.Klass|- useSet : java.util.Set\l- fieldMap : java.util.HashMap\l- iClasses : java.util.Map\l- name : java.lang.String\l- associationTypeSet : java.util.Set\l- methodList : java.util.List\l- declaration : ragdoll.code.uml.api.IClassDeclaration\l|+ addMethod(r0 : ragdoll.code.uml.api.IMethod, ): void\l+ addUse(j0 : java.lang.String, ): void\l+ addField(r0 : ragdoll.code.uml.api.IField, ): void\l+ setDeclaration(r0 : ragdoll.code.uml.api.IClassDeclaration, ): void\l+ getDeclaration(): IClassDeclaration\l+ getMethodList(): List\l+ getFieldMap(): HashMap\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor, ): void\l+ filterUseSet(): void\l+ filterTypeSet(): void\l+ getName(): String\l+ getUseSet(): Set\l+ getAssociationType(): Set\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IClass"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.visitor.api.IVisitor"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IClass"
-"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IMethod"
-"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IClassDeclaration"
-"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IField"
-"ragdoll.asm.sd.GraphMethodVisitor" [
-label = "{ragdoll.asm.sd.GraphMethodVisitor|- node : ragdoll.code.sd.impl.INode\l|+ visitMethod(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.String[], ): MethodVisitor\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-"ragdoll.asm.sd.GraphMethodVisitor" -> "org.objectweb.asm.ClassVisitor"
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.sd.GraphMethodVisitor" -> "ragdoll.code.sd.impl.INode"
-"ragdoll.asm.uml.ClassMethodVisitor" [
-label = "{ragdoll.asm.uml.ClassMethodVisitor|- c : ragdoll.code.uml.api.IClass\l|+ visitMethod(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.String[], ): MethodVisitor\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-"ragdoll.asm.uml.ClassMethodVisitor" -> "org.objectweb.asm.ClassVisitor"
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.code.uml.impl.Method"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.code.uml.api.IClass"
-"ragdoll.util.ClassFinder" [
-label = "{ragdoll.util.ClassFinder|- BAD_PACKAGE_ERROR : java.lang.String\l- CLASS_SUFFIX : java.lang.String\l- DOT : char\l- SLASH : char\l|+ find(j0 : java.lang.String, ): List\l- find(j0 : java.io.File, j1 : java.lang.String, ): List\l}"
+"ragdoll.asm.uml.test.sample.adapter.LinearTransformer" -> "java.util.Enumeration"
+"ragdoll.asm.uml.test.sample.adapter.App" [
+color=black
+bgcolor="white"
+label = "{ragdoll.asm.uml.test.sample.adapter.App||+ main(j0 : java.lang.String[]): void\l}"
 ]
 edge [
 style = "dashed"
@@ -455,92 +113,10 @@ arrowhead = "empty"
 edge [
 style = "dashed"
 arrowhead = "vee"
+label = "decorates"
 ]
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassDeclarationVisitor" [
-label = "{ragdoll.asm.uml.ClassDeclarationVisitor|- c : ragdoll.code.uml.api.IClass\l|+ visit(i0 : int, i1 : int, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.String, j5 : java.lang.String[], ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-"ragdoll.asm.uml.ClassDeclarationVisitor" -> "org.objectweb.asm.ClassVisitor"
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassDeclarationVisitor" -> "ragdoll.code.uml.impl.ClassDeclaration"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.ClassDeclarationVisitor" -> "ragdoll.code.uml.api.IClass"
-"ragdoll.code.visitor.impl.SDOutputStream" [
-label = "{ragdoll.code.visitor.impl.SDOutputStream|- startMethod : ragdoll.code.sd.impl.INode\l|+ visit(r0 : ragdoll.code.sd.impl.INode, ): void\l+ visit(j0 : java.util.List, ): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.visitor.api.ISDVisitor"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.sd.impl.INode"
-"ragdoll.code.uml.api.IClassDeclaration" [
-label = "{«interface»\nragdoll.code.uml.api.IClassDeclaration|+ isAbstract(): boolean\l+ isInterface(): boolean\l+ getClassName(): String\l+ getNameOfSuperClass(): String\l+ getNameOfInterfaces(): List\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.api.IClassDeclaration" -> "ragdoll.code.uml.api.IClassComponent"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.code.uml.api.IField" [
-label = "{«interface»\nragdoll.code.uml.api.IField|+ getFieldName(): String\l+ getAccessLevel(): String\l+ getType(): String\l+ getSignature(): String\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-"ragdoll.code.uml.api.IField" -> "ragdoll.code.uml.api.IClassComponent"
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
+"ragdoll.asm.uml.test.sample.adapter.App" -> "ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter"
+"ragdoll.asm.uml.test.sample.adapter.App" -> "ragdoll.asm.uml.test.sample.adapter.LinearTransformer"
 edge [
 style = "solid"
 arrowhead = "vee"

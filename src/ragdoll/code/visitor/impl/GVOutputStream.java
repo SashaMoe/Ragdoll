@@ -39,10 +39,15 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 		
 		appendBufferLine('"' + c.getName() + '"' + " [");
 		appendBufferLine("color=" + nodeAttrinute.getBorderColor());
+		appendBufferLine("fillcolor=\"" + nodeAttrinute.getBgColor() + "\"");
+		appendBufferLine("style=filled");
 		this.sb.append("label = \"{");
 	}
 
 	public void postVisit(IClass c) {
+		GVFormatConsumer consumer = GVFormatConsumer.getInstance();
+		NodeAttrinute nodeAttrinute = consumer.getClassNodeAttribute(c.getName());
+		
 		appendBufferLine("}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
@@ -78,11 +83,16 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 			}
 		}
 
-		appendBufferLine("edge [");
-		appendBufferLine("style = \"solid\"");
-		appendBufferLine("arrowhead = \"vee\"");
-		appendBufferLine("]");
 		for (String type : c.getAssociationType()) {
+			appendBufferLine("edge [");
+			appendBufferLine("style = \"solid\"");
+			appendBufferLine("arrowhead = \"vee\"");
+			if (nodeAttrinute.getAssociationArrowText().containsKey(type)) {
+				appendBufferLine("label = \"" + nodeAttrinute.getAssociationArrowText().get(type) + "\"");
+			} else {
+				appendBufferLine("label = \" \"");
+			}
+			appendBufferLine("]");
 			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"' + type + '"');
 		}
 
@@ -137,8 +147,10 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 		}
 		sb.append(Utilities.packagifyClassName(cd.getClassName()));
 		
-		if (!nodeAttrinute.getPatternName().isEmpty()) {
-			this.sb.append("\n" + nodeAttrinute.getPatternName() + "\\n");
+		if (!nodeAttrinute.getPatternNames().isEmpty()) {
+			for (String patternName : nodeAttrinute.getPatternNames()) {
+				this.sb.append("\n" + patternName + "\\n");
+			}
 		}
 		
 		if (!cd.isInterface()) {

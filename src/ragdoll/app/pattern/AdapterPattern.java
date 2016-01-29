@@ -28,10 +28,10 @@ public class AdapterPattern extends APatternDetector {
 		}
 	}
 
-	public List<Pattern> getAdapterPatterns(String className) {
+	public List<Pattern> getAdapterPatterns(String className) {	
 		List<String> implementedIterfaces = classInfo.getImplementedInterfaces(className);
 		List<String> aggregatedClasses = classInfo.getAggregatedClasses(className);
-
+		
 		List<Pattern> results = new ArrayList<>();
 
 		if (implementedIterfaces != null) {

@@ -1,10 +1,12 @@
 package ragdoll.code.uml.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.code.visitor.api.IVisitor;
+import ragdoll.util.Utilities;
 
 public class ClassDeclaration implements IClassDeclaration {
 
@@ -19,9 +21,12 @@ public class ClassDeclaration implements IClassDeclaration {
 		super();
 		this.isAbstract = isAbstract;
 		this.isInterface = isInterface;
-		this.className = className;
-		this.nameOfSuperClass = nameOfSuperClass;
-		this.nameOfInterfaces = nameOfInterfaces;
+		this.className = Utilities.packagifyClassName(className);
+		this.nameOfSuperClass = Utilities.packagifyClassName(nameOfSuperClass);
+		this.nameOfInterfaces = new ArrayList<>();
+		for(String interfaceName : nameOfInterfaces){
+			this.nameOfInterfaces.add(Utilities.packagifyClassName(interfaceName));
+		}
 	}
 
 	public boolean isAbstract() {

@@ -176,8 +176,11 @@ public class Klass implements IClass {
 			if (method.getMethodName().equals("<init>")) {
 				List<String> paramTypes = method.getParamTypes();
 				for (String paramType : paramTypes) {
-					if (fieldMap.containsKey(paramType)) {
-						aggregatedClasses.add(paramType);
+					for(String fieldName:fieldMap.keySet()){
+						IField field = fieldMap.get(fieldName);
+						if (field.getType().equals(paramType)) {
+							aggregatedClasses.add(paramType);
+						}
 					}
 				}
 			}
@@ -191,7 +194,7 @@ public class Klass implements IClass {
 		List<IMethod> superMethodList = superClass.getMethodList();
 		for (IMethod method : methodList) {
 			for (IMethod superMethod : superMethodList) {
-				if (superMethod.equals(method)) {
+				if (superMethod.compareToMethod(method)) {
 					overridedMethods.add(method);
 				}
 			}

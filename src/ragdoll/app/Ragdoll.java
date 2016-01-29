@@ -12,6 +12,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ragdoll.app.pattern.AdapterPattern;
 import ragdoll.app.pattern.GVFormatConsumer;
 import ragdoll.app.pattern.SingletonPattern;
 import ragdoll.asm.sd.GraphMethodVisitor;
@@ -99,14 +100,14 @@ public class Ragdoll {
 	public static void generateUML(String[] items) throws Exception {
 		// Traverse classes
 		List<Class<?>> classes = ClassFinder.find(items[0]);
-		// List<Class<?>> classes = new ArrayList<>();
-		// for (int i = 0; i < items.length; i++) {
-		// try {
-		// classes.add(Class.forName(items[i]));
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		// }
+//		List<Class<?>> classes = new ArrayList<>();
+//		for (int i = 0; i < items.length; i++) {
+//			try {
+//				classes.add(Class.forName(items[i]));
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
@@ -116,10 +117,10 @@ public class Ragdoll {
 		Map<String, IClass> iClasses = new HashMap<>();
 
 		for (String className : classNames) {
-			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
-					|| className.contains("$")) {
-				continue;
-			}
+//			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
+//					|| className.contains("$")) {
+//				continue;
+//			}
 			IClass newClass = new Klass(className, iClasses);
 			ClassReader reader = new ClassReader(className);
 
@@ -137,6 +138,8 @@ public class Ragdoll {
 		
 		APatternDetector singletonPattern = new SingletonPattern(patternController);
 		patternController.registerPatternDetector("singleton", singletonPattern);
+		APatternDetector adapterPattern = new AdapterPattern(patternController);
+		patternController.registerPatternDetector("adapter", adapterPattern);
 		
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
 		patternController.registerFormatConsumer(gvFormatConsumer);

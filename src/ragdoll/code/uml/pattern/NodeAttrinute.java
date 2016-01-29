@@ -47,7 +47,9 @@ public class NodeAttrinute {
 	public void addPatternName(String patternName) {
 		this.patternNames.add(patternName);
 	}
-	
-	
+
+	public ArrayList<String> getPatternNames() {
+		return patternNames;
+	}
 	
 }

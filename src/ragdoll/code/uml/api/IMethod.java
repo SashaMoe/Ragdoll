@@ -16,4 +16,6 @@ public interface IMethod extends IClassComponent {
 	public List<String> getParamTypes();
 
 	public List<String> getExceptions();
+
+	public boolean compareToMethod(IMethod method);
 }

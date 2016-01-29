@@ -10,6 +10,8 @@ import ragdoll.code.uml.pattern.Pattern;
 
 public class GVFormatConsumer implements IFormatConsumer {
 	private volatile static GVFormatConsumer instance;
+	
+	private static final String YIMA_RED = "#A32B2E";
 
 	private Map<String, NodeAttrinute> nodeAttributeMap;
 	
@@ -43,10 +45,13 @@ public class GVFormatConsumer implements IFormatConsumer {
 					for(String className : pattern.getRoleMap().keySet()){
 						String role = pattern.getRoleMap().get(className);
 						NodeAttrinute node = getClassNodeAttribute(className);
-						node.setBgColor("red");
-						node.addPatternName(role);
+						node.setBgColor(YIMA_RED);
+						node.addPatternName("«" + role + "»");
 					}
-					
+					List<String> fromTo = pattern.getRelationMap().keySet().iterator().next();
+					String relation = pattern.getRelationMap().get(fromTo);
+					NodeAttrinute node = getClassNodeAttribute(fromTo.get(0));
+					node.addAssociationArrowText(fromTo.get(1), relation);
 				}
 			}
 		}
