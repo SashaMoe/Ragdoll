@@ -47,6 +47,14 @@ Therefore, we kept a low level of coupling between these two drawing tools. Thes
 #### Milestone 4
 In Milestone 4, we added some methods in IClass and IClassDeclaration to support detection for Singleton Pattern. We find that our design allows us to make modifications without changing the structure of the design.
 
+#### Milestone 5
+In Milestone 5, we restructured the pattern detection design. By using our new design, a client can add pattern detector and output the detected patterns using their customized format easily and dynamically. Say a client wants to add Singleton pattern detector, and output it using the Ragdoll format. All s/he needs to do are:
+* Create a SingletonPattern that extends APatternDetector
+* Create a RagdollFormatConsumer that implements IFormatConsumer
+* Create a RagdollOutputStream that extends AOutputStream
+* Register them in client driver and PatternController
+*Note*: The internal data structure for storing Pattern instances is `Pattern`.
+
 ### Design Principles
 The project follows the following design principles:
 * *Identify the aspects of your application that vary and separate them from what stays the same.* According to the above discussion, we separated the read-in functionality from the write-out functionality.
@@ -135,6 +143,9 @@ The project follows the following design principles:
 | yangh1         | Fixed several bugs related to adapter pattern detection.                                                              | 10m    |
 | Sasha          | Added decorator detection and GV render logic                                                                         | 20m    |
 | zxqdx          | Added two DFS algorithms for subclasses and superclasses.                                                             | 10m    |
+| Sasha          | Added Automated tests for adapter and decorator patterns.                                                             | 15m    |
+| yangh1         | Updated UML diagram for project.                                                                                      | 10m    |
+| zxqdx          | Added description of the evolution of design.                                                                         | 15m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -226,7 +237,7 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 #### Manually created UML diagram V5
 ![UML Diagram](/img/ProjectUMLManually.png "")
 
-#### Generated UML diagram V5
+#### Generated UML diagram V6
 ![UML Diagram](/img/ProjectUMLGenerated.png "")
 
 #### Manually created SD diagram V1
@@ -250,3 +261,11 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 #### Generated UML diagram V1
 ![UML Diagram](/img/ChocolateBoilerUMLGenerated.png "")  
 **Note**: This is a UML diagram for our sample test classes. Highlighted in blue, both lazy and eager singleton classes for ChocolateBoiler are displayed.
+
+### IteratorToEnumerationAdapter
+#### Generated UML diagram V1
+![UML Diagram](/img/ItrToEnmAdapterUMLGenerated.png "")  
+
+### TextEditDecorator
+#### Generated UML diagram V1
+![UML Diagram](/img/TextEditDecoratorUMLGenerated.png "")  

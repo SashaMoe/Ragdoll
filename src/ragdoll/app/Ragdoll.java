@@ -101,15 +101,6 @@ public class Ragdoll {
 	public static void generateUML(String[] items) throws Exception {
 		// Traverse classes
 		List<Class<?>> classes = ClassFinder.find(items[0]);
-		// List<Class<?>> classes = new ArrayList<>();
-		// for (int i = 0; i < items.length; i++) {
-		// try {
-		// classes.add(Class.forName(items[i]));
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		// }
-
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
 			classNames.add(c.getName());
