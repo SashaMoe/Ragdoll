@@ -19,6 +19,8 @@ A. Adapter
       (?) What if the adapter is another system's adaptee?
           Possible
 
+ragdoll.asm.uml.test.sample.adapter,java.util.Enumeration,java.util.Iterator
+
 B. Decorator
   Iterate through classes & abstract classes, and see if one satisfy the following requirements
     i. It implements one interface or extends one class

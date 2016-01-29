@@ -37,6 +37,10 @@ public class AdapterPattern extends APatternDetector {
 		if (implementedIterfaces != null) {
 			for (String implementedInterface : implementedIterfaces) {
 				for (String aggregatedClass : aggregatedClasses) {
+					if (!classInfo.getClasses().containsKey(implementedInterface) ||
+						!classInfo.getClasses().containsKey(aggregatedClass)) {
+						continue;
+					}
 					List<IMethod> overriddenMethods = classInfo.getOverriddenMethods(className, implementedInterface);
 					int implementedCount = 0;
 					for (IMethod overriddenMathod : overriddenMethods) {

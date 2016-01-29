@@ -15,6 +15,7 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 import ragdoll.app.pattern.GVFormatConsumer;
+import ragdoll.app.pattern.IFormatConsumer;
 import ragdoll.app.pattern.SingletonPattern;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
 import ragdoll.asm.uml.ClassFieldVisitor;
@@ -23,7 +24,6 @@ import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
-import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;

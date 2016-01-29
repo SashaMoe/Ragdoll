@@ -14,6 +14,7 @@ import org.objectweb.asm.Opcodes;
 
 import ragdoll.app.pattern.AdapterPattern;
 import ragdoll.app.pattern.GVFormatConsumer;
+import ragdoll.app.pattern.IFormatConsumer;
 import ragdoll.app.pattern.SingletonPattern;
 import ragdoll.asm.sd.GraphMethodVisitor;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
@@ -24,7 +25,6 @@ import ragdoll.code.sd.impl.INode;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
-import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.code.visitor.impl.SDOutputStream;
@@ -117,10 +117,10 @@ public class Ragdoll {
 		Map<String, IClass> iClasses = new HashMap<>();
 
 		for (String className : classNames) {
-//			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
-//					|| className.contains("$")) {
-//				continue;
-//			}
+			if (className.contains(".test.") || className.endsWith("Test") || className.endsWith("Tests")
+					|| className.contains("$")) {
+				continue;
+			}
 			IClass newClass = new Klass(className, iClasses);
 			ClassReader reader = new ClassReader(className);
 

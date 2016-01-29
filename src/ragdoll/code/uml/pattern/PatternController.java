@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ragdoll.app.pattern.IFormatConsumer;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IMethod;
 
@@ -97,12 +98,13 @@ public class PatternController implements IClassInfo {
 	}
 
 	public List<IMethod> getOverriddenMethods(String className, String superName) {
-		if (classes.get(className).getDeclaration().getNameOfSuperClass().equals(superName)
-				|| classes.get(className).getDeclaration().getNameOfInterfaces().contains(superName)) {
+		if ((classes.get(className).getDeclaration().getNameOfSuperClass().equals(superName)
+				|| classes.get(className).getDeclaration().getNameOfInterfaces().contains(superName))
+				&& classes.containsKey(superName)) {
 			IClass superClass = classes.get(superName);
 			return classes.get(className).getOverriddenMethods(superClass);
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 }

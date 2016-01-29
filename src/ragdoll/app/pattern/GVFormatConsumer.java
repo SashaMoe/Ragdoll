@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.NodeAttrinute;
 import ragdoll.code.uml.pattern.Pattern;
 
