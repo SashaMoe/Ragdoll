@@ -55,6 +55,24 @@ public class GVOSChocolateSingletonTest {
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
 			iClasses.put(className, newClass);
 		}
+		
+		for (String className : iClasses.keySet()) {
+			IClass klass = iClasses.get(className);
+			String superClassName = klass.getDeclaration().getNameOfSuperClass();
+			IClass superClass = iClasses.get(superClassName);
+			if (superClass != null) {
+				superClass.addSubClasses(className);
+			}
+			List<String> interfaceNames = klass.getDeclaration().getNameOfInterfaces();
+			if (interfaceNames != null) {
+				for (String interfaceName : interfaceNames) {
+					if (iClasses.containsKey(interfaceName)) {
+						IClass itf = iClasses.get(interfaceName);
+						itf.addSubClasses(className);
+					}
+				}
+			}
+		}
 
 		// Pattern Detection
 		PatternController patternController = new PatternController();

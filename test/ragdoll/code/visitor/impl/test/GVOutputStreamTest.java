@@ -62,6 +62,24 @@ public class GVOutputStreamTest {
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
 			iClasses.put(className, newClass);
 		}
+		
+		for (String className : iClasses.keySet()) {
+			IClass klass = iClasses.get(className);
+			String superClassName = klass.getDeclaration().getNameOfSuperClass();
+			IClass superClass = iClasses.get(superClassName);
+			if (superClass != null) {
+				superClass.addSubClasses(className);
+			}
+			List<String> interfaceNames = klass.getDeclaration().getNameOfInterfaces();
+			if (interfaceNames != null) {
+				for (String interfaceName : interfaceNames) {
+					if (iClasses.containsKey(interfaceName)) {
+						IClass itf = iClasses.get(interfaceName);
+						itf.addSubClasses(className);
+					}
+				}
+			}
+		}
 
 		// Pattern Detection
 		PatternController patternController = new PatternController();
@@ -122,6 +140,8 @@ public class GVOutputStreamTest {
 		gvOS.visit(iClasses.get("headfirst.factory.pizzafm.Pizza"));
 		appendBufferLine("\"headfirst.factory.pizzafm.Pizza\" [");
 		appendBufferLine("color=black");
+		appendBufferLine("fillcolor=\"white\"");
+		appendBufferLine("style=filled");
 		appendBuffer("label = \"{");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
@@ -153,10 +173,7 @@ public class GVOutputStreamTest {
 		appendBufferLine("]");
 		appendBufferLine(
 				"\"headfirst.factory.pizzafm.ChicagoStyleCheesePizza\" -> \"headfirst.factory.pizzafm.Pizza\"");
-		appendBufferLine("edge [");
-		appendBufferLine("style = \"solid\"");
-		appendBufferLine("arrowhead = \"vee\"");
-		appendBufferLine("]");
+		appendBufferLine("edge [label=\" \"]");
 
 		assertEquals(sb.toString(), gvOS.toString());
 	}
@@ -186,12 +203,34 @@ public class GVOutputStreamTest {
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("label = \" \"");
 		appendBufferLine("]");
 		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Clams\"");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("label = \" \"");
+		appendBufferLine("]");
 		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Pepperoni\"");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("label = \" \"");
+		appendBufferLine("]");
 		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Dough\"");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("label = \" \"");
+		appendBufferLine("]");
 		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Cheese\"");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("label = \" \"");
+		appendBufferLine("]");
 		appendBufferLine("\"headfirst.factory.pizzaaf.Pizza\" -> \"headfirst.factory.pizzaaf.Sauce\"");
+		appendBufferLine("edge [label=\" \"]");
 
 		assertEquals(sb.toString(), gvOS.toString());
 	}

@@ -7,7 +7,7 @@ import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
-import ragdoll.code.uml.pattern.NodeAttrinute;
+import ragdoll.code.uml.pattern.NodeAttribute;
 import ragdoll.code.visitor.api.AOutputStream;
 import ragdoll.code.visitor.api.IUMLVisitor;
 import ragdoll.util.Utilities;
@@ -35,7 +35,7 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 
 	public void visit(IClass c) {
 		GVFormatConsumer consumer = GVFormatConsumer.getInstance();
-		NodeAttrinute nodeAttrinute = consumer.getClassNodeAttribute(c.getName());
+		NodeAttribute nodeAttrinute = consumer.getClassNodeAttribute(c.getName());
 		
 		appendBufferLine('"' + c.getName() + '"' + " [");
 		appendBufferLine("color=" + nodeAttrinute.getBorderColor());
@@ -46,7 +46,7 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 
 	public void postVisit(IClass c) {
 		GVFormatConsumer consumer = GVFormatConsumer.getInstance();
-		NodeAttrinute nodeAttrinute = consumer.getClassNodeAttribute(c.getName());
+		NodeAttribute nodeAttrinute = consumer.getClassNodeAttribute(c.getName());
 		
 		appendBufferLine("}\"");
 		appendBufferLine("]");
@@ -95,7 +95,17 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 			appendBufferLine("]");
 			appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"' + type + '"');
 		}
-
+		for (String targetClass : nodeAttrinute.getAssociationArrowText().keySet()) {
+			if (!c.getAssociationType().contains(targetClass)) {
+				appendBufferLine("edge [");
+				appendBufferLine("style = \"solid\"");
+				appendBufferLine("arrowhead = \"vee\"");
+				appendBufferLine("label = \"" + nodeAttrinute.getAssociationArrowText().get(targetClass) + "\"");
+				appendBufferLine("]");
+				appendBufferLine('"' + Utilities.packagifyClassName(cd.getClassName()) + '"' + " -> " + '"' + targetClass + '"');
+			}
+		}
+		appendBufferLine("edge [label=\" \"]");
 	}
 
 	public void visit(IField f) {
@@ -137,7 +147,7 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 
 	public void visit(IClassDeclaration cd) {
 		GVFormatConsumer consumer = GVFormatConsumer.getInstance();
-		NodeAttrinute nodeAttrinute = consumer.getClassNodeAttribute(Utilities.packagifyClassName(cd.getClassName()));
+		NodeAttribute nodeAttrinute = consumer.getClassNodeAttribute(Utilities.packagifyClassName(cd.getClassName()));
 		
 		if (cd.isInterface()) {
 			this.sb.append("«interface»\\n");

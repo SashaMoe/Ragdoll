@@ -107,4 +107,47 @@ public class PatternController implements IClassInfo {
 		return new ArrayList<>();
 	}
 
+	public String getSuperClass(String className) {
+		return classes.get(className).getDeclaration().getNameOfSuperClass();
+	}
+
+	public List<String> getInheritedAncestors(String className) {
+		List<String> ancestors = new ArrayList<>();
+		ancestors.addAll(getInheritedAncestorsHelper(className));
+		ancestors.remove(className);
+		return ancestors;
+	}
+	
+	private List<String> getInheritedAncestorsHelper(String className) {
+		if (!classes.containsKey(className)) {
+			return new ArrayList<>();
+		}
+		List<String> ancestors = new ArrayList<>();
+		ancestors.add(className);
+		ancestors.addAll(getInheritedAncestorsHelper(getSuperClass(className)));
+		for (String itf : getImplementedInterfaces(className)) {
+			ancestors.addAll(getInheritedAncestorsHelper(itf));
+		}
+		return ancestors;
+	}
+	
+	public List<String> getSubclasses(String className) {
+		return classes.get(className).getSubClasses();
+	}
+	
+	public List<String> getChildren(String className) {
+		if (!classes.containsKey(className)) {
+			return new ArrayList<>();
+		}
+		List<String> children = new ArrayList<>();
+		for (String subclass : getSubclasses(className)) {
+			children.add(subclass);
+			children.addAll(getChildren(subclass));
+		}
+		return children;
+	}
+	
+	public List<String> getClassFromConstructorParameters(String className) {
+		return classes.get(className).getClassFromConstructorParameters();
+	}
 }

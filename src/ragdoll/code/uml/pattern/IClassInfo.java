@@ -30,4 +30,12 @@ public interface IClassInfo {
 	public List<String> getAggregatedClasses(String className);
 	
 	public List<IMethod> getOverriddenMethods(String className, String superName);
+
+	public String getSuperClass(String className);
+	
+	public List<String> getInheritedAncestors(String className);
+	
+	public List<String> getSubclasses(String className);
+	
+	public List<String> getClassFromConstructorParameters(String className);
 }

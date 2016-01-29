@@ -18,4 +18,6 @@ public interface IMethod extends IClassComponent {
 	public List<String> getExceptions();
 
 	public boolean compareToMethod(IMethod method);
+
+	public boolean hasSameNameMethodCall();
 }

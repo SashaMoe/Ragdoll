@@ -3,6 +3,7 @@ package ragdoll.code.uml.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +28,7 @@ public class Klass implements IClass {
 	private boolean hasLazyGetInstanceMethod;
 	private boolean hasGetInstanceMethod;
 	private boolean hasEagerInit;
+	private List<String> subClasses;
 
 	public Klass(String name, Map<String, IClass> iClasses) {
 		super();
@@ -37,6 +39,15 @@ public class Klass implements IClass {
 		this.fieldMap = new HashMap<>();
 		this.associationTypeSet = new HashSet<>();
 		this.hasLazyGetInstanceMethod = false;
+		this.subClasses = new ArrayList<>();
+	}
+
+	public List<String> getSubClasses() {
+		return subClasses;
+	}
+
+	public void addSubClasses(String subClasses) {
+		this.subClasses.add(subClasses);
 	}
 
 	public boolean hasLazyGetInstanceMethod() {
@@ -176,7 +187,7 @@ public class Klass implements IClass {
 			if (method.getMethodName().equals("<init>")) {
 				List<String> paramTypes = method.getParamTypes();
 				for (String paramType : paramTypes) {
-					for(String fieldName:fieldMap.keySet()){
+					for (String fieldName : fieldMap.keySet()) {
 						IField field = fieldMap.get(fieldName);
 						if (field.getType().equals(paramType)) {
 							aggregatedClasses.add(paramType);
@@ -188,7 +199,24 @@ public class Klass implements IClass {
 		return aggregatedClasses;
 	}
 
-	@Override
+	public List<String> getClassFromConstructorParameters() {
+		Set<String> params = new HashSet<>();
+		for (IMethod method : methodList) {
+			if (method.getMethodName().equals("<init>")) {
+				List<String> paramTypes = method.getParamTypes();
+				for (String paramType : paramTypes) {
+					params.add(paramType);
+				}
+			}
+		}
+		List<String> result = new ArrayList<>();
+		Iterator<String> iterator = params.iterator();
+		while (iterator.hasNext()) {
+			result.add(iterator.next());
+		}
+		return result;
+	}
+
 	public List<IMethod> getOverriddenMethods(IClass superClass) {
 		List<IMethod> overridedMethods = new ArrayList<>();
 		List<IMethod> superMethodList = superClass.getMethodList();

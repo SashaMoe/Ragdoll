@@ -7,6 +7,10 @@ import java.util.Set;
 import ragdoll.code.visitor.api.ITraverser;
 
 public interface IClass extends ITraverser {
+	public List<String> getSubClasses();
+
+	public void addSubClasses(String subClasses);
+	
 	public void addMethod(IMethod method);
 
 	public void addField(IField field);
@@ -48,6 +52,8 @@ public interface IClass extends ITraverser {
 	public boolean hasEagerInit();
 	
 	public List<String> getAggregatedClasses();
+	
+	public List<String> getClassFromConstructorParameters();
 
 	public List<IMethod> getOverriddenMethods(IClass superClass);
 }

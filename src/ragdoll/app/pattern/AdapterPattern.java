@@ -21,24 +21,26 @@ public class AdapterPattern extends APatternDetector {
 
 	public void detectPattern() {
 		for (String className : classInfo.getClasses().keySet()) {
-			List<Pattern> patterns = getAdapterPatterns(className);
-			for (Pattern pattern : patterns) {
-				addPattern(pattern);
+			if (!classInfo.isAbstract(className) || !classInfo.isInterface(className)) {
+				List<Pattern> patterns = getAdapterPatterns(className);
+				for (Pattern pattern : patterns) {
+					addPattern(pattern);
+				}
 			}
 		}
 	}
 
-	public List<Pattern> getAdapterPatterns(String className) {	
+	public List<Pattern> getAdapterPatterns(String className) {
 		List<String> implementedIterfaces = classInfo.getImplementedInterfaces(className);
 		List<String> aggregatedClasses = classInfo.getAggregatedClasses(className);
-		
+
 		List<Pattern> results = new ArrayList<>();
 
 		if (implementedIterfaces != null) {
 			for (String implementedInterface : implementedIterfaces) {
 				for (String aggregatedClass : aggregatedClasses) {
-					if (!classInfo.getClasses().containsKey(implementedInterface) ||
-						!classInfo.getClasses().containsKey(aggregatedClass)) {
+					if (!classInfo.getClasses().containsKey(implementedInterface)
+							|| !classInfo.getClasses().containsKey(aggregatedClass)) {
 						continue;
 					}
 					List<IMethod> overriddenMethods = classInfo.getOverriddenMethods(className, implementedInterface);

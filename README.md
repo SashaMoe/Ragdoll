@@ -128,6 +128,13 @@ The project follows the following design principles:
 | yangh1         | Implemented the SingletonPattern.                                                                                     | 15m    |
 | zxqdx          | Added uniform NodeAttribute object for rendering nodes.                                                               | 10m    |
 | yangh1         | Updated project manually / generated UML diagrams.                                                                    | 15m    |
+| zxqdx          | Refactored codes for pattern detection.                                                                               | 20m    |
+| yangh1         | Fixed test issues.                                                                                                    | 10m    |
+| Sasha          | Added adapter detection logic.                                                                                        | 15m    |
+| zxqdx          | Added GraphicViz consumer's adapter pattern logic                                                                     | 15m    |
+| yangh1         | Fixed several bugs related to adapter pattern detection.                                                              | 10m    |
+| Sasha          | Added decorator detection and GV render logic                                                                         | 20m    |
+| zxqdx          | Added two DFS algorithms for subclasses and superclasses.                                                             | 10m    |
 
 ## Usage / Instructions
 ### Before we start

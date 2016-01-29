@@ -13,6 +13,7 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 import ragdoll.app.pattern.AdapterPattern;
+import ragdoll.app.pattern.DecoratorPattern;
 import ragdoll.app.pattern.GVFormatConsumer;
 import ragdoll.app.pattern.IFormatConsumer;
 import ragdoll.app.pattern.SingletonPattern;
@@ -80,8 +81,8 @@ public class Ragdoll {
 		sdOS.visit("\n");
 		startMethod.accept(sdOS);
 		System.out.println(sdOS.toString());
-		
-//		graphHelper(startMethod);
+
+		// graphHelper(startMethod);
 	}
 
 	public static void graphHelper(INode current) {
@@ -100,14 +101,14 @@ public class Ragdoll {
 	public static void generateUML(String[] items) throws Exception {
 		// Traverse classes
 		List<Class<?>> classes = ClassFinder.find(items[0]);
-//		List<Class<?>> classes = new ArrayList<>();
-//		for (int i = 0; i < items.length; i++) {
-//			try {
-//				classes.add(Class.forName(items[i]));
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		// List<Class<?>> classes = new ArrayList<>();
+		// for (int i = 0; i < items.length; i++) {
+		// try {
+		// classes.add(Class.forName(items[i]));
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		// }
 
 		List<String> classNames = new ArrayList<>();
 		for (Class<?> c : classes) {
@@ -132,20 +133,40 @@ public class Ragdoll {
 			iClasses.put(className, newClass);
 		}
 
+		for (String className : iClasses.keySet()) {
+			IClass klass = iClasses.get(className);
+			String superClassName = klass.getDeclaration().getNameOfSuperClass();
+			IClass superClass = iClasses.get(superClassName);
+			if (superClass != null) {
+				superClass.addSubClasses(className);
+			}
+			List<String> interfaceNames = klass.getDeclaration().getNameOfInterfaces();
+			if (interfaceNames != null) {
+				for (String interfaceName : interfaceNames) {
+					if (iClasses.containsKey(interfaceName)) {
+						IClass itf = iClasses.get(interfaceName);
+						itf.addSubClasses(className);
+					}
+				}
+			}
+		}
+
 		// Pattern Detection
 		PatternController patternController = new PatternController();
 		patternController.setClasses(iClasses);
-		
+
 		APatternDetector singletonPattern = new SingletonPattern(patternController);
 		patternController.registerPatternDetector("singleton", singletonPattern);
 		APatternDetector adapterPattern = new AdapterPattern(patternController);
 		patternController.registerPatternDetector("adapter", adapterPattern);
-		
+		APatternDetector decoratorPattern = new DecoratorPattern(patternController);
+		patternController.registerPatternDetector("decorator", decoratorPattern);
+
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
 		patternController.registerFormatConsumer(gvFormatConsumer);
-		
+
 		patternController.detectAllPatterns();
-		
+
 		// Output
 		gvOS.initBuffer();
 		for (String c : iClasses.keySet()) {

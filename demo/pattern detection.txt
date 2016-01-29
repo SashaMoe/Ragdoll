@@ -27,7 +27,7 @@ B. Decorator
     ii. From the top of its inheritance / implement chain in the scope, see if its constructor takes one of it as parameter
       If true, temporarily mark it as the <<component>>
     iii. Iterate through all methods that is overridden from the component
-      If in all methods, there exists one method call that has the same name as its name, then itself and its subclasses are all decorators.
+        If in all methods, there exists one method call that has the same name as its name, then itself and its subclasses are all decorators.
 
     (?) Is InputStreamReader using an decorator pattern? http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/io/InputStreamReader.java
         Half Adapter, Half Decorator
@@ -36,6 +36,7 @@ B. Decorator
     (?) Say we have an abstract class A that takes an interface as parameter, stores it in a protected field P, implement methodA() in the interface, and its subclass B implement methodB() in the interface where it delegates that to P, while its subclass C implement methodB() by simply throwing the UnsupportedOperationException. What are decorators?
         NVM
 
+ragdoll.asm.uml.test.sample.decorator,java.io.FilterOutputStream,java.io.OutputStream,java.io.FilterInputStream,java.io.InputStream
 
 Ragdoll [√]
   1. Create PatternController [√]
