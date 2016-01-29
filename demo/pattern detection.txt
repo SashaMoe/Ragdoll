@@ -72,3 +72,5 @@ FormatOutputStream [√]
   1. IFormatConsumer.getInstance() [√]
   2. Use its data to render specific patterns [√]
 
+
+java.io.Reader, java.io.InputStream, java.io.InputStreamReader, sun.nio.cs.StreamDecoder
