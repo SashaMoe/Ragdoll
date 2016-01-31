@@ -108,6 +108,43 @@ public class GVOSTextEditDecoratorTest {
 		gvOS = new GVOutputStream();
 		sb = new StringBuffer();
 	}
+	
+	@Test
+	public void testFilterISDecorator(){
+		IClass klass = iClasses.get("java.io.FilterInputStream");
+		klass.accept(gvOS);
+		
+		appendBufferLine("\"java.io.FilterInputStream\" [");
+		appendBufferLine("color=black");
+		appendBufferLine("fillcolor=\"green\"");
+		appendBufferLine("style=filled");
+		appendBufferLine("label = \"{java.io.FilterInputStream");
+		appendBufferLine("«Decorator»\\n|# in : java.io.InputStream\\l|+ read(): int\\l+ read(b0 : byte[]): int\\l+ read(b0 : byte[], i1 : int, i2 : int): int\\l+ skip(l0 : long): long\\l+ available(): int\\l+ close(): void\\l+ mark(i0 : int): void\\l+ reset(): void\\l+ markSupported(): boolean\\l}\"");
+		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"dashed\"");
+		appendBufferLine("arrowhead = \"empty\"");
+		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"empty\"");
+		appendBufferLine("]");
+		appendBufferLine("\"java.io.FilterInputStream\" -> \"java.io.InputStream\"");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"dashed\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("]");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("label = \"decorate\"");
+		appendBufferLine("]");
+		appendBufferLine("\"java.io.FilterInputStream\" -> \"java.io.InputStream\"");
+		appendBufferLine("edge [label=\" \"]");
+
+		
+		assertEquals(sb.toString(), gvOS.toString());
+	}
 
 	@Test
 	public void testEncryptionOSDecorator() {
@@ -152,7 +189,7 @@ public class GVOSTextEditDecoratorTest {
 	}
 	
 	@Test
-	public void testDecryptionOSDecorator() {
+	public void testDecryptionISDecorator() {
 		IClass klass = iClasses.get("ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream");
 		klass.accept(gvOS);
 		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" [");

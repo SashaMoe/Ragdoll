@@ -10,6 +10,8 @@ import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.Pattern;
 
 public class DecoratorPattern extends APatternDetector {
+	
+	private static final int UNDECORATED_METHOD_THRESHOLD = 1;
 
 	public DecoratorPattern(IClassInfo classInfo) {
 		super(classInfo);
@@ -28,18 +30,20 @@ public class DecoratorPattern extends APatternDetector {
 	}
 
 	public List<Pattern> getDecoratorPatterns(String className) {
-		if (className.equals("ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream")) {
+//		if (className.equals("java.io.FilterInputStream")) {
 //			System.out.println("HIT");
-		}
+//		}
 		List<Pattern> results = new ArrayList<>();
 		List<String> components = getComponentList(className);
 		for (String component : components) {
-			boolean isDecorated = true;
+			int unDecorationCount = 0;
 			List<IMethod> overriddenMethods = classInfo.getOverriddenMethods(className, component);
 			for(IMethod overriddenMethod : overriddenMethods){
-				isDecorated = !overriddenMethod.hasSameNameMethodCall();
+				if (!overriddenMethod.hasSameNameMethodCall()) {
+					unDecorationCount++;
+				}
 			}
-			if (isDecorated) {
+			if (unDecorationCount <= UNDECORATED_METHOD_THRESHOLD) {
 				Pattern pattern = new Pattern();
 				pattern.addRole(component, "Target");
 				pattern.addRole(className, "Decorator");

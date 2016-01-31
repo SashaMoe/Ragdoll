@@ -222,7 +222,7 @@ public class Klass implements IClass {
 		List<IMethod> superMethodList = superClass.getMethodList();
 		for (IMethod method : methodList) {
 			for (IMethod superMethod : superMethodList) {
-				if (superMethod.compareToMethod(method)) {
+				if (superMethod.compareToMethod(method) && !superMethod.getMethodName().equals("<init>")) {
 					overridedMethods.add(method);
 				}
 			}
