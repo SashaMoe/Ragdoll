@@ -146,6 +146,9 @@ The project follows the following design principles:
 | Sasha          | Added Automated tests for adapter and decorator patterns.                                                             | 15m    |
 | yangh1         | Updated UML diagram for project.                                                                                      | 10m    |
 | zxqdx          | Added description of the evolution of design.                                                                         | 15m    |
+| Sasha          | Debug the issues related to not recognizing FilterInput/OutputStream.                                                 | 5m     |
+| yangh1         | Fixed the issues detected by Sasha                                                                                    | 5m     |
+| zxqdx          | Added tests for FilterInputStream.                                                                                    | 5m     |
 
 ## Usage / Instructions
 ### Before we start
