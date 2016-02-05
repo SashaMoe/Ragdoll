@@ -25,6 +25,10 @@ public class PatternController implements IClassInfo {
 		this.patternMap = new HashMap<>();
 		this.consumers = new ArrayList<>();
 	}
+	
+	public Map<String, List<Pattern>> getPatterMap() {
+		return patternMap;
+	}
 
 	public void registerPatternDetector(String patternType, APatternDetector pattern) {
 		this.patternDetectors.put(patternType, pattern);
