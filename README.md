@@ -159,6 +159,7 @@ The project follows the following design principles:
 | zxqdx          | Debugged several issues related to the pattern detection logic in detecting components.                               | 10m    |
 | yangh1         | Manually created & generated UML diagram.                                                                             | 10m    |
 | zxqdx          | Documentation for Milestone 6.                                                                                        | 5m     |
+| Sasha          | Add Test for Composite Pattern.                                                                                       | 10m    |
 
 ## Usage / Instructions
 ### Before we start
