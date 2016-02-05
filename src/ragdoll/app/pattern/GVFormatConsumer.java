@@ -43,22 +43,28 @@ public class GVFormatConsumer implements IFormatConsumer {
 				setNodeAttribute(patterns, YIMA_RED);
 			} else if (patternType.toLowerCase().equals("decorator")) {
 				setNodeAttribute(patterns, "green");
+			} else if (patternType.toLowerCase().equals("composite")) {
+				setNodeAttribute(patterns, "yellow");
 			}
 		}
 	}
-	
+
 	private void setNodeAttribute(List<Pattern> patterns, String patternColor) {
-		for(Pattern pattern : patterns){
+		for (Pattern pattern : patterns) {
 			for (String className : pattern.getRoleMap().keySet()) {
 				String role = pattern.getRoleMap().get(className);
 				NodeAttribute node = getClassNodeAttribute(className);
 				node.setBgColor(patternColor);
 				node.addPatternName("«" + role + "»");
 			}
-			List<String> fromTo = pattern.getRelationMap().keySet().iterator().next();
-			String relation = pattern.getRelationMap().get(fromTo);
-			NodeAttribute node = getClassNodeAttribute(fromTo.get(0));
-			node.addAssociationArrowText(fromTo.get(1), relation);
+			try {
+				List<String> fromTo = pattern.getRelationMap().keySet().iterator().next();
+				String relation = pattern.getRelationMap().get(fromTo);
+				NodeAttribute node = getClassNodeAttribute(fromTo.get(0));
+				node.addAssociationArrowText(fromTo.get(1), relation);
+			} catch (Exception e) {
+
+			}
 		}
 	}
 

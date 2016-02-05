@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Utilities {
 	public static ArrayList<String> explodeSignature(String signature) {
+		if (signature == null) {
+			return new ArrayList<>();
+		}
 		String[] tempArr = signature.split("<|>|;");
 		ArrayList<String> result = new ArrayList<>();
 		for (String s : tempArr) {

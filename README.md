@@ -55,6 +55,11 @@ In Milestone 5, we restructured the pattern detection design. By using our new d
 * Register them in client driver and PatternController
 *Note*: The internal data structure for storing Pattern instances is `Pattern`.
 
+#### Milestone 6
+In Milestone 6, we use the same design pattern that we refactored since Milestone 5. We are proud to say that we benefit a lot from the change we made. Here's what we changed:
+* Create a CompositePattern that extends APatternDetector
+* Register CompositePattern in client driver and PatternController
+
 ### Design Principles
 The project follows the following design principles:
 * *Identify the aspects of your application that vary and separate them from what stays the same.* According to the above discussion, we separated the read-in functionality from the write-out functionality.
@@ -149,6 +154,11 @@ The project follows the following design principles:
 | Sasha          | Debug the issues related to not recognizing FilterInput/OutputStream.                                                 | 5m     |
 | yangh1         | Fixed the issues detected by Sasha                                                                                    | 5m     |
 | zxqdx          | Added tests for FilterInputStream.                                                                                    | 5m     |
+| Sasha          | Added pattern detection logic for Composite Pattern.                                                                  | 15m    |
+| yangh1         | Added consumer logic for Composite Pattern                                                                            | 15m    |
+| zxqdx          | Debugged several issues related to the pattern detection logic in detecting components.                               | 10m    |
+| yangh1         | Manually created & generated UML diagram.                                                                             | 10m    |
+| zxqdx          | Documentation for Milestone 6.                                                                                        | 5m     |
 
 ## Usage / Instructions
 ### Before we start
@@ -237,10 +247,10 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 ![UML Diagram](/img/Lab1-3UMLGenerated.png "")
 
 ### Project
-#### Manually created UML diagram V6
+#### Manually created UML diagram V7
 ![UML Diagram](/img/ProjectUMLManually.png "")
 
-#### Generated UML diagram V6
+#### Generated UML diagram V7
 ![UML Diagram](/img/ProjectUMLGenerated.png "")
 
 #### Manually created SD diagram V1
@@ -272,3 +282,11 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 ### TextEditDecorator
 #### Generated UML diagram V1
 ![UML Diagram](/img/TextEditDecoratorUMLGenerated.png "")  
+
+### Composite Pattern in javax.swing
+#### Generated UML diagram V1
+![UML Diagram](/img/SwingUMLGenerated.png "")  
+
+### Composite Pattern in java.awt
+#### Generated UML diagram V1
+![UML Diagram](/img/AwtUMLGenerated.png "")  

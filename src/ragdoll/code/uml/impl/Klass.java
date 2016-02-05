@@ -42,6 +42,18 @@ public class Klass implements IClass {
 		this.subClasses = new ArrayList<>();
 	}
 
+	public Set<String> getCompositedClassSet() {
+		Set<String> compostedClassSet = new HashSet<>();
+		for (String fieldName : fieldMap.keySet()) {
+			IField field = fieldMap.get(fieldName);
+			ArrayList<String> tempClassArray = Utilities.explodeSignature(field.getSignature());
+			if (!tempClassArray.isEmpty()) {
+				compostedClassSet.addAll(tempClassArray.subList(1, tempClassArray.size()));
+			}
+		}
+		return compostedClassSet;
+	}
+
 	public List<String> getSubClasses() {
 		return subClasses;
 	}

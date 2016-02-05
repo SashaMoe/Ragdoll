@@ -13,6 +13,7 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 import ragdoll.app.pattern.AdapterPattern;
+import ragdoll.app.pattern.CompositePattern;
 import ragdoll.app.pattern.DecoratorPattern;
 import ragdoll.app.pattern.GVFormatConsumer;
 import ragdoll.app.pattern.IFormatConsumer;
@@ -152,6 +153,8 @@ public class Ragdoll {
 		patternController.registerPatternDetector("adapter", adapterPattern);
 		APatternDetector decoratorPattern = new DecoratorPattern(patternController);
 		patternController.registerPatternDetector("decorator", decoratorPattern);
+		APatternDetector compositePattern = new CompositePattern(patternController);
+		patternController.registerPatternDetector("composite", compositePattern);
 
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
 		patternController.registerFormatConsumer(gvFormatConsumer);

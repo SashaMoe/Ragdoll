@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ragdoll.app.pattern.IFormatConsumer;
 import ragdoll.code.uml.api.IClass;
@@ -149,5 +150,9 @@ public class PatternController implements IClassInfo {
 	
 	public List<String> getClassFromConstructorParameters(String className) {
 		return classes.get(className).getClassFromConstructorParameters();
+	}
+	
+	public Set<String> getCompositedClassSet(String className) {
+		return classes.get(className).getCompositedClassSet();
 	}
 }

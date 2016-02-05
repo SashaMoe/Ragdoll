@@ -38,6 +38,43 @@ B. Decorator
 
 ragdoll.asm.uml.test.sample.decorator,java.io.FilterOutputStream,java.io.OutputStream,java.io.FilterInputStream,java.io.InputStream
 
+C. Composite
+  Iterate through concrete classes, and see if one satisfy the following requirements
+    i. It is extended by more than one classes
+    ii. Iterate through each class c that directly extends it
+      If c stores a list of it in the field, add c and c's subclasses to compositeList
+      If c does not, add c and c's subclasses to leafList
+    iii. If both compositeList and leafList is not empty, mark it as Component, mark all classes in compositeList as Composite, and mark all classes in leafList as Leaf.
+
+  (?) For Composite element, what about raw types?
+    http://stackoverflow.com/questions/2770321/what-is-a-raw-type-and-why-shouldnt-we-use-it
+  Don't border it
+  (?) Can composite pattern have abstract classes as each role?
+  Yes
+  (?) Can composite pattern have multiple types of classes in each role?
+  Yes
+
+  Map<className, Map<role, List<className>>> // role: composite / leaf / castComponent
+  Iterate through all classes (I + A + C), for each class c
+    Iterate through its ancestors, for each ancestor a
+      If c composes a, add c to a's composite list
+      Else add c to a's leaf list
+  Iterate through the map, for each key class k
+    If composite list is not empty:
+      Iterate through its leaf list, for each leaf l
+        Look down, if any descendants is in the composite list, move l to castComponent list
+      Now, create a pattern, store k and castComponent list as components, leaf list as leaf, etc.
+
+Sample
+Component: java.awt.Component
+Composite: java.awt.Container
+Leaf: java.awt.Button/Canvas/Checkbox/Label/List/TextComponent
+
+javax.swing.JPanel, javax.swing.JComponent, java.awt.Container, java.awt.Component
+
+java.awt.Component, java.awt.Container, java.awt.Button
+
+
 Ragdoll [√]
   1. Create PatternController [√]
   2. Add all APatternDetector.class [√]
