@@ -160,6 +160,7 @@ The project follows the following design principles:
 | yangh1         | Manually created & generated UML diagram.                                                                             | 10m    |
 | zxqdx          | Documentation for Milestone 6.                                                                                        | 5m     |
 | Sasha          | Add Test for Composite Pattern.                                                                                       | 10m    |
+| zxqdx          | Added manual test for Lab8-2                                                                                          | 10m    |
 
 ## Usage / Instructions
 ### Before we start
@@ -291,3 +292,7 @@ This will generate a png image file `test.png` (the SD diagram) in your `demo/` 
 ### Composite Pattern in java.awt
 #### Generated UML diagram V1
 ![UML Diagram](/img/AwtUMLGenerated.png "")  
+
+### Sprite Factory Composite Pattern
+#### Generated UML diagram V1
+![UML Diagram](/img/SpriteFactoryUMLGenerated.png "")  

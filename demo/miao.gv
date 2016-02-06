@@ -7,35 +7,34 @@ fontname = "Times New Roman"
 fontsize = 12
 shape = "record"
 ]
-"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" [
+"problem.sprites.RectangleSprite" [
 color=black
-bgcolor="red"
-label = "{ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter
-«Adapter»\n|- itr : java.util.Iterator\l|+ hasMoreElements(): boolean\l+ nextElement(): Object\l}"
+fillcolor="yellow"
+style=filled
+label = "{problem.sprites.RectangleSprite
+«leaf»\n||+ move(j0 : java.awt.Dimension): void\l}"
 ]
 edge [
 style = "dashed"
 arrowhead = "empty"
 ]
-"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" -> "java.util.Enumeration"
 edge [
 style = "solid"
 arrowhead = "empty"
 ]
+"problem.sprites.RectangleSprite" -> "problem.sprites.AbstractSprite"
 edge [
 style = "dashed"
 arrowhead = "vee"
 ]
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" -> "java.util.Iterator"
-"java.util.Iterator" [
+"problem.sprites.RectangleSprite" -> "problem.sprites.AbstractSprite"
+edge [label=" "]
+"problem.sprites.CompositeOfTwoComplexSprite" [
 color=black
-bgcolor="red"
-label = "{«interface»\njava.util.Iterator
-«Adaptee»\n|+ hasNext(): boolean\l+ next(): Object\l+ remove(): void\l+ forEachRemaining(j0 : java.util.function.Consumer): void\l}"
+fillcolor="yellow"
+style=filled
+label = "{problem.sprites.CompositeOfTwoComplexSprite
+«composite»\n||}"
 ]
 edge [
 style = "dashed"
@@ -45,24 +44,26 @@ edge [
 style = "solid"
 arrowhead = "empty"
 ]
+"problem.sprites.CompositeOfTwoComplexSprite" -> "problem.sprites.AbstractComplexSprite"
 edge [
 style = "dashed"
 arrowhead = "vee"
 ]
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"java.util.Enumeration" [
+"problem.sprites.CompositeOfTwoComplexSprite" -> "problem.sprites.InscribedCircleOfRectangleSprite"
+"problem.sprites.CompositeOfTwoComplexSprite" -> "problem.sprites.AbstractComplexSprite"
+"problem.sprites.CompositeOfTwoComplexSprite" -> "problem.sprites.ChineseCharacterOfEye"
+edge [label=" "]
+"problem.sprites.SpriteIterator" [
 color=black
-bgcolor="red"
-label = "{«interface»\njava.util.Enumeration
-«Target»\n|+ hasMoreElements(): boolean\l+ nextElement(): Object\l}"
+fillcolor="white"
+style=filled
+label = "{problem.sprites.SpriteIterator|~ stack : java.util.Stack\l|+ hasNext(): boolean\l+ next(): ISprite\l+ next(): Object\l}"
 ]
 edge [
 style = "dashed"
 arrowhead = "empty"
 ]
+"problem.sprites.SpriteIterator" -> "java.util.Iterator"
 edge [
 style = "solid"
 arrowhead = "empty"
@@ -74,11 +75,15 @@ arrowhead = "vee"
 edge [
 style = "solid"
 arrowhead = "vee"
+label = " "
 ]
-"ragdoll.asm.uml.test.sample.adapter.LinearTransformer" [
+"problem.sprites.SpriteIterator" -> "problem.sprites.ISprite"
+edge [label=" "]
+"problem.sprites.SpriteFactory" [
 color=black
-bgcolor="white"
-label = "{ragdoll.asm.uml.test.sample.adapter.LinearTransformer|- enumTion : java.util.Enumeration\l|+ transform(j0 : java.io.OutputStream): void\l}"
+fillcolor="white"
+style=filled
+label = "{problem.sprites.SpriteFactory|- random : java.util.Random\l+ DX : double\l+ DY : double\l+ WIDTH : double\l+ HEIGHT : double\l- sprites : java.util.List\l|+ computeRandomLocation(j0 : java.awt.Dimension): Point2D\l+ createRandomSprite(j0 : java.awt.Dimension): ISprite\l+ createSprite(j0 : java.lang.Class, j1 : java.awt.geom.Point2D$Double): ISprite\l}"
 ]
 edge [
 style = "dashed"
@@ -92,15 +97,100 @@ edge [
 style = "dashed"
 arrowhead = "vee"
 ]
-edge [
-style = "solid"
-arrowhead = "vee"
-]
-"ragdoll.asm.uml.test.sample.adapter.LinearTransformer" -> "java.util.Enumeration"
-"ragdoll.asm.uml.test.sample.adapter.App" [
+edge [label=" "]
+"problem.sprites.InscribedCircleOfRectangleSprite" [
 color=black
-bgcolor="white"
-label = "{ragdoll.asm.uml.test.sample.adapter.App||+ main(j0 : java.lang.String[]): void\l}"
+fillcolor="yellow"
+style=filled
+label = "{problem.sprites.InscribedCircleOfRectangleSprite
+«composite»\n||}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.sprites.InscribedCircleOfRectangleSprite" -> "problem.sprites.AbstractComplexSprite"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"problem.sprites.InscribedCircleOfRectangleSprite" -> "problem.sprites.AbstractComplexSprite"
+edge [label=" "]
+"problem.sprites.AbstractSprite" [
+color=black
+fillcolor="yellow"
+style=filled
+label = "{«abstract»\nproblem.sprites.AbstractSprite
+«leaf»\n|# dx : double\l# shape : java.awt.Shape\l# dy : double\l|# computeNewBoundsAfterMoving(j0 : java.awt.Dimension): Rectangle2D\l+ getIterator(): Iterator\l+ getShape(): Shape\l+ move(j0 : java.awt.Dimension): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.sprites.AbstractSprite" -> "problem.sprites.ISprite"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"problem.sprites.AbstractSprite" -> "problem.sprites.NullIterator"
+edge [label=" "]
+"problem.sprites.ChineseCharacterOfEye" [
+color=black
+fillcolor="yellow"
+style=filled
+label = "{problem.sprites.ChineseCharacterOfEye
+«composite»\n||}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.sprites.ChineseCharacterOfEye" -> "problem.sprites.AbstractComplexSprite"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"problem.sprites.ChineseCharacterOfEye" -> "problem.sprites.AbstractComplexSprite"
+edge [label=" "]
+"problem.sprites.CircleSprite" [
+color=black
+fillcolor="yellow"
+style=filled
+label = "{problem.sprites.CircleSprite
+«leaf»\n||+ move(j0 : java.awt.Dimension): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.sprites.CircleSprite" -> "problem.sprites.AbstractSprite"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"problem.sprites.CircleSprite" -> "problem.sprites.AbstractSprite"
+edge [label=" "]
+"problem.client.AnimatorApp" [
+color=black
+fillcolor="white"
+style=filled
+label = "{problem.client.AnimatorApp||+ main(j0 : java.lang.String[]): void\l}"
 ]
 edge [
 style = "dashed"
@@ -113,13 +203,157 @@ arrowhead = "empty"
 edge [
 style = "dashed"
 arrowhead = "vee"
-label = "decorates"
 ]
-"ragdoll.asm.uml.test.sample.adapter.App" -> "ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter"
-"ragdoll.asm.uml.test.sample.adapter.App" -> "ragdoll.asm.uml.test.sample.adapter.LinearTransformer"
+"problem.client.AnimatorApp" -> "problem.graphics.MainWindow"
+edge [label=" "]
+"problem.graphics.MainWindow" [
+color=black
+fillcolor="white"
+style=filled
+label = "{problem.graphics.MainWindow|- animationPanel : problem.graphics.AnimationPanel\l- actionPanel : javax.swing.JPanel\l- createButton : javax.swing.JButton\l- moveButton : javax.swing.JButton\l- resetButton : javax.swing.JButton\l- frame : javax.swing.JFrame\l|- createWidgets(j0 : java.lang.String, l1 : long): void\l- assignActions(): void\l+ show(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
 edge [
 style = "solid"
 arrowhead = "vee"
+label = " "
 ]
+"problem.graphics.MainWindow" -> "problem.graphics.AnimationPanel"
+edge [label=" "]
+"problem.sprites.AbstractComplexSprite" [
+color=black
+fillcolor="yellow"
+style=filled
+label = "{«abstract»\nproblem.sprites.AbstractComplexSprite
+«composite»\n|# sprites : java.util.List\l|# addSprite(p0 : problem.sprites.ISprite): void\l+ getIterator(): Iterator\l+ move(j0 : java.awt.Dimension): void\l+ getShape(): Shape\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.sprites.AbstractComplexSprite" -> "problem.sprites.ISprite"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"problem.sprites.AbstractComplexSprite" -> "problem.sprites.ISprite"
+edge [label=" "]
+"problem.graphics.AnimationPanel" [
+color=black
+fillcolor="white"
+style=filled
+label = "{problem.graphics.AnimationPanel|- serialVersionUID : long\l- animating : boolean\l- sleepTime : long\l- sprites : java.util.List\l|+ add(p0 : problem.sprites.ISprite): void\l+ getSize(): Dimension\l+ animate(): void\l+ reset(): void\l# paintComponent(j0 : java.awt.Graphics): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"problem.graphics.AnimationPanel" -> "javax.swing.JPanel"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"problem.graphics.AnimationPanel" -> "problem.sprites.SpriteIterator"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"problem.graphics.AnimationPanel" -> "problem.sprites.ISprite"
+edge [label=" "]
+"problem.sprites.ISprite" [
+color=black
+fillcolor="yellow"
+style=filled
+label = "{«interface»\nproblem.sprites.ISprite
+«component»\n|+ move(j0 : java.awt.Dimension): void\l+ getShape(): Shape\l+ getIterator(): Iterator\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"problem.sprites.NullIterator" [
+color=black
+fillcolor="white"
+style=filled
+label = "{problem.sprites.NullIterator||+ hasNext(): boolean\l+ next(): ISprite\l+ next(): Object\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"problem.sprites.NullIterator" -> "java.util.Iterator"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"problem.sprites.TestDrive" [
+color=black
+fillcolor="white"
+style=filled
+label = "{problem.sprites.TestDrive|- animationPanel : problem.graphics.AnimationPanel\l- frame : javax.swing.JFrame\l|+ setUp(): void\l+ addCircleSpriteTest(): void\l+ addRectangleSpriteTest(): void\l+ addInscribedSpriteTest(): void\l+ addEyeSpriteTest(): void\l+ addCompositeOfComplexSpriteTest(): void\l+ animateAndResetSpritesTest(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"problem.sprites.TestDrive" -> "problem.sprites.RectangleSprite"
+"problem.sprites.TestDrive" -> "problem.sprites.CompositeOfTwoComplexSprite"
+"problem.sprites.TestDrive" -> "problem.sprites.InscribedCircleOfRectangleSprite"
+"problem.sprites.TestDrive" -> "problem.sprites.ChineseCharacterOfEye"
+"problem.sprites.TestDrive" -> "problem.sprites.CircleSprite"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"problem.sprites.TestDrive" -> "problem.graphics.AnimationPanel"
+edge [label=" "]
 }
 

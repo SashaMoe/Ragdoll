@@ -55,15 +55,36 @@ public class CompositePattern extends APatternDetector {
 			Set<String> leafSet = roleMap.get(LEAF_KEY);
 			Set<String> castComponentSet = roleMap.get(CAST_COMPONENT);
 			if (!compositeSet.isEmpty()) {
+				Set<String> leafToRemove = new HashSet<>();
 				for (String leafClass : leafSet) {
+					boolean done = false;
+					
+					List<String> ancesters = classInfo.getInheritedAncestors(leafClass);
+					for (String ancester : ancesters) {
+						if (compositeSet.contains(ancester)) {
+							compositeSet.add(leafClass);
+							leafToRemove.add(leafClass);
+							done = true;
+							break;
+						}
+					}
+					
+					if (done) {
+						continue;
+					}
+					
 					List<String> children = classInfo.getChildren(leafClass);
 					for (String childClass : children) {
 						if (compositeSet.contains(childClass)) {
 							castComponentSet.add(leafClass);
-							leafSet.remove(leafClass);
+							leafToRemove.add(leafClass);
 							break;
 						}
 					}
+				}
+				
+				for (String toRemove : leafToRemove) {
+					leafSet.remove(toRemove);
 				}
 
 				Pattern pattern = new Pattern();
