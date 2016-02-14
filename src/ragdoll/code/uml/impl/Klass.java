@@ -127,12 +127,16 @@ public class Klass implements IClass {
 			m.accept(v);
 		}
 
+		// FIXME: Call it once ASM finish reading the class
 		filterUseSet();
-		filterTypeSet();
+		filterAssocSet();
 
 		newV.postVisit(this);
 	}
 
+	/**
+	 * Filter out the classes that is not in the scope.
+	 */
 	public void filterUseSet() {
 		Set<String> filteredUseSet = new HashSet<>();
 		for (String usedClass : useSet) {
@@ -143,7 +147,10 @@ public class Klass implements IClass {
 		useSet = filteredUseSet;
 	}
 
-	public void filterTypeSet() {
+	/**
+	 * Separate association arrow from use arrow.
+	 */
+	public void filterAssocSet() {
 		Set<String> filteredTypeSet = new HashSet<>();
 		for (String af : fieldMap.keySet()) {
 			IField field = fieldMap.get(af);

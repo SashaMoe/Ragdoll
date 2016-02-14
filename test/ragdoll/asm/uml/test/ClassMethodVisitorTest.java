@@ -88,7 +88,7 @@ public class ClassMethodVisitorTest {
 		ClassFieldVisitor fieldVistor = new ClassFieldVisitor(Opcodes.ASM5, c);
 		reader.accept(fieldVistor, ClassReader.EXPAND_FRAMES);
 		reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
-		c.filterTypeSet();
+		c.filterAssocSet();
 		Set<String> associationTypeSet = c.getAssociationType();
 
 		assertTrue(associationTypeSet.contains(packageName + "SampleClass"));

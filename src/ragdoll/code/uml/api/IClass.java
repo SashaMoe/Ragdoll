@@ -33,7 +33,7 @@ public interface IClass extends ITraverser {
 
 	public void filterUseSet(); // M2
 
-	public void filterTypeSet(); // M2
+	public void filterAssocSet(); // M2
 
 	public String getName();
 

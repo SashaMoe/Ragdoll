@@ -24,6 +24,8 @@ import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
+import ragdoll.code.uml.pattern.ClassInfo;
+import ragdoll.code.uml.pattern.IClassInfo;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
@@ -87,9 +89,10 @@ public class GVOSJavaSingletonTest {
 
 		// Pattern Detection
 		PatternController patternController = new PatternController();
-		patternController.setClasses(iClasses);
+		IClassInfo classInfo = ClassInfo.getInstance();
+		classInfo.setClasses(iClasses);
 
-		APatternDetector singletonPattern = new SingletonPattern(patternController);
+		APatternDetector singletonPattern = new SingletonPattern(classInfo);
 		patternController.registerPatternDetector("singleton", singletonPattern);
 
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();

@@ -26,6 +26,8 @@ import ragdoll.code.uml.api.IField;
 import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
+import ragdoll.code.uml.pattern.ClassInfo;
+import ragdoll.code.uml.pattern.IClassInfo;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
@@ -62,7 +64,7 @@ public class GVOutputStreamTest {
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
 			iClasses.put(className, newClass);
 		}
-		
+
 		for (String className : iClasses.keySet()) {
 			IClass klass = iClasses.get(className);
 			String superClassName = klass.getDeclaration().getNameOfSuperClass();
@@ -83,9 +85,10 @@ public class GVOutputStreamTest {
 
 		// Pattern Detection
 		PatternController patternController = new PatternController();
-		patternController.setClasses(iClasses);
+		IClassInfo classInfo = ClassInfo.getInstance();
+		classInfo.setClasses(iClasses);
 
-		APatternDetector singletonPattern = new SingletonPattern(patternController);
+		APatternDetector singletonPattern = new SingletonPattern(classInfo);
 		patternController.registerPatternDetector("singleton", singletonPattern);
 
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
@@ -152,7 +155,7 @@ public class GVOutputStreamTest {
 		// Tests headfirst.factory.pizzafm.ChicagoStyleCheesePizza
 		IClass klass = iClasses.get("headfirst.factory.pizzafm.ChicagoStyleCheesePizza");
 		klass.filterUseSet();
-		klass.filterTypeSet();
+		klass.filterAssocSet();
 		gvOS.postVisit(klass);
 
 		appendBufferLine("}\"");
@@ -183,7 +186,7 @@ public class GVOutputStreamTest {
 		// Tests headfirst.factory.pizzafm.ChicagoStyleCheesePizza
 		IClass klass = iClasses.get("headfirst.factory.pizzaaf.Pizza");
 		klass.filterUseSet();
-		klass.filterTypeSet();
+		klass.filterAssocSet();
 		gvOS.postVisit(klass);
 
 		appendBufferLine("}\"");

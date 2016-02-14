@@ -73,10 +73,19 @@ public class Method implements IMethod {
 	}
 
 	public boolean hasSameNameMethodCall() {
-		for(IMethodCall callee : callees){
+		for (IMethodCall callee : callees) {
 			if (callee.getMethodName().equals(methodName)) {
 				return true;
 			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Method) {
+			Method comparedMethod = (Method) o;
+			return compareToMethod(comparedMethod);
 		}
 		return false;
 	}

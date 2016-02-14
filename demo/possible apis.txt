@@ -1,0 +1,24 @@
+//All Done~
+* getFieldsByClass
+* getMethodsByClass
+* getMethodCallsByMethod
+  * MethodCall need to know about params
+* getDescandents
+* getSubclasses
+* isConcrete(String classNmae)
+  *Already has isAbstract and isInterface
+* getClassesByPackage
+* getClasses
+* getConstructors
+* getAncesters
+
+* Separate IClassInfo from PatternController, and make it a singleton {Done}
+
+
+
+* Divide UML visit logic into
+  * Load
+  * Pattern Detection
+  * Output
+
+UI

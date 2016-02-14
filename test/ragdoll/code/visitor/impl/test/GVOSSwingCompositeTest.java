@@ -27,6 +27,8 @@ import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
+import ragdoll.code.uml.pattern.ClassInfo;
+import ragdoll.code.uml.pattern.IClassInfo;
 import ragdoll.code.uml.pattern.Pattern;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
@@ -82,15 +84,16 @@ public class GVOSSwingCompositeTest {
 
 		// Pattern Detection
 		patternController = new PatternController();
-		patternController.setClasses(iClasses);
+		IClassInfo classInfo = ClassInfo.getInstance();
+		classInfo.setClasses(iClasses);
 
-		APatternDetector singletonPattern = new SingletonPattern(patternController);
+		APatternDetector singletonPattern = new SingletonPattern(classInfo);
 		patternController.registerPatternDetector("singleton", singletonPattern);
-		APatternDetector adapterPattern = new AdapterPattern(patternController);
+		APatternDetector adapterPattern = new AdapterPattern(classInfo);
 		patternController.registerPatternDetector("adapter", adapterPattern);
-		APatternDetector decoratorPattern = new DecoratorPattern(patternController);
+		APatternDetector decoratorPattern = new DecoratorPattern(classInfo);
 		patternController.registerPatternDetector("decorator", decoratorPattern);
-		APatternDetector compositePattern = new CompositePattern(patternController);
+		APatternDetector compositePattern = new CompositePattern(classInfo);
 		patternController.registerPatternDetector("composite", compositePattern);
 
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
@@ -115,7 +118,7 @@ public class GVOSSwingCompositeTest {
 	}
 
 	@Test
-	public void testCOmposite() {
+	public void testComposite() {
 		List<Pattern> compositePatterns = patternController.getPatterMap().get("composite");
 		Pattern pattern = compositePatterns.get(0);
 		assertEquals(1, compositePatterns.size());

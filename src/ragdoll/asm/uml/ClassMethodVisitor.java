@@ -46,6 +46,10 @@ public class ClassMethodVisitor extends ClassVisitor {
 					ClassMethodVisitor.this.c.addUse(className);
 				}
 				IMethodCall callee = new MethodCall(className, name);
+				Type[] paramTypes = Type.getArgumentTypes(desc);
+				for(Type paramType : paramTypes){
+					callee.addParamTypes(paramType.getClassName());
+				}
 				ClassMethodVisitor.this.currentMethod.addCallees(callee);
 			}
 		};
