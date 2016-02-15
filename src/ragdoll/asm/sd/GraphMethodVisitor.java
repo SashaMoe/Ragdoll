@@ -8,8 +8,8 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import ragdoll.asm.uml.ClassMethodVisitor;
-import ragdoll.code.sd.api.Node;
-import ragdoll.code.sd.impl.INode;
+import ragdoll.code.sd.api.INode;
+import ragdoll.code.sd.impl.Node;
 import ragdoll.util.Utilities;
 
 public class GraphMethodVisitor extends ClassVisitor {

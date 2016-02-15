@@ -1,0 +1,2406 @@
+digraph G {
+rankdir=BT;
+fontname = "Times New Roman"
+fontsize = 12
+node [
+fontname = "Times New Roman"
+fontsize = 12
+shape = "record"
+]
+"ragdoll.asm.uml.test.sample.ChocolateBoiler" [
+color=blue
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.ChocolateBoiler
+«singleton»\n|- instance : ragdoll.asm.uml.test.sample.ChocolateBoiler\l- boiled : boolean\l- empty : boolean\l|+ getInstance(): ChocolateBoiler\l+ fill(): void\l+ drain(): void\l+ boil(): void\l+ isEmpty(): boolean\l+ isBoiled(): boolean\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.ChocolateBoiler" -> "ragdoll.asm.uml.test.sample.ChocolateBoiler"
+edge [label=" "]
+"ragdoll.code.visitor.api.ISDVisitor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.visitor.api.ISDVisitor|+ visit(j0 : java.util.List): void\l+ visit(r0 : ragdoll.code.sd.api.INode): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.visitor.api.ISDVisitor" -> "ragdoll.code.visitor.api.IVisitor"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.visitor.api.ISDVisitor" -> "ragdoll.code.sd.api.INode"
+edge [label=" "]
+"ragdoll.code.uml.api.IClassComponent" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.api.IClassComponent|}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.api.IClassComponent" -> "ragdoll.code.visitor.api.ITraverser"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.app.phase.GenerateSDImagePhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.GenerateSDImagePhase||+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.GenerateSDImagePhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.ClassDeclarationVisitorTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.ClassDeclarationVisitorTest|- c : ragdoll.code.uml.api.IClass\l- declVisitor : org.objectweb.asm.ClassVisitor\l- reader : org.objectweb.asm.ClassReader\l- className : java.lang.String\l|+ testVisit(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.test.ClassDeclarationVisitorTest" -> "ragdoll.code.uml.impl.Klass"
+"ragdoll.asm.uml.test.ClassDeclarationVisitorTest" -> "ragdoll.asm.uml.ClassDeclarationVisitor"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.ClassDeclarationVisitorTest" -> "ragdoll.code.uml.api.IClass"
+edge [label=" "]
+"ragdoll.code.visitor.api.IVisitor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.visitor.api.IVisitor|}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.app.pattern.GVFormatConsumer" [
+color=blue
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.pattern.GVFormatConsumer
+«singleton»\n|- instance : ragdoll.app.pattern.GVFormatConsumer\l- YIMA_RED : java.lang.String\l- nodeAttributeMap : java.util.Map\l|+ getInstance(): GVFormatConsumer\l+ parse(j0 : java.util.Map): void\l- setNodeAttribute(j0 : java.util.List, j1 : java.lang.String): void\l+ getClassNodeAttribute(j0 : java.lang.String): NodeAttribute\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.pattern.GVFormatConsumer" -> "ragdoll.code.uml.pattern.IFormatConsumer"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.app.pattern.GVFormatConsumer" -> "ragdoll.app.pattern.GVFormatConsumer"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.app.pattern.GVFormatConsumer" -> "ragdoll.code.uml.pattern.NodeAttribute"
+edge [label=" "]
+"ragdoll.code.uml.pattern.APatternDetector" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«abstract»\nragdoll.code.uml.pattern.APatternDetector|# classInfo : ragdoll.code.uml.api.IClassInfo\l# patterns : java.util.List\l|+ detectPattern(): void\l# addPattern(r0 : ragdoll.code.uml.pattern.Pattern): void\l+ getPatterns(): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.pattern.APatternDetector" -> "ragdoll.code.uml.api.IClassInfo"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.pattern.APatternDetector" -> "ragdoll.code.uml.pattern.Pattern"
+edge [label=" "]
+"ragdoll.framework.RagdollProperties" [
+color=blue
+fillcolor="white"
+style=filled
+label = "{ragdoll.framework.RagdollProperties
+«singleton»\n|- instance : ragdoll.framework.RagdollProperties\l- inputStream : java.io.InputStream\l- properties : java.util.Properties\l|+ getInstance(): RagdollProperties\l+ loadProperties(j0 : java.lang.String): void\l+ getProperty(j0 : java.lang.String, j1 : java.lang.String): String\l+ getProperty(j0 : java.lang.String): String\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.framework.RagdollProperties" -> "ragdoll.framework.RagdollProperties"
+edge [label=" "]
+"ragdoll.code.uml.api.IClassInfo" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.api.IClassInfo|+ getChildren(j0 : java.lang.String): List\l+ getCompositedClassSet(j0 : java.lang.String): Set\l+ checkHasPrivateConstructor(j0 : java.lang.String): boolean\l+ checkHasPrivateFiledOfItself(j0 : java.lang.String): boolean\l+ hasLazyGetInstanceMethod(j0 : java.lang.String): boolean\l+ hasGetInstanceMethod(j0 : java.lang.String): boolean\l+ hasEagerInit(j0 : java.lang.String): boolean\l+ setClasses(j0 : java.util.Map): void\l+ getClasses(): Map\l+ isAbstract(j0 : java.lang.String): boolean\l+ isInterface(j0 : java.lang.String): boolean\l+ getClassByName(j0 : java.lang.String): IClass\l+ getImplementedInterfaces(j0 : java.lang.String): List\l+ getAggregatedClasses(j0 : java.lang.String): List\l+ getOverriddenMethods(j0 : java.lang.String, j1 : java.lang.String): List\l+ getSuperClass(j0 : java.lang.String): String\l+ getInheritedAncestors(j0 : java.lang.String): List\l+ getSubclasses(j0 : java.lang.String): List\l+ getClassFromConstructorParameters(j0 : java.lang.String): List\l+ getFieldsByClass(j0 : java.lang.String): Map\l+ getMethodsByClass(j0 : java.lang.String): List\l+ getMethodCallsByClassAndMethod(j0 : java.lang.String, j1 : java.lang.String, j2 : java.util.List): List\l+ getClassesByPackage(j0 : java.lang.String): List\l+ getConstructors(j0 : java.lang.String): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.uml.api.IMethod" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.api.IMethod|+ addCallees(r0 : ragdoll.code.uml.api.IMethodCall): void\l+ getCallees(): List\l+ getMethodName(): String\l+ getAccessLevel(): String\l+ getReturnType(): String\l+ getParamTypes(): List\l+ getExceptions(): List\l+ compareToMethod(r0 : ragdoll.code.uml.api.IMethod): boolean\l+ hasSameNameMethodCall(): boolean\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.api.IMethod" -> "ragdoll.code.uml.api.IClassComponent"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.uml.api.IMethod" -> "ragdoll.code.uml.api.IMethodCall"
+"ragdoll.code.uml.api.IMethod" -> "ragdoll.code.uml.api.IMethod"
+edge [label=" "]
+"ragdoll.code.impl.test.ClassDeclarationTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.impl.test.ClassDeclarationTest|- nameOfInterfaces : java.util.List\l- nameOfSuperClass : java.lang.String\l- className : java.lang.String\l- isAbstract : boolean\l- isInterface : boolean\l- classDeclaration : ragdoll.code.uml.impl.ClassDeclaration\l|+ testIsAbstract(): void\l+ testIsInterface(): void\l+ testGetClassName(): void\l+ testGetNameOfSuperClass(): void\l+ testGetNameOfInterfaces(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.impl.test.ClassDeclarationTest" -> "ragdoll.code.uml.impl.ClassDeclaration"
+edge [label=" "]
+"ragdoll.app.phase.GenerateDotImagePhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.GenerateDotImagePhase||+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.GenerateDotImagePhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.ClassFieldVisitor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.ClassFieldVisitor|- c : ragdoll.code.uml.api.IClass\l|+ visitField(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.Object): FieldVisitor\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.ClassFieldVisitor" -> "org.objectweb.asm.ClassVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.ClassFieldVisitor" -> "ragdoll.code.uml.impl.Field"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.ClassFieldVisitor" -> "ragdoll.code.uml.api.IClass"
+edge [label=" "]
+"ragdoll.code.uml.pattern.PatternInfo" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.pattern.PatternInfo|- patternMap : java.util.Map\l- consumers : java.util.List\l|+ getPatterMap(): Map\l+ registerFormatConsumer(r0 : ragdoll.code.uml.pattern.IFormatConsumer): void\l+ storePatternInfo(j0 : java.lang.String, j1 : java.util.List): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.pattern.PatternInfo" -> "ragdoll.code.uml.pattern.Pattern"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.pattern.PatternInfo" -> "ragdoll.code.uml.pattern.IFormatConsumer"
+edge [label=" "]
+"ragdoll.app.phase.AdapterPatternDetectionPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.AdapterPatternDetectionPhase|- patternInfo : ragdoll.code.uml.pattern.PatternInfo\l|+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.AdapterPatternDetectionPhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.AdapterPatternDetectionPhase" -> "ragdoll.app.pattern.AdapterPattern"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.app.phase.AdapterPatternDetectionPhase" -> "ragdoll.code.uml.pattern.PatternInfo"
+edge [label=" "]
+"ragdoll.app.phase.LoadAndVisitASMPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.LoadAndVisitASMPhase||+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.LoadAndVisitASMPhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.LoadAndVisitASMPhase" -> "ragdoll.code.uml.impl.Klass"
+"ragdoll.app.phase.LoadAndVisitASMPhase" -> "ragdoll.asm.uml.ClassFieldVisitor"
+"ragdoll.app.phase.LoadAndVisitASMPhase" -> "ragdoll.asm.uml.ClassMethodVisitor"
+"ragdoll.app.phase.LoadAndVisitASMPhase" -> "ragdoll.asm.uml.ClassDeclarationVisitor"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.adapter.App" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.adapter.App||+ main(j0 : java.lang.String[]): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.test.sample.adapter.App" -> "ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter"
+"ragdoll.asm.uml.test.sample.adapter.App" -> "ragdoll.asm.uml.test.sample.adapter.LinearTransformer"
+edge [label=" "]
+"ragdoll.code.visitor.api.IUMLVisitor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.visitor.api.IUMLVisitor|+ visit(r0 : ragdoll.code.uml.api.IClass): void\l+ postVisit(r0 : ragdoll.code.uml.api.IClass): void\l+ visit(r0 : ragdoll.code.uml.api.IField): void\l+ visit(j0 : java.lang.String): void\l+ visit(r0 : ragdoll.code.uml.api.IMethod): void\l+ visit(r0 : ragdoll.code.uml.api.IClassDeclaration): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.visitor.api.IVisitor"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IClass"
+"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IMethod"
+"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IClassDeclaration"
+"ragdoll.code.visitor.api.IUMLVisitor" -> "ragdoll.code.uml.api.IField"
+edge [label=" "]
+"ragdoll.code.impl.test.KlassTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.impl.test.KlassTest|- fieldMap : java.util.HashMap\l- klass : ragdoll.code.uml.api.IClass\l- name : java.lang.String\l- methodList : java.util.List\l- declaration : ragdoll.code.uml.api.IClassDeclaration\l|+ testGetName(): void\l+ testGetDeclaration(): void\l+ testGetFieldMap(): void\l+ testGetMethodList(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.impl.ClassDeclaration"
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.impl.Method"
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.impl.Klass"
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.impl.Field"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.api.IMethod"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.api.IClassDeclaration"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.impl.test.KlassTest" -> "ragdoll.code.uml.api.IField"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.decorator.TextEditor|- scrollPane : javax.swing.JScrollPane\l- in : java.io.InputStream\l- label : javax.swing.JLabel\l- text : java.lang.String\l- frame : javax.swing.JFrame\l- textArea : javax.swing.JTextArea\l- out : java.io.OutputStream\l|# createAndShowGUI(): void\l+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor" -> "ragdoll.asm.uml.test.sample.decorator.TextEditor$2"
+"ragdoll.asm.uml.test.sample.decorator.TextEditor" -> "ragdoll.asm.uml.test.sample.decorator.TextEditor$1"
+edge [label=" "]
+"ragdoll.code.impl.test.FieldTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.impl.test.FieldTest|- fieldName : java.lang.String\l- field : ragdoll.code.uml.impl.Field\l- accessLevel : java.lang.String\l- signature : java.lang.String\l- type : java.lang.String\l|+ testGetAccessLevel(): void\l+ testGetType(): void\l+ testGetFieldName(): void\l+ testGetSignature(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.impl.test.FieldTest" -> "ragdoll.code.uml.impl.Field"
+edge [label=" "]
+"ragdoll.code.uml.impl.Method" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.impl.Method|- accessLevel : java.lang.String\l- paramTypes : java.util.List\l- callees : java.util.List\l- methodName : java.lang.String\l- returnType : java.lang.String\l- exceptions : java.util.List\l|+ addCallees(r0 : ragdoll.code.uml.api.IMethodCall): void\l+ getCallees(): List\l+ getMethodName(): String\l+ getAccessLevel(): String\l+ getReturnType(): String\l+ getParamTypes(): List\l+ getExceptions(): List\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor): void\l+ compareToMethod(r0 : ragdoll.code.uml.api.IMethod): boolean\l+ hasSameNameMethodCall(): boolean\l+ equals(j0 : java.lang.Object): boolean\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.impl.Method" -> "ragdoll.code.uml.api.IMethod"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.uml.impl.Method" -> "ragdoll.code.uml.api.IMethod"
+"ragdoll.code.uml.impl.Method" -> "ragdoll.code.visitor.api.IVisitor"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.impl.Method" -> "ragdoll.code.uml.api.IMethodCall"
+edge [label=" "]
+"ragdoll.util.Utilities" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.util.Utilities||+ explodeSignature(j0 : java.lang.String): ArrayList\l+ packagifyClassName(j0 : java.lang.String): String\l+ getLastPartOfType(j0 : java.lang.String): String\l+ getClassNameFromFullyQualifiedMethodSignature(j0 : java.lang.String): String\l+ getMethodNameFromFullyQualifiedMethodSignature(j0 : java.lang.String): String\l+ getParamTypesFromFullyQualifiedMethodSignature(j0 : java.lang.String): List\l+ getSDInstanceName(j0 : java.lang.String): String\l+ getSDName(j0 : java.lang.String): String\l+ getParamString(j0 : java.util.List): String\l+ printVerbose(j0 : java.lang.String): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.ChocolateBoilerEager" [
+color=blue
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.ChocolateBoilerEager
+«singleton»\n|- instance : ragdoll.asm.uml.test.sample.ChocolateBoilerEager\l- boiled : boolean\l- empty : boolean\l|+ getInstance(): ChocolateBoilerEager\l+ fill(): void\l+ drain(): void\l+ boil(): void\l+ isEmpty(): boolean\l+ isBoiled(): boolean\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.ChocolateBoilerEager" -> "ragdoll.asm.uml.test.sample.ChocolateBoilerEager"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.IDecryption" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.asm.uml.test.sample.decorator.IDecryption|+ decrypt(c0 : char): char\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.sd.GraphMethodVisitor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.sd.GraphMethodVisitor|- node : ragdoll.code.sd.api.INode\l|+ visitMethod(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.String[]): MethodVisitor\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.sd.GraphMethodVisitor" -> "org.objectweb.asm.ClassVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.sd.GraphMethodVisitor" -> "ragdoll.asm.sd.GraphMethodVisitor$1"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.sd.GraphMethodVisitor" -> "ragdoll.code.sd.api.INode"
+edge [label=" "]
+"ragdoll.asm.uml.ClassMethodVisitor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.ClassMethodVisitor|- c : ragdoll.code.uml.api.IClass\l- currentMethod : ragdoll.code.uml.api.IMethod\l|+ visitMethod(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.String[]): MethodVisitor\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.ClassMethodVisitor" -> "org.objectweb.asm.ClassVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.asm.uml.ClassMethodVisitor$3"
+"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.code.uml.impl.Method"
+"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.asm.uml.ClassMethodVisitor$2"
+"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.asm.uml.ClassMethodVisitor$1"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.ClassMethodVisitor" -> "ragdoll.code.uml.api.IMethod"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.UsedClass" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.UsedClass||}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.ClassDeclarationVisitor" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.ClassDeclarationVisitor|- c : ragdoll.code.uml.api.IClass\l|+ visit(i0 : int, i1 : int, j2 : java.lang.String, j3 : java.lang.String, j4 : java.lang.String, j5 : java.lang.String[]): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.ClassDeclarationVisitor" -> "org.objectweb.asm.ClassVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.ClassDeclarationVisitor" -> "ragdoll.code.uml.impl.ClassDeclaration"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.ClassDeclarationVisitor" -> "ragdoll.code.uml.api.IClass"
+edge [label=" "]
+"ragdoll.code.uml.pattern.NodeAttribute" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.pattern.NodeAttribute|- borderColor : java.lang.String\l- bgColor : java.lang.String\l- patternNames : java.util.HashSet\l- associationArrowTextMap : java.util.HashMap\l|+ getAssociationArrowText(): HashMap\l+ addAssociationArrowText(j0 : java.lang.String, j1 : java.lang.String): void\l+ getBgColor(): String\l+ setBgColor(j0 : java.lang.String): void\l+ getBorderColor(): String\l+ setBorderColor(j0 : java.lang.String): void\l+ addPatternName(j0 : java.lang.String): void\l+ getPatternNames(): Set\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.visitor.impl.SDOutputStream" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.SDOutputStream||+ visit(r0 : ragdoll.code.sd.api.INode): void\l+ visit(j0 : java.util.List): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.visitor.api.ISDVisitor"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
+"ragdoll.code.visitor.impl.SDOutputStream" -> "ragdoll.code.sd.api.INode"
+edge [label=" "]
+"ragdoll.app.phase.CompositePatternDetectionPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.CompositePatternDetectionPhase|- patternInfo : ragdoll.code.uml.pattern.PatternInfo\l|+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.CompositePatternDetectionPhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.CompositePatternDetectionPhase" -> "ragdoll.app.pattern.CompositePattern"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.app.phase.CompositePatternDetectionPhase" -> "ragdoll.code.uml.pattern.PatternInfo"
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.GVOutputStreamTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.GVOutputStreamTest|- gvOS : ragdoll.code.visitor.impl.GVOutputStream\l- iClasses : java.util.Map\l- sb : java.lang.StringBuffer\l|- appendBufferLine(j0 : java.lang.String): void\l- appendBuffer(j0 : java.lang.String): void\l+ setUpGvOS(): void\l+ testInitBuffer(): void\l+ testEndBuffer(): void\l+ testVisitIClass(): void\l+ testPostVisitIClass(): void\l+ testPostVisitIClass2(): void\l+ testVisitIClassDeclaration(): void\l+ testVisitIField(): void\l+ testVisitIMethod(): void\l+ testVisitString(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOutputStreamTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOutputStreamTest" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.SampleInterface" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.asm.uml.test.sample.SampleInterface|+ sampleMethod(i0 : int, j1 : java.lang.Object): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.app.pattern.DecoratorPattern" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.pattern.DecoratorPattern|- UNDECORATED_METHOD_THRESHOLD : int\l|+ detectPattern(): void\l+ getDecoratorPatterns(j0 : java.lang.String): List\l- getComponentList(j0 : java.lang.String): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.app.pattern.DecoratorPattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.pattern.DecoratorPattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+"ragdoll.app.pattern.DecoratorPattern" -> "ragdoll.code.uml.api.IClassInfo"
+"ragdoll.app.pattern.DecoratorPattern" -> "ragdoll.code.uml.pattern.Pattern"
+edge [label=" "]
+"ragdoll.code.uml.impl.MethodCall" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.impl.MethodCall|- paramTypes : java.util.List\l- methodName : java.lang.String\l- className : java.lang.String\l|+ getClassName(): String\l+ setClassName(j0 : java.lang.String): void\l+ getMethodName(): String\l+ setMethodName(j0 : java.lang.String): void\l+ getParamTypes(): List\l+ addParamTypes(j0 : java.lang.String): void\l+ equals(j0 : java.lang.Object): boolean\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.impl.MethodCall" -> "ragdoll.code.uml.api.IMethodCall"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.uml.api.IMethodCall" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.api.IMethodCall|+ getClassName(): String\l+ setClassName(j0 : java.lang.String): void\l+ getMethodName(): String\l+ setMethodName(j0 : java.lang.String): void\l+ getParamTypes(): List\l+ addParamTypes(j0 : java.lang.String): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.ClassMethodVisitorTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.ClassMethodVisitorTest|- c : ragdoll.code.uml.api.IClass\l- reader : org.objectweb.asm.ClassReader\l- className : java.lang.String\l~ packageName : java.lang.String\l- methodVisitor : org.objectweb.asm.ClassVisitor\l|+ testVisit(): void\l+ testUseArrow(): void\l+ testAssociationArrow(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.test.ClassMethodVisitorTest" -> "ragdoll.code.uml.impl.Klass"
+"ragdoll.asm.uml.test.ClassMethodVisitorTest" -> "ragdoll.asm.uml.ClassFieldVisitor"
+"ragdoll.asm.uml.test.ClassMethodVisitorTest" -> "ragdoll.asm.uml.ClassMethodVisitor"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.ClassMethodVisitorTest" -> "ragdoll.code.uml.api.IClass"
+edge [label=" "]
+"ragdoll.app.phase.GVOutputPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.GVOutputPhase|- patternInfo : ragdoll.code.uml.pattern.PatternInfo\l|+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.GVOutputPhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.GVOutputPhase" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.app.phase.GVOutputPhase" -> "ragdoll.code.uml.pattern.PatternInfo"
+edge [label=" "]
+"ragdoll.code.sd.impl.SDInfo" [
+color=blue
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.sd.impl.SDInfo
+«singleton»\n|- instance : ragdoll.code.sd.impl.SDInfo\l- startMethod : ragdoll.code.sd.api.INode\l- classes : java.util.List\l|+ getInstance(): SDInfo\l+ getClasses(): List\l+ setClasses(j0 : java.util.List): void\l+ getStartMethod(): INode\l+ setStartMethod(r0 : ragdoll.code.sd.api.INode): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.sd.impl.SDInfo" -> "ragdoll.code.sd.impl.SDInfo"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.sd.impl.SDInfo" -> "ragdoll.code.sd.api.INode"
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.GVOSAwtCompositeTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.GVOSAwtCompositeTest|- gvOS : ragdoll.code.visitor.impl.GVOutputStream\l- iClasses : java.util.Map\l- sb : java.lang.StringBuffer\l- patternController : ragdoll.code.uml.pattern.PatternInfo\l|- appendBufferLine(j0 : java.lang.String): void\l- appendBuffer(j0 : java.lang.String): void\l+ setUpGvOS(): void\l+ testCOmposite(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSAwtCompositeTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSAwtCompositeTest" -> "ragdoll.code.uml.pattern.PatternInfo"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSAwtCompositeTest" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [label=" "]
+"ragdoll.app.phase.SingletonPatternDetectionPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.SingletonPatternDetectionPhase|- patternInfo : ragdoll.code.uml.pattern.PatternInfo\l|+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.SingletonPatternDetectionPhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.SingletonPatternDetectionPhase" -> "ragdoll.app.pattern.SingletonPattern"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.app.phase.SingletonPatternDetectionPhase" -> "ragdoll.code.uml.pattern.PatternInfo"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.adapter.LinearTransformer" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.adapter.LinearTransformer|- enumTion : java.util.Enumeration\l|+ transform(j0 : java.io.OutputStream): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.app.pattern.AdapterPattern" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.pattern.AdapterPattern|- ADAPTER_METHOD_THRESHOLD : int\l|+ detectPattern(): void\l+ getAdapterPatterns(j0 : java.lang.String): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.app.pattern.AdapterPattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.pattern.AdapterPattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+"ragdoll.app.pattern.AdapterPattern" -> "ragdoll.code.uml.api.IClassInfo"
+"ragdoll.app.pattern.AdapterPattern" -> "ragdoll.code.uml.pattern.Pattern"
+edge [label=" "]
+"ragdoll.app.pattern.SingletonPattern" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.pattern.SingletonPattern||+ detectPattern(): void\l- isSingleton(j0 : java.lang.String): boolean\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.app.pattern.SingletonPattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.pattern.SingletonPattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+"ragdoll.app.pattern.SingletonPattern" -> "ragdoll.code.uml.api.IClassInfo"
+"ragdoll.app.pattern.SingletonPattern" -> "ragdoll.code.uml.pattern.Pattern"
+edge [label=" "]
+"ragdoll.app.phase.SDOutputPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.SDOutputPhase||+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.SDOutputPhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.SDOutputPhase" -> "ragdoll.code.visitor.impl.SDOutputStream"
+edge [label=" "]
+"ragdoll.code.uml.api.IField" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.api.IField|+ getFieldName(): String\l+ getAccessLevel(): String\l+ getType(): String\l+ getSignature(): String\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.api.IField" -> "ragdoll.code.uml.api.IClassComponent"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.app.phase.DecoratorPatternDetectionPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.DecoratorPatternDetectionPhase|- patternInfo : ragdoll.code.uml.pattern.PatternInfo\l|+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.DecoratorPatternDetectionPhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.DecoratorPatternDetectionPhase" -> "ragdoll.app.pattern.DecoratorPattern"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.app.phase.DecoratorPatternDetectionPhase" -> "ragdoll.code.uml.pattern.PatternInfo"
+edge [label=" "]
+"ragdoll.asm.uml.ClassMethodVisitor$3" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.ClassMethodVisitor$3|~ this$0 : ragdoll.asm.uml.ClassMethodVisitor\l|+ visitMethodInsn(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, b4 : boolean): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.ClassMethodVisitor$3" -> "org.objectweb.asm.MethodVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.ClassMethodVisitor$3" -> "ragdoll.asm.uml.ClassMethodVisitor"
+edge [label=" "]
+"ragdoll.app.Ragdoll" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.Ragdoll||+ main(j0 : java.lang.String[]): void\l+ generateSD(j0 : java.lang.String, i1 : int): void\l+ graphHelper(r0 : ragdoll.code.sd.api.INode): void\l+ generateUML(j0 : java.lang.String[]): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.Ragdoll" -> "ragdoll.code.uml.impl.Klass"
+"ragdoll.app.Ragdoll" -> "ragdoll.asm.sd.GraphMethodVisitor"
+"ragdoll.app.Ragdoll" -> "ragdoll.code.sd.api.INode"
+"ragdoll.app.Ragdoll" -> "ragdoll.asm.uml.ClassFieldVisitor"
+"ragdoll.app.Ragdoll" -> "ragdoll.asm.uml.ClassMethodVisitor"
+"ragdoll.app.Ragdoll" -> "ragdoll.code.visitor.impl.GVOutputStream"
+"ragdoll.app.Ragdoll" -> "ragdoll.code.visitor.impl.SDOutputStream"
+"ragdoll.app.Ragdoll" -> "ragdoll.asm.uml.ClassDeclarationVisitor"
+"ragdoll.app.Ragdoll" -> "ragdoll.code.sd.impl.Node"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.ParentClass" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.ParentClass||+ sampleMethod(i0 : int, j1 : java.lang.Object): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.ParentClass" -> "ragdoll.asm.uml.test.sample.SampleInterface"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.UsedClass2" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.UsedClass2||}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.ClassMethodVisitor$2" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.ClassMethodVisitor$2|~ this$0 : ragdoll.asm.uml.ClassMethodVisitor\l|+ visitMethodInsn(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, b4 : boolean): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.ClassMethodVisitor$2" -> "org.objectweb.asm.MethodVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.ClassMethodVisitor$2" -> "ragdoll.asm.uml.ClassMethodVisitor"
+edge [label=" "]
+"ragdoll.asm.uml.ClassMethodVisitor$1" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.ClassMethodVisitor$1|~ this$0 : ragdoll.asm.uml.ClassMethodVisitor\l|+ visitMethodInsn(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, b4 : boolean): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.ClassMethodVisitor$1" -> "org.objectweb.asm.MethodVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.ClassMethodVisitor$1" -> "ragdoll.code.uml.impl.MethodCall"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.ClassMethodVisitor$1" -> "ragdoll.asm.uml.ClassMethodVisitor"
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.GVOSItrToEnmAdapterTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.GVOSItrToEnmAdapterTest|- gvOS : ragdoll.code.visitor.impl.GVOutputStream\l- iClasses : java.util.Map\l- sb : java.lang.StringBuffer\l|- appendBufferLine(j0 : java.lang.String): void\l- appendBuffer(j0 : java.lang.String): void\l+ setUpGvOS(): void\l+ testItrToEnmAdapter(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSItrToEnmAdapterTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSItrToEnmAdapterTest" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [label=" "]
+"ragdoll.code.uml.pattern.IFormatConsumer" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.pattern.IFormatConsumer|+ parse(j0 : java.util.Map): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream|- encryptor : ragdoll.asm.uml.test.sample.decorator.IEncryption\l|+ write(i0 : int): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" -> "java.io.FilterOutputStream"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" -> "ragdoll.asm.uml.test.sample.decorator.IEncryption"
+edge [label=" "]
+"ragdoll.asm.sd.test.sample.ClassA" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.sd.test.sample.ClassA||+ methodA(i0 : int): int\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.sd.test.sample.ClassA" -> "ragdoll.asm.sd.test.sample.ClassB"
+edge [label=" "]
+"ragdoll.asm.sd.test.sample.ClassB" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.sd.test.sample.ClassB||+ methodB(i0 : int, i1 : int): Integer\l+ methodE(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.visitor.api.ITraverser" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.visitor.api.ITraverser|+ accept(r0 : ragdoll.code.visitor.api.IVisitor): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.visitor.api.ITraverser" -> "ragdoll.code.visitor.api.IVisitor"
+edge [label=" "]
+"ragdoll.asm.sd.test.sample.ClassC" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.sd.test.sample.ClassC||+ methodC(): void\l+ methodD(j0 : java.lang.String): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.sd.impl.Node" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.sd.impl.Node|- depth : int\l- callerNode : ragdoll.code.sd.api.INode\l- paramTypes : java.util.List\l- methodName : java.lang.String\l- className : java.lang.String\l- adjacencyList : java.util.ArrayList\l- returnType : java.lang.String\l|+ getCallerNode(): INode\l+ setCallerNode(r0 : ragdoll.code.sd.api.INode): void\l+ getDepth(): int\l+ setDepth(i0 : int): void\l+ setParamTypes(j0 : java.util.List): void\l+ getMethodName(): String\l+ setMethodName(j0 : java.lang.String): void\l+ setReturnType(j0 : java.lang.String): void\l+ getReturnType(): String\l+ getParamTypes(): List\l+ addAdjacentNode(r0 : ragdoll.code.sd.api.INode): void\l+ getClassName(): String\l+ getAdjacencyList(): ArrayList\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.sd.impl.Node" -> "ragdoll.code.sd.api.INode"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.sd.impl.Node" -> "ragdoll.code.visitor.api.IVisitor"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.sd.impl.Node" -> "ragdoll.code.sd.api.INode"
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.GVOSSwingCompositeTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.GVOSSwingCompositeTest|- gvOS : ragdoll.code.visitor.impl.GVOutputStream\l- iClasses : java.util.Map\l- sb : java.lang.StringBuffer\l- patternController : ragdoll.code.uml.pattern.PatternInfo\l|- appendBufferLine(j0 : java.lang.String): void\l- appendBuffer(j0 : java.lang.String): void\l+ setUpGvOS(): void\l+ testComposite(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSSwingCompositeTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSSwingCompositeTest" -> "ragdoll.code.uml.pattern.PatternInfo"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSSwingCompositeTest" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor$2" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.decorator.TextEditor$2|~ this$0 : ragdoll.asm.uml.test.sample.decorator.TextEditor\l|+ run(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor$2" -> "java.lang.Runnable"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor$2" -> "ragdoll.asm.uml.test.sample.decorator.TextEditor"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor$1" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.decorator.TextEditor$1|~ this$0 : ragdoll.asm.uml.test.sample.decorator.TextEditor\l|+ windowClosing(j0 : java.awt.event.WindowEvent): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor$1" -> "java.awt.event.WindowAdapter"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.decorator.TextEditor$1" -> "ragdoll.asm.uml.test.sample.decorator.TextEditor"
+edge [label=" "]
+"ragdoll.code.uml.impl.ClassDeclaration" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.impl.ClassDeclaration|- nameOfInterfaces : java.util.List\l- nameOfSuperClass : java.lang.String\l- className : java.lang.String\l- isAbstract : boolean\l- isInterface : boolean\l|+ isAbstract(): boolean\l+ isInterface(): boolean\l+ getClassName(): String\l+ getNameOfSuperClass(): String\l+ getNameOfInterfaces(): List\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.impl.ClassDeclaration" -> "ragdoll.code.uml.api.IClassDeclaration"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.uml.impl.ClassDeclaration" -> "ragdoll.code.visitor.api.IVisitor"
+edge [label=" "]
+"ragdoll.code.uml.api.IClass" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.api.IClass|+ getCompositedClassSet(): Set\l+ getSubClasses(): List\l+ addSubClasses(j0 : java.lang.String): void\l+ addMethod(r0 : ragdoll.code.uml.api.IMethod): void\l+ addField(r0 : ragdoll.code.uml.api.IField): void\l+ addUse(j0 : java.lang.String): void\l+ setDeclaration(r0 : ragdoll.code.uml.api.IClassDeclaration): void\l+ getDeclaration(): IClassDeclaration\l+ getMethodList(): List\l+ getFieldMap(): HashMap\l+ getUseSet(): Set\l+ getAssociationType(): Set\l+ filterUseSet(): void\l+ filterAssocSet(): void\l+ getName(): String\l+ setHasLazyGetInstanceMethod(b0 : boolean): void\l+ setHasGetInstanceMethod(b0 : boolean): void\l+ setHasEagerInit(b0 : boolean): void\l+ checkHasPrivateConstructor(): boolean\l+ checkHasPrivateFiledOfItself(): boolean\l+ hasLazyGetInstanceMethod(): boolean\l+ hasGetInstanceMethod(): boolean\l+ hasEagerInit(): boolean\l+ getAggregatedClasses(): List\l+ getClassFromConstructorParameters(): List\l+ getOverriddenMethods(r0 : ragdoll.code.uml.api.IClass): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.api.IClass" -> "ragdoll.code.visitor.api.ITraverser"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.uml.api.IClass" -> "ragdoll.code.uml.api.IClass"
+"ragdoll.code.uml.api.IClass" -> "ragdoll.code.uml.api.IMethod"
+"ragdoll.code.uml.api.IClass" -> "ragdoll.code.uml.api.IClassDeclaration"
+"ragdoll.code.uml.api.IClass" -> "ragdoll.code.uml.api.IField"
+edge [label=" "]
+"ragdoll.app.RagdollClient" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.RagdollClient||+ main(j0 : java.lang.String[]): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.CompositePatternDetectionPhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.DecoratorPatternDetectionPhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.GenerateSDImagePhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.SDAnalyzePhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.GenerateDotImagePhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.code.uml.pattern.PatternInfo"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.GVOutputPhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.LoadAndVisitASMPhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.AdapterPatternDetectionPhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.SingletonPatternDetectionPhase"
+"ragdoll.app.RagdollClient" -> "ragdoll.framework.RagdollFramework"
+"ragdoll.app.RagdollClient" -> "ragdoll.app.phase.SDOutputPhase"
+edge [label=" "]
+"ragdoll.code.uml.pattern.Pattern" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.pattern.Pattern|- relationMap : java.util.HashMap\l- patternName : java.lang.String\l- roleMap : java.util.HashMap\l|+ addRole(j0 : java.lang.String, j1 : java.lang.String): void\l+ addRelation(j0 : java.lang.String, j1 : java.lang.String, j2 : java.lang.String): void\l+ getRoleMap(): HashMap\l+ getRelationMap(): HashMap\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.IEncryption" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.asm.uml.test.sample.decorator.IEncryption|+ encrypt(c0 : char): char\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.GVOSChocolateSingletonTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.GVOSChocolateSingletonTest|- gvOS : ragdoll.code.visitor.impl.GVOutputStream\l- iClasses : java.util.Map\l- sb : java.lang.StringBuffer\l|- appendBufferLine(j0 : java.lang.String): void\l- appendBuffer(j0 : java.lang.String): void\l+ setUpGvOS(): void\l+ testLazySingleton(): void\l+ testEagerSingleton(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSChocolateSingletonTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSChocolateSingletonTest" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [label=" "]
+"ragdoll.asm.uml.test.ClassFieldVisitorTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.ClassFieldVisitorTest|- c : ragdoll.code.uml.api.IClass\l- reader : org.objectweb.asm.ClassReader\l- fieldVisitor : org.objectweb.asm.ClassVisitor\l- className : java.lang.String\l|+ testVisit(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.test.ClassFieldVisitorTest" -> "ragdoll.code.uml.impl.Klass"
+"ragdoll.asm.uml.test.ClassFieldVisitorTest" -> "ragdoll.asm.uml.ClassFieldVisitor"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.ClassFieldVisitorTest" -> "ragdoll.code.uml.api.IClass"
+edge [label=" "]
+"ragdoll.app.pattern.CompositePattern" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.pattern.CompositePattern|- componentMap : java.util.Map\l- CAST_COMPONENT : java.lang.String\l- COMPOSITE_KEY : java.lang.String\l- LEAF_KEY : java.lang.String\l|+ detectPattern(): void\l- addAsRole(j0 : java.lang.String, j1 : java.lang.String, j2 : java.lang.String): void\l- addComponent(j0 : java.lang.String): void\l- isComposite(j0 : java.lang.String, j1 : java.lang.String): boolean\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.app.pattern.CompositePattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.pattern.CompositePattern" -> "ragdoll.code.uml.pattern.APatternDetector"
+"ragdoll.app.pattern.CompositePattern" -> "ragdoll.code.uml.api.IClassInfo"
+"ragdoll.app.pattern.CompositePattern" -> "ragdoll.code.uml.pattern.Pattern"
+edge [label=" "]
+"ragdoll.code.sd.api.INode" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.sd.api.INode|+ addAdjacentNode(r0 : ragdoll.code.sd.api.INode): void\l+ getClassName(): String\l+ getAdjacencyList(): ArrayList\l+ setParamTypes(j0 : java.util.List): void\l+ getMethodName(): String\l+ setMethodName(j0 : java.lang.String): void\l+ getParamTypes(): List\l+ getDepth(): int\l+ setDepth(i0 : int): void\l+ getReturnType(): String\l+ setReturnType(j0 : java.lang.String): void\l+ getCallerNode(): INode\l+ setCallerNode(r0 : ragdoll.code.sd.api.INode): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.sd.api.INode" -> "ragdoll.code.visitor.api.ITraverser"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.sd.api.INode" -> "ragdoll.code.sd.api.INode"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream|- decryptor : ragdoll.asm.uml.test.sample.decorator.IDecryption\l|+ read(): int\l+ read(b0 : byte[], i1 : int, i2 : int): int\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "java.io.FilterInputStream"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "ragdoll.asm.uml.test.sample.decorator.IDecryption"
+edge [label=" "]
+"ragdoll.code.uml.impl.Field" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.impl.Field|- fieldName : java.lang.String\l- accessLevel : java.lang.String\l- signature : java.lang.String\l- type : java.lang.String\l|+ getSignature(): String\l+ getFieldName(): String\l+ getAccessLevel(): String\l+ getType(): String\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.impl.Field" -> "ragdoll.code.uml.api.IField"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.uml.impl.Field" -> "ragdoll.code.visitor.api.IVisitor"
+edge [label=" "]
+"ragdoll.code.visitor.impl.GVOutputStream" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.GVOutputStream||+ initBuffer(): void\l+ endBuffer(): void\l+ visit(r0 : ragdoll.code.uml.api.IClass): void\l+ postVisit(r0 : ragdoll.code.uml.api.IClass): void\l+ visit(r0 : ragdoll.code.uml.api.IField): void\l+ visit(r0 : ragdoll.code.uml.api.IMethod): void\l+ visit(r0 : ragdoll.code.uml.api.IClassDeclaration): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.visitor.api.IUMLVisitor"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.visitor.api.AOutputStream"
+"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IClass"
+"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IMethod"
+"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IClassDeclaration"
+"ragdoll.code.visitor.impl.GVOutputStream" -> "ragdoll.code.uml.api.IField"
+edge [label=" "]
+"ragdoll.framework.RagdollFramework" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.framework.RagdollFramework|- phaseHashMap : java.util.Map\l- phaseExecutionList : java.util.List\l|+ addPhase(j0 : java.lang.String, r1 : ragdoll.framework.IPhase): void\l+ setPhaseExecutionList(j0 : java.util.List): void\l+ executePhases(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.framework.RagdollFramework" -> "ragdoll.framework.IPhase"
+edge [label=" "]
+"ragdoll.framework.IPhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.framework.IPhase|+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.visitor.api.AOutputStream" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«abstract»\nragdoll.code.visitor.api.AOutputStream|# sb : java.lang.StringBuffer\l|+ initBuffer(): void\l+ endBuffer(): void\l# appendBufferLine(j0 : java.lang.String): void\l+ visit(j0 : java.lang.String): void\l+ toString(): String\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter|- itr : java.util.Iterator\l|+ hasMoreElements(): boolean\l+ nextElement(): Object\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter" -> "java.util.Enumeration"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.SampleClass" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«abstract»\nragdoll.asm.uml.test.sample.SampleClass|# a3 : java.util.ArrayList\l+ s5 : ragdoll.asm.uml.test.sample.SampleClass\l+ o2 : java.lang.Object\l~ n4 : boolean\l- i1 : int\l+ h6 : java.util.HashMap\l|+ sampleMethod(i0 : int, j1 : java.lang.Object): void\l- sampleMethod2(): SampleInterface\l# sampleMethod3(): int\l~ sampleMethod4(): boolean\l~ sampleMethod5(r0 : ragdoll.asm.uml.test.sample.UsedClass): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.SampleClass" -> "ragdoll.asm.uml.test.sample.SampleInterface"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.SampleClass" -> "ragdoll.asm.uml.test.sample.ParentClass"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.test.sample.SampleClass" -> "ragdoll.asm.uml.test.sample.UsedClass2"
+"ragdoll.asm.uml.test.sample.SampleClass" -> "ragdoll.asm.uml.test.sample.UsedClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.SampleClass" -> "ragdoll.asm.uml.test.sample.SampleClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.uml.test.sample.SampleClass" -> "ragdoll.asm.uml.test.sample.ParentClass"
+edge [label=" "]
+"ragdoll.app.phase.SDAnalyzePhase" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.app.phase.SDAnalyzePhase||+ execute(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.app.phase.SDAnalyzePhase" -> "ragdoll.framework.IPhase"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.app.phase.SDAnalyzePhase" -> "ragdoll.asm.sd.GraphMethodVisitor"
+"ragdoll.app.phase.SDAnalyzePhase" -> "ragdoll.code.sd.impl.Node"
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.GVOSJavaSingletonTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.GVOSJavaSingletonTest|- gvOS : ragdoll.code.visitor.impl.GVOutputStream\l- DELIMINATOR : java.lang.String\l- iClasses : java.util.Map\l- CALENDAR_CALSS_NAME : java.lang.String\l- DESKTOP_CLASS_NAME : java.lang.String\l- RUNTIME_CLASS_NAME : java.lang.String\l- FILTERINPUTSTREAM_CLASS_NAME : java.lang.String\l- sb : java.lang.StringBuffer\l|- appendBufferLine(j0 : java.lang.String): void\l- appendBuffer(j0 : java.lang.String): void\l+ setUpGvOS(): void\l+ testRuntimeSingleton(): void\l+ testCalenderSingleton(): void\l+ testDesktopSingleton(): void\l+ testFilterInputStreamSingleton(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSJavaSingletonTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSJavaSingletonTest" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [label=" "]
+"ragdoll.code.uml.impl.Klass" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.impl.Klass|- useSet : java.util.Set\l- fieldMap : java.util.HashMap\l- hasGetInstanceMethod : boolean\l- hasEagerInit : boolean\l- subClasses : java.util.List\l- iClasses : java.util.Map\l- name : java.lang.String\l- associationTypeSet : java.util.Set\l- methodList : java.util.List\l- declaration : ragdoll.code.uml.api.IClassDeclaration\l- hasLazyGetInstanceMethod : boolean\l|+ getCompositedClassSet(): Set\l+ getSubClasses(): List\l+ addSubClasses(j0 : java.lang.String): void\l+ hasLazyGetInstanceMethod(): boolean\l+ hasGetInstanceMethod(): boolean\l+ hasEagerInit(): boolean\l+ setHasLazyGetInstanceMethod(b0 : boolean): void\l+ setHasGetInstanceMethod(b0 : boolean): void\l+ setHasEagerInit(b0 : boolean): void\l+ addMethod(r0 : ragdoll.code.uml.api.IMethod): void\l+ addUse(j0 : java.lang.String): void\l+ addField(r0 : ragdoll.code.uml.api.IField): void\l+ setDeclaration(r0 : ragdoll.code.uml.api.IClassDeclaration): void\l+ getDeclaration(): IClassDeclaration\l+ getMethodList(): List\l+ getFieldMap(): HashMap\l+ accept(r0 : ragdoll.code.visitor.api.IVisitor): void\l+ filterUseSet(): void\l+ filterAssocSet(): void\l+ getName(): String\l+ getUseSet(): Set\l+ getAssociationType(): Set\l+ checkHasPrivateConstructor(): boolean\l+ checkHasPrivateFiledOfItself(): boolean\l+ getAggregatedClasses(): List\l+ getClassFromConstructorParameters(): List\l+ getOverriddenMethods(r0 : ragdoll.code.uml.api.IClass): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.visitor.api.IVisitor"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IMethod"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IClassDeclaration"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.impl.Klass" -> "ragdoll.code.uml.api.IField"
+edge [label=" "]
+"ragdoll.code.impl.test.MethodTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.impl.test.MethodTest|- method : ragdoll.code.uml.impl.Method\l- accessLevel : java.lang.String\l- paramTypes : java.util.List\l- methodName : java.lang.String\l- exceptions : java.util.List\l- returnType : java.lang.String\l|+ testGetAccessLevel(): void\l+ testGetExceptions(): void\l+ testMethodName(): void\l+ testParamTypes(): void\l+ testReturnType(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.impl.test.MethodTest" -> "ragdoll.code.uml.impl.Method"
+edge [label=" "]
+"ragdoll.util.ClassFinder" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.util.ClassFinder|- CLASS_SUFFIX : java.lang.String\l- DOT : char\l- SLASH : char\l|+ find(j0 : java.lang.String): List\l- find(j0 : java.io.File, j1 : java.lang.String): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.uml.impl.ClassInfo" [
+color=blue
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.uml.impl.ClassInfo
+«singleton»\n|- instance : ragdoll.code.uml.impl.ClassInfo\l- classes : java.util.Map\l|+ getInstance(): ClassInfo\l+ getClasses(): Map\l+ setClasses(j0 : java.util.Map): void\l+ checkHasPrivateConstructor(j0 : java.lang.String): boolean\l+ checkHasPrivateFiledOfItself(j0 : java.lang.String): boolean\l+ hasLazyGetInstanceMethod(j0 : java.lang.String): boolean\l+ hasGetInstanceMethod(j0 : java.lang.String): boolean\l+ hasEagerInit(j0 : java.lang.String): boolean\l+ isAbstract(j0 : java.lang.String): boolean\l+ isInterface(j0 : java.lang.String): boolean\l+ getImplementedInterfaces(j0 : java.lang.String): List\l+ getAggregatedClasses(j0 : java.lang.String): List\l+ getOverriddenMethods(j0 : java.lang.String, j1 : java.lang.String): List\l+ getSuperClass(j0 : java.lang.String): String\l+ getInheritedAncestors(j0 : java.lang.String): List\l- getInheritedAncestorsHelper(j0 : java.lang.String): List\l+ getSubclasses(j0 : java.lang.String): List\l+ getChildren(j0 : java.lang.String): List\l+ getClassFromConstructorParameters(j0 : java.lang.String): List\l+ getCompositedClassSet(j0 : java.lang.String): Set\l+ getFieldsByClass(j0 : java.lang.String): Map\l+ getMethodsByClass(j0 : java.lang.String): List\l+ getMethodCallsByClassAndMethod(j0 : java.lang.String, j1 : java.lang.String, j2 : java.util.List): List\l+ getClassesByPackage(j0 : java.lang.String): List\l+ getConstructors(j0 : java.lang.String): List\l+ getClassByName(j0 : java.lang.String): IClass\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.impl.ClassInfo" -> "ragdoll.code.uml.api.IClassInfo"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.uml.impl.ClassInfo" -> "ragdoll.code.uml.impl.Method"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.impl.ClassInfo" -> "ragdoll.code.uml.impl.ClassInfo"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.uml.impl.ClassInfo" -> "ragdoll.code.uml.api.IClass"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.SubstitutionCipher" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.decorator.SubstitutionCipher|- decryptionKey : char[]\l- encryptionKey : char[]\l|+ encrypt(c0 : char): char\l+ decrypt(c0 : char): char\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.asm.uml.test.sample.decorator.SubstitutionCipher" -> "ragdoll.asm.uml.test.sample.decorator.IEncryption"
+"ragdoll.asm.uml.test.sample.decorator.SubstitutionCipher" -> "ragdoll.asm.uml.test.sample.decorator.IDecryption"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.asm.sd.GraphMethodVisitor$1" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.sd.GraphMethodVisitor$1|~ this$0 : ragdoll.asm.sd.GraphMethodVisitor\l|+ visitMethodInsn(i0 : int, j1 : java.lang.String, j2 : java.lang.String, j3 : java.lang.String, b4 : boolean): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"ragdoll.asm.sd.GraphMethodVisitor$1" -> "org.objectweb.asm.MethodVisitor"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.sd.GraphMethodVisitor$1" -> "ragdoll.code.sd.impl.Node"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.asm.sd.GraphMethodVisitor$1" -> "ragdoll.asm.sd.GraphMethodVisitor"
+edge [label=" "]
+"ragdoll.asm.uml.test.sample.decorator.TextEditorApp" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.asm.uml.test.sample.decorator.TextEditorApp||+ main(j0 : java.lang.String[]): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.asm.uml.test.sample.decorator.TextEditorApp" -> "ragdoll.asm.uml.test.sample.decorator.SubstitutionCipher"
+"ragdoll.asm.uml.test.sample.decorator.TextEditorApp" -> "ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream"
+"ragdoll.asm.uml.test.sample.decorator.TextEditorApp" -> "ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream"
+"ragdoll.asm.uml.test.sample.decorator.TextEditorApp" -> "ragdoll.asm.uml.test.sample.decorator.TextEditor"
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.SDOutputStreamTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.SDOutputStreamTest|- sdOS : ragdoll.code.visitor.impl.SDOutputStream\l- startMethod : ragdoll.code.sd.api.INode\l- classes : java.util.List\l- sb : java.lang.StringBuffer\l|- appendBufferLine(j0 : java.lang.String): void\l+ setUpSdOS(): void\l+ testVisitINode(): void\l+ testVisitClasses(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+"ragdoll.code.visitor.impl.test.SDOutputStreamTest" -> "ragdoll.asm.sd.GraphMethodVisitor"
+"ragdoll.code.visitor.impl.test.SDOutputStreamTest" -> "ragdoll.code.sd.impl.Node"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.SDOutputStreamTest" -> "ragdoll.code.sd.api.INode"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.SDOutputStreamTest" -> "ragdoll.code.visitor.impl.SDOutputStream"
+edge [label=" "]
+"ragdoll.util.test.UtilitiesTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.util.test.UtilitiesTest|- signature : java.lang.String\l|+ testGetClassNameFromFullyQualifiedMethodSignature(): void\l+ testGetMethodNameFromFullyQualifiedMethodSignature(): void\l+ testGetMethodTypesFromFullyQualifiedMethodSignature(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"ragdoll.code.visitor.impl.test.GVOSTextEditDecoratorTest" [
+color=black
+fillcolor="white"
+style=filled
+label = "{ragdoll.code.visitor.impl.test.GVOSTextEditDecoratorTest|- gvOS : ragdoll.code.visitor.impl.GVOutputStream\l- iClasses : java.util.Map\l- sb : java.lang.StringBuffer\l|- appendBufferLine(j0 : java.lang.String): void\l- appendBuffer(j0 : java.lang.String): void\l+ setUpGvOS(): void\l+ testFilterISDecorator(): void\l+ testEncryptionOSDecorator(): void\l+ testDecryptionISDecorator(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSTextEditDecoratorTest" -> "ragdoll.code.uml.api.IClass"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"ragdoll.code.visitor.impl.test.GVOSTextEditDecoratorTest" -> "ragdoll.code.visitor.impl.GVOutputStream"
+edge [label=" "]
+"ragdoll.code.uml.api.IClassDeclaration" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«interface»\nragdoll.code.uml.api.IClassDeclaration|+ isAbstract(): boolean\l+ isInterface(): boolean\l+ getClassName(): String\l+ getNameOfSuperClass(): String\l+ getNameOfInterfaces(): List\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"ragdoll.code.uml.api.IClassDeclaration" -> "ragdoll.code.uml.api.IClassComponent"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+}
+

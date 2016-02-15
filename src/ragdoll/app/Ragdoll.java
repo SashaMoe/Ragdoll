@@ -21,15 +21,15 @@ import ragdoll.asm.sd.GraphMethodVisitor;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
 import ragdoll.asm.uml.ClassFieldVisitor;
 import ragdoll.asm.uml.ClassMethodVisitor;
-import ragdoll.code.sd.api.Node;
-import ragdoll.code.sd.impl.INode;
+import ragdoll.code.sd.api.INode;
+import ragdoll.code.sd.impl.Node;
 import ragdoll.code.uml.api.IClass;
+import ragdoll.code.uml.api.IClassInfo;
+import ragdoll.code.uml.impl.ClassInfo;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
-import ragdoll.code.uml.pattern.ClassInfo;
-import ragdoll.code.uml.pattern.IClassInfo;
 import ragdoll.code.uml.pattern.IFormatConsumer;
-import ragdoll.code.uml.pattern.PatternController;
+import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.code.visitor.impl.SDOutputStream;
 import ragdoll.util.ClassFinder;
@@ -145,24 +145,24 @@ public class Ragdoll {
 			}
 		}
 
-		// Pattern Detection
-		PatternController patternController = new PatternController();
-		IClassInfo classInfo = ClassInfo.getInstance();
-		classInfo.setClasses(iClasses);
-
-		APatternDetector singletonPattern = new SingletonPattern(classInfo);
-		patternController.registerPatternDetector("singleton", singletonPattern);
-		APatternDetector adapterPattern = new AdapterPattern(classInfo);
-		patternController.registerPatternDetector("adapter", adapterPattern);
-		APatternDetector decoratorPattern = new DecoratorPattern(classInfo);
-		patternController.registerPatternDetector("decorator", decoratorPattern);
-		APatternDetector compositePattern = new CompositePattern(classInfo);
-		patternController.registerPatternDetector("composite", compositePattern);
-
-		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
-		patternController.registerFormatConsumer(gvFormatConsumer);
-
-		patternController.detectAllPatterns();
+//		// Pattern Detection
+//		PatternController patternController = new PatternController();
+//		IClassInfo classInfo = ClassInfo.getInstance();
+//		classInfo.setClasses(iClasses);
+//
+//		APatternDetector singletonPattern = new SingletonPattern(classInfo);
+//		patternController.registerPatternDetector("singleton", singletonPattern);
+//		APatternDetector adapterPattern = new AdapterPattern(classInfo);
+//		patternController.registerPatternDetector("adapter", adapterPattern);
+//		APatternDetector decoratorPattern = new DecoratorPattern(classInfo);
+//		patternController.registerPatternDetector("decorator", decoratorPattern);
+//		APatternDetector compositePattern = new CompositePattern(classInfo);
+//		patternController.registerPatternDetector("composite", compositePattern);
+//
+//		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
+//		patternController.registerFormatConsumer(gvFormatConsumer);
+//
+//		patternController.detectAllPatterns();
 
 		// Output
 		gvOS.initBuffer();

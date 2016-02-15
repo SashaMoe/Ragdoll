@@ -13,10 +13,11 @@
 * Separate IClassInfo from PatternController, and make it a singleton {Done}
 
 
-* Divide UML visit logic into phases
-  * Load
-  * Pattern Detection
-  * Output
+* Divide UML visit logic into phases {Done}
+  * Load {Done}
+  * Pattern Detection {Done}
+  * Output {Done}
+  * Convert patterns to ClassInfo
 
 Properties
   All properties

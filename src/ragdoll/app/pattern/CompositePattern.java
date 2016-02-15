@@ -1,14 +1,12 @@
 package ragdoll.app.pattern;
 
-import ragdoll.code.uml.pattern.IClassInfo;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
+import ragdoll.code.uml.api.IClassInfo;
 import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.Pattern;
 
@@ -23,7 +21,6 @@ public class CompositePattern extends APatternDetector {
 	public CompositePattern(IClassInfo classInfo) {
 		super(classInfo);
 		this.componentMap = new HashMap<>();
-		detectPattern();
 	}
 
 	@Override

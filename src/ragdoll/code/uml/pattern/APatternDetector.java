@@ -3,6 +3,8 @@ package ragdoll.code.uml.pattern;
 import java.util.ArrayList;
 import java.util.List;
 
+import ragdoll.code.uml.api.IClassInfo;
+
 public abstract class APatternDetector {
 	protected IClassInfo classInfo;
 	protected List<Pattern> patterns;
@@ -11,11 +13,11 @@ public abstract class APatternDetector {
 		this.classInfo = classInfo;
 		this.patterns = new ArrayList<>();
 	}
-	protected void detectPattern() {}
+	public void detectPattern() {}
 	protected void addPattern(Pattern pattern) {
 		patterns.add(pattern);
 	}
-	protected List<Pattern> getPatterns() {
+	public List<Pattern> getPatterns() {
 		return patterns;
 	}
 	

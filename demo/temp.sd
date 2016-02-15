@@ -1,0 +1,21 @@
+java\.util\.collections:java.util.Collections[a]
+java\.util\.random:java.util.Random[a]
+java\.lang\.system:java.lang.System[a]
+java\.util\.list:java.util.List[a]
+java\.util\.listiterator:java.util.ListIterator[a]
+
+java\.util\.collections:void=java\.util\.random.<init>()
+java\.util\.random:long=java\.util\.random.seedUniquifier()
+java\.util\.random:long=java\.lang\.system.nanoTime()
+java\.util\.random:void=java\.util\.random.<init>(l0 : long)
+java\.util\.collections:void=java\.util\.collections.shuffle(j0 : java\.util\.List, j1 : java\.util\.Random)
+java\.util\.collections:int=java\.util\.list.size()
+java\.util\.collections:int=java\.util\.random.nextInt(i0 : int)
+java\.util\.collections:void=java\.util\.collections.swap(j0 : java\.util\.List, i1 : int, i2 : int)
+java\.util\.collections:java\.lang\.Object[]=java\.util\.list.toArray()
+java\.util\.collections:int=java\.util\.random.nextInt(i0 : int)
+java\.util\.collections:void=java\.util\.collections.swap(j0 : java\.lang\.Object[], i1 : int, i2 : int)
+java\.util\.collections:java\.util\.ListIterator=java\.util\.list.listIterator()
+java\.util\.collections:java\.lang\.Object=java\.util\.listiterator.next()
+java\.util\.collections:void=java\.util\.listiterator.set(j0 : java\.lang\.Object)
+

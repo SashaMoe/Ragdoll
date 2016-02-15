@@ -23,12 +23,12 @@ import ragdoll.asm.uml.ClassFieldVisitor;
 import ragdoll.asm.uml.ClassMethodVisitor;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
+import ragdoll.code.uml.api.IClassInfo;
+import ragdoll.code.uml.impl.ClassInfo;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
-import ragdoll.code.uml.pattern.ClassInfo;
-import ragdoll.code.uml.pattern.IClassInfo;
 import ragdoll.code.uml.pattern.IFormatConsumer;
-import ragdoll.code.uml.pattern.PatternController;
+import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
@@ -80,7 +80,7 @@ public class GVOSTextEditDecoratorTest {
 		}
 
 		// Pattern Detection
-		PatternController patternController = new PatternController();
+		PatternInfo patternController = new PatternInfo();
 		IClassInfo classInfo = ClassInfo.getInstance();
 		classInfo.setClasses(iClasses);
 

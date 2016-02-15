@@ -24,13 +24,13 @@ import ragdoll.asm.uml.ClassFieldVisitor;
 import ragdoll.asm.uml.ClassMethodVisitor;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassDeclaration;
+import ragdoll.code.uml.api.IClassInfo;
+import ragdoll.code.uml.impl.ClassInfo;
 import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
-import ragdoll.code.uml.pattern.ClassInfo;
-import ragdoll.code.uml.pattern.IClassInfo;
 import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.Pattern;
-import ragdoll.code.uml.pattern.PatternController;
+import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.util.ClassFinder;
 
@@ -39,7 +39,7 @@ public class GVOSSwingCompositeTest {
 	private GVOutputStream gvOS;
 	private final Map<String, IClass> iClasses;
 	private StringBuffer sb;
-	private PatternController patternController;
+	private PatternInfo patternController;
 
 	public GVOSSwingCompositeTest() throws IOException, ClassNotFoundException {
 		String packageName = "java.awt.Component,java.awt.Container,javax.swing.JComponent,javax.swing.JPanel";
@@ -83,7 +83,7 @@ public class GVOSSwingCompositeTest {
 		}
 
 		// Pattern Detection
-		patternController = new PatternController();
+		patternController = new PatternInfo();
 		IClassInfo classInfo = ClassInfo.getInstance();
 		classInfo.setClasses(iClasses);
 

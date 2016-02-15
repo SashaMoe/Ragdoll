@@ -1,13 +1,25 @@
 package ragdoll.app.phase;
 
+import ragdoll.app.pattern.CompositePattern;
+import ragdoll.code.uml.api.IClassInfo;
+import ragdoll.code.uml.impl.ClassInfo;
+import ragdoll.code.uml.pattern.APatternDetector;
+import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.framework.IPhase;
 
 public class CompositePatternDetectionPhase implements IPhase {
+	private PatternInfo patternInfo;
+
+	public CompositePatternDetectionPhase(PatternInfo patternInfo) {
+		this.patternInfo = patternInfo;
+	}
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		
+		IClassInfo classInfo = ClassInfo.getInstance();
+		APatternDetector compositePattern = new CompositePattern(classInfo);
+		compositePattern.detectPattern();
+		patternInfo.storePatternInfo("composite", compositePattern.getPatterns());
 	}
 
 }

@@ -1,6 +1,6 @@
 package ragdoll.app.pattern;
 
-import ragdoll.code.uml.pattern.IClassInfo;
+import ragdoll.code.uml.api.IClassInfo;
 import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.Pattern;
 
@@ -8,7 +8,6 @@ public class SingletonPattern extends APatternDetector {
 
 	public SingletonPattern(IClassInfo classInfo) {
 		super(classInfo);
-		detectPattern();
 	}
 
 	@Override

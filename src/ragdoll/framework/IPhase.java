@@ -1,5 +1,5 @@
 package ragdoll.framework;
 
 public interface IPhase {
-	public void execute();
+	public void execute() throws Exception;
 }

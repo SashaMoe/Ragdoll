@@ -25,7 +25,12 @@ public class RagdollFramework {
 	public void executePhases() {
 		for (String phaseName : phaseExecutionList) {
 			Utilities.printVerbose("Executing " + phaseName + " ...");
-			phaseHashMap.get(phaseName).execute();
+			try {
+				phaseHashMap.get(phaseName).execute();
+			} catch (Exception e) {
+				System.out.println("ERROR " + phaseName);
+				e.printStackTrace();
+			}
 		}
 	}
 }

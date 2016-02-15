@@ -10,10 +10,9 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 import ragdoll.asm.sd.GraphMethodVisitor;
-import ragdoll.code.sd.api.Node;
-import ragdoll.code.sd.impl.INode;
-import ragdoll.code.uml.api.IMethod;
-import ragdoll.code.visitor.impl.SDOutputStream;
+import ragdoll.code.sd.api.INode;
+import ragdoll.code.sd.impl.Node;
+import ragdoll.code.sd.impl.SDInfo;
 import ragdoll.framework.IPhase;
 import ragdoll.framework.RagdollProperties;
 import ragdoll.util.Utilities;
@@ -21,7 +20,8 @@ import ragdoll.util.Utilities;
 public class SDAnalyzePhase implements IPhase {
 
 	@Override
-	public void execute() {
+	public void execute() throws Exception {
+		SDInfo sdInfo = SDInfo.getInstance();
 		RagdollProperties properties = RagdollProperties.getInstance();
 		int maxDepth = Integer.valueOf(properties.getProperty("SDEdit-Max-Depth", "3"));
 		String fullyQualifiedMethodName = properties.getProperty("Input");
@@ -54,12 +54,8 @@ public class SDAnalyzePhase implements IPhase {
 				}
 			}
 		}
-
-		SDOutputStream sdOS = new SDOutputStream();
-		sdOS.visit(classes);
-		sdOS.visit("\n");
-		startMethod.accept(sdOS);
-		System.out.println(sdOS.toString());
+		sdInfo.setClasses(classes);
+		sdInfo.setStartMethod(startMethod);
 	}
 
 }

@@ -2,7 +2,7 @@ package ragdoll.code.visitor.impl;
 
 import java.util.List;
 
-import ragdoll.code.sd.impl.INode;
+import ragdoll.code.sd.api.INode;
 import ragdoll.code.visitor.api.AOutputStream;
 import ragdoll.code.visitor.api.ISDVisitor;
 import ragdoll.util.Utilities;

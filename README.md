@@ -166,6 +166,8 @@ The project follows the following design principles:
 | zxqdx          | Added properties data structure.                                                                                      | 10m    |
 | yangh1         | Finished properties file and basic framework.                                                                         | 10m    |
 | zxqdx          | Added documentation for IClassInfo.                                                                                   | 15m    |
+| Sasha          | Separated UML diagram generation into different IPhases                                                               | 15m    |
+| yangh1         | Separated SD diagram generation into different IPhases                                                                | 15m    |
 
 ## Usage / Instructions
 ### Before we start

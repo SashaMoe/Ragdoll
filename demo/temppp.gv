@@ -1,0 +1,84 @@
+digraph G {
+rankdir=BT;
+fontname = "Times New Roman"
+fontsize = 12
+node [
+fontname = "Times New Roman"
+fontsize = 12
+shape = "record"
+]
+"java.lang.Runtime" [
+color=blue
+fillcolor="white"
+style=filled
+label = "{java.lang.Runtime
+«singleton»\n|- currentRuntime : java.lang.Runtime\l|+ getRuntime(): Runtime\l+ exit(i0 : int): void\l+ addShutdownHook(j0 : java.lang.Thread): void\l+ removeShutdownHook(j0 : java.lang.Thread): boolean\l+ halt(i0 : int): void\l+ runFinalizersOnExit(b0 : boolean): void\l+ exec(j0 : java.lang.String): Process\l+ exec(j0 : java.lang.String, j1 : java.lang.String[]): Process\l+ exec(j0 : java.lang.String, j1 : java.lang.String[], j2 : java.io.File): Process\l+ exec(j0 : java.lang.String[]): Process\l+ exec(j0 : java.lang.String[], j1 : java.lang.String[]): Process\l+ exec(j0 : java.lang.String[], j1 : java.lang.String[], j2 : java.io.File): Process\l+ availableProcessors(): int\l+ freeMemory(): long\l+ totalMemory(): long\l+ maxMemory(): long\l+ gc(): void\l- runFinalization0(): void\l+ runFinalization(): void\l+ traceInstructions(b0 : boolean): void\l+ traceMethodCalls(b0 : boolean): void\l+ load(j0 : java.lang.String): void\l~ load0(j0 : java.lang.Class, j1 : java.lang.String): void\l+ loadLibrary(j0 : java.lang.String): void\l~ loadLibrary0(j0 : java.lang.Class, j1 : java.lang.String): void\l+ getLocalizedInputStream(j0 : java.io.InputStream): InputStream\l+ getLocalizedOutputStream(j0 : java.io.OutputStream): OutputStream\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"java.lang.Runtime" -> "java.lang.Runtime"
+edge [label=" "]
+"java.io.Reader" [
+color=black
+fillcolor="white"
+style=filled
+label = "{«abstract»\njava.io.Reader|- skipBuffer : char[]\l# lock : java.lang.Object\l- maxSkipBufferSize : int\l|+ read(j0 : java.nio.CharBuffer): int\l+ read(): int\l+ read(c0 : char[]): int\l+ read(c0 : char[], i1 : int, i2 : int): int\l+ skip(l0 : long): long\l+ ready(): boolean\l+ markSupported(): boolean\l+ mark(i0 : int): void\l+ reset(): void\l+ close(): void\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+"java.io.Reader" -> "java.lang.Readable"
+"java.io.Reader" -> "java.io.Closeable"
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [label=" "]
+"java.io.BufferedReader" [
+color=black
+fillcolor="white"
+style=filled
+label = "{java.io.BufferedReader|- INVALIDATED : int\l- defaultCharBufferSize : int\l- markedSkipLF : boolean\l- in : java.io.Reader\l- readAheadLimit : int\l- nextChar : int\l- defaultExpectedLineLength : int\l- nChars : int\l- skipLF : boolean\l- UNMARKED : int\l- markedChar : int\l- cb : char[]\l|- ensureOpen(): void\l- fill(): void\l+ read(): int\l- read1(c0 : char[], i1 : int, i2 : int): int\l+ read(c0 : char[], i1 : int, i2 : int): int\l~ readLine(b0 : boolean): String\l+ readLine(): String\l+ skip(l0 : long): long\l+ ready(): boolean\l+ markSupported(): boolean\l+ mark(i0 : int): void\l+ reset(): void\l+ close(): void\l+ lines(): Stream\l}"
+]
+edge [
+style = "dashed"
+arrowhead = "empty"
+]
+edge [
+style = "solid"
+arrowhead = "empty"
+]
+"java.io.BufferedReader" -> "java.io.Reader"
+edge [
+style = "dashed"
+arrowhead = "vee"
+]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = " "
+]
+"java.io.BufferedReader" -> "java.io.Reader"
+edge [label=" "]
+}
+

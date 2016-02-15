@@ -1,10 +1,9 @@
 package ragdoll.app.pattern;
 
-import ragdoll.code.uml.pattern.IClassInfo;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import ragdoll.code.uml.api.IClassInfo;
 import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.api.IMethodCall;
 import ragdoll.code.uml.pattern.APatternDetector;
@@ -16,7 +15,6 @@ public class AdapterPattern extends APatternDetector {
 
 	public AdapterPattern(IClassInfo classInfo) {
 		super(classInfo);
-		detectPattern();
 	}
 
 	public void detectPattern() {

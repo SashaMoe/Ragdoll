@@ -14,8 +14,8 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
 import ragdoll.asm.sd.GraphMethodVisitor;
-import ragdoll.code.sd.api.Node;
-import ragdoll.code.sd.impl.INode;
+import ragdoll.code.sd.api.INode;
+import ragdoll.code.sd.impl.Node;
 import ragdoll.code.visitor.impl.SDOutputStream;
 import ragdoll.util.Utilities;
 
