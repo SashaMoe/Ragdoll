@@ -1,19 +1,16 @@
-//All Done~
-* getFieldsByClass
-* getMethodsByClass
-* getMethodCallsByMethod
-  * MethodCall need to know about params
-* getDescandents
-* getSubclasses
-* isConcrete(String classNmae)
-  *Already has isAbstract and isInterface
-* getClassesByPackage
-* getClasses
-* getConstructors
-* getAncesters
-
+* getFieldsByClass {Done}
+* getMethodsByClass {Done}
+* getMethodCallsByMethod {Done}
+  * MethodCall need to know about params {Done}
+* getDescandents {Done}
+* getSubclasses {Done}
+* isConcrete(String classNmae) {Done}
+  *Already has isAbstract and isInterface {Done}
+* getClassesByPackage {Done}
+* getClasses {Done}
+* getConstructors {Done}
+* getAncesters {Done}
 * Separate IClassInfo from PatternController, and make it a singleton {Done}
-
 
 
 * Divide UML visit logic into
@@ -21,4 +18,12 @@
   * Pattern Detection
   * Output
 
-UI
+Properties
+  All properties
+  Singleton need getInstance()
+  Adapter / Decorator Threshold
+  Input Folder support
+
+GUI
+  GUI
+  PatternViewVisitor

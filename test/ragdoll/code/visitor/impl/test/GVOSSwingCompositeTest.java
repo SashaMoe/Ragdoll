@@ -18,7 +18,6 @@ import ragdoll.app.pattern.AdapterPattern;
 import ragdoll.app.pattern.CompositePattern;
 import ragdoll.app.pattern.DecoratorPattern;
 import ragdoll.app.pattern.GVFormatConsumer;
-import ragdoll.app.pattern.IFormatConsumer;
 import ragdoll.app.pattern.SingletonPattern;
 import ragdoll.asm.uml.ClassDeclarationVisitor;
 import ragdoll.asm.uml.ClassFieldVisitor;
@@ -29,6 +28,7 @@ import ragdoll.code.uml.impl.Klass;
 import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.ClassInfo;
 import ragdoll.code.uml.pattern.IClassInfo;
+import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.Pattern;
 import ragdoll.code.uml.pattern.PatternController;
 import ragdoll.code.visitor.impl.GVOutputStream;
@@ -124,8 +124,8 @@ public class GVOSSwingCompositeTest {
 		assertEquals(1, compositePatterns.size());
 		assertEquals("component", pattern.getRoleMap().get("java.awt.Component"));
 		assertEquals("composite", pattern.getRoleMap().get("java.awt.Container"));
-		assertEquals("leaf", pattern.getRoleMap().get("javax.swing.JComponent"));
-		assertEquals("leaf", pattern.getRoleMap().get("javax.swing.JPanel"));
+		assertEquals("composite", pattern.getRoleMap().get("javax.swing.JComponent"));
+		assertEquals("composite", pattern.getRoleMap().get("javax.swing.JPanel"));
 	}
 
 }

@@ -7,9 +7,11 @@ import java.util.List;
 public class Pattern {
 	private HashMap<String, String> roleMap;
 	private HashMap<List<String>, String> relationMap;
+	private String patternName;
 	
-	public Pattern() {
+	public Pattern(String patternName) {
 		super();
+		this.patternName = patternName;
 		this.roleMap = new HashMap<>();
 		this.relationMap = new HashMap<>();
 	}

@@ -1,4 +1,4 @@
-package ragdoll.app;
+package ragdoll.framework;
 
 public class RagdollFramework {
 

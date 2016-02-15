@@ -41,7 +41,7 @@ public class ClassInfo implements IClassInfo {
 		classes = iClasses;
 	}
 
-	//FIXME: lots of following methods will through null pointer execptions if claases does not have claaName;
+	//NOTE: lots of following methods will through null pointer execptions if claases does not have claaName;
 	public boolean checkHasPrivateConstructor(String className) {
 		return classes.get(className).checkHasPrivateConstructor();
 	}
@@ -146,10 +146,10 @@ public class ClassInfo implements IClassInfo {
 
 	public List<IMethodCall> getMethodCallsByClassAndMethod(String className, String methodName,
 			List<String> paramTypes) {
-		IMethod comparedMethod = new Method(methodName, "meow", "meow", paramTypes, new ArrayList<>());
+		IMethod stubMethod = new Method(methodName, "meow", "meow", paramTypes, new ArrayList<>());
 		if (classes.containsKey(className)) {
 			for (IMethod method : classes.get(className).getMethodList()) {
-				if (method.equals(comparedMethod)) {
+				if (method.equals(stubMethod)) {
 					return method.getCallees();
 				}
 			}

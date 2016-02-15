@@ -87,7 +87,7 @@ public class CompositePattern extends APatternDetector {
 					leafSet.remove(toRemove);
 				}
 
-				Pattern pattern = new Pattern();
+				Pattern pattern = new Pattern(componentClass);
 				pattern.addRole(componentClass, "component");
 				for (String castComponentClass : castComponentSet) {
 					pattern.addRole(castComponentClass, "component");

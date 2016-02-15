@@ -15,7 +15,7 @@ public class SingletonPattern extends APatternDetector {
 	public void detectPattern() {
 		for (String className : classInfo.getClasses().keySet()) {
 			if (isSingleton(className)) {
-				Pattern pattern = new Pattern();
+				Pattern pattern = new Pattern(className);
 				pattern.addRole(className, "singleton");
 				addPattern(pattern);
 			}

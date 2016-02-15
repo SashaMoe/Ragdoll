@@ -44,7 +44,7 @@ public class DecoratorPattern extends APatternDetector {
 				}
 			}
 			if (unDecorationCount <= UNDECORATED_METHOD_THRESHOLD) {
-				Pattern pattern = new Pattern();
+				Pattern pattern = new Pattern(className);
 				pattern.addRole(component, "Target");
 				pattern.addRole(className, "Decorator");
 				List<String> subClassNames = classInfo.getSubclasses(className);

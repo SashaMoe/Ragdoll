@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ragdoll.app.pattern.IFormatConsumer;
-
 public class PatternController {
 	private Map<String, Class<? extends APatternDetector>> patternDetectorClasses;
 	private Map<String, APatternDetector> patternDetectors;

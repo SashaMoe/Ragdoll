@@ -56,7 +56,7 @@ public class AdapterPattern extends APatternDetector {
 						}
 					}
 					if (implementedCount >= ADAPTER_METHOD_THRESHOLD) {
-						Pattern pattern = new Pattern();
+						Pattern pattern = new Pattern(className);
 						pattern.addRole(implementedInterface, "Target");
 						pattern.addRole(aggregatedClass, "Adaptee");
 						pattern.addRole(className, "Adapter");
