@@ -25,10 +25,11 @@ public class RagdollProperties {
 	private Properties properties;
 	
 	private RagdollProperties() {
-		properties = new Properties();
+		this.properties = new Properties();
 	}
 	
 	public void loadProperties(String propFilePath) throws IOException {
+		this.properties = new Properties();
 		this.propFilePath = propFilePath;
 		inputStream = new FileInputStream(propFilePath);
 		if (inputStream != null) {
@@ -37,6 +38,14 @@ public class RagdollProperties {
 			throw new FileNotFoundException(propFilePath + " not found!");
 		}
 		inputStream.close();
+	}
+	
+	public String getProperty(String name, String defaultValue) {
+		return properties.getProperty(name, defaultValue);
+	}
+	
+	public String getProperty(String name) {
+		return properties.getProperty(name);
 	}
 	
 }

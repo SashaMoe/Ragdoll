@@ -3,6 +3,8 @@ package ragdoll.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import ragdoll.framework.RagdollProperties;
+
 public class Utilities {
 	public static ArrayList<String> explodeSignature(String signature) {
 		if (signature == null) {
@@ -77,4 +79,10 @@ public class Utilities {
 		return params;
 	}
 	
+	public static void printVerbose(String message) {
+		RagdollProperties properties = RagdollProperties.getInstance();
+		if (properties.getProperty("Verbose", "false").equals("true")) {
+			System.out.println(message);
+		}
+	}
 }

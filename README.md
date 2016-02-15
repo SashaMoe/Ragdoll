@@ -161,6 +161,9 @@ The project follows the following design principles:
 | zxqdx          | Documentation for Milestone 6.                                                                                        | 5m     |
 | Sasha          | Add Test for Composite Pattern.                                                                                       | 10m    |
 | zxqdx          | Added manual test for Lab8-2                                                                                          | 10m    |
+| yangh1         | Separated IClassInfo from PatternController.                                                                          | 10m    |
+| Sasha          | Added utility functions to IClassInfo                                                                                 | 15m    |
+| zxqdx          | Added properties data structure.                                                                                      | 10m    |
 
 ## Usage / Instructions
 ### Before we start
