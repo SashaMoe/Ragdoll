@@ -164,6 +164,8 @@ The project follows the following design principles:
 | yangh1         | Separated IClassInfo from PatternController.                                                                          | 10m    |
 | Sasha          | Added utility functions to IClassInfo                                                                                 | 15m    |
 | zxqdx          | Added properties data structure.                                                                                      | 10m    |
+| yangh1         | Finished properties file and basic framework.                                                                         | 10m    |
+| zxqdx          | Added documentation for IClassInfo.                                                                                   | 15m    |
 
 ## Usage / Instructions
 ### Before we start

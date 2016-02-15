@@ -13,7 +13,7 @@
 * Separate IClassInfo from PatternController, and make it a singleton {Done}
 
 
-* Divide UML visit logic into
+* Divide UML visit logic into phases
   * Load
   * Pattern Detection
   * Output
@@ -22,6 +22,7 @@ Properties
   All properties
   Singleton need getInstance()
   Adapter / Decorator Threshold
+  Singleton-RequireGetInstance (check if a method returns the classType and named getInstance())
   Input Folder support
 
 GUI

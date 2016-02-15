@@ -178,4 +178,9 @@ public class ClassInfo implements IClassInfo {
 		}
 		return constructors;
 	}
+
+	@Override
+	public IClass getClassByName(String className) {
+		return classes.get(className);
+	}
 }
