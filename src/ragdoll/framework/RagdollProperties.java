@@ -21,7 +21,6 @@ public class RagdollProperties {
 	}
 	
 	private InputStream inputStream;
-	private String propFilePath;
 	private Properties properties;
 	
 	private RagdollProperties() {
@@ -30,7 +29,6 @@ public class RagdollProperties {
 	
 	public void loadProperties(String propFilePath) throws IOException {
 		this.properties = new Properties();
-		this.propFilePath = propFilePath;
 		inputStream = new FileInputStream(propFilePath);
 		if (inputStream != null) {
 			properties.load(inputStream);

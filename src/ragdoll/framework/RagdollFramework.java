@@ -1,32 +1,31 @@
 package ragdoll.framework;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import ragdoll.util.Utilities;
 
 public class RagdollFramework {
-	private static final int MAP_INIT_CAPACITY = 16;
-	private static final float MAP_LOAD_FACTOR = 0.75f;
-	
-	private Map<String, IPhase> phaseLinkedHashMap;
+	private Map<String, IPhase> phaseHashMap;
+	private List<String> phaseExecutionList;
 	
 	public RagdollFramework() {
-		initPhases();
+		phaseHashMap = new HashMap<>();
 	}
-	
-	public void initPhases() {
-		phaseLinkedHashMap = new LinkedHashMap<>(MAP_INIT_CAPACITY, MAP_LOAD_FACTOR, false);
-	}
-	
+
 	public void addPhase(String phaseName, IPhase phase) {
-		phaseLinkedHashMap.put(phaseName, phase);
+		phaseHashMap.put(phaseName, phase);
+	}
+	
+	public void setPhaseExecutionList(List<String> phaseExecutionList) {
+		this.phaseExecutionList = phaseExecutionList;
 	}
 	
 	public void executePhases() {
-		for (String phaseName : phaseLinkedHashMap.keySet()) {
+		for (String phaseName : phaseExecutionList) {
 			Utilities.printVerbose("Executing " + phaseName + " ...");
-			phaseLinkedHashMap.get(phaseName).execute();
+			phaseHashMap.get(phaseName).execute();
 		}
 	}
 }
