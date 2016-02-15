@@ -29,3 +29,6 @@ Properties
 GUI
   GUI
   PatternViewVisitor
+
+Test
+  Fix regression for pattern detectors

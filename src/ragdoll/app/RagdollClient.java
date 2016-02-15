@@ -14,6 +14,7 @@ import ragdoll.app.phase.SDAnalyzePhase;
 import ragdoll.app.phase.SDOutputPhase;
 import ragdoll.app.phase.SingletonPatternDetectionPhase;
 import ragdoll.app.phase.TranslateUserSelectedPatternsPhase;
+import ragdoll.app.phase.WutPhase;
 import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.framework.IPhase;
 import ragdoll.framework.RagdollFramework;
@@ -37,6 +38,7 @@ public class RagdollClient {
 		IPhase generateSDImagePhase = new GenerateSDImagePhase();
 		IPhase generateDotImagePhase = new GenerateDotImagePhase();
 		IPhase translateUserSelectedPatternsPhase = new TranslateUserSelectedPatternsPhase();
+		IPhase wutPhase = new WutPhase();
 
 		properties.loadProperties("resources/config.properties");
 		framework.addPhase("SDAnalyze", sdAnalyzePhase);
@@ -50,6 +52,7 @@ public class RagdollClient {
 		framework.addPhase("GenerateDotImage", generateDotImagePhase);
 		framework.addPhase("GenerateSDImage", generateSDImagePhase);
 		framework.addPhase("TranslateUserSelectedPatterns", translateUserSelectedPatternsPhase);
+		framework.addPhase("WutPhase", wutPhase);
 
 		String[] phases = properties.getProperty("Phases").split(",");
 		List<String> phaseOrder = new ArrayList<>();
