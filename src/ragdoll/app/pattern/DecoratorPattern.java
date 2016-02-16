@@ -7,13 +7,14 @@ import ragdoll.code.uml.api.IClassInfo;
 import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.Pattern;
+import ragdoll.framework.RagdollProperties;
 
 public class DecoratorPattern extends APatternDetector {
-	
-	private static final int UNDECORATED_METHOD_THRESHOLD = 1;
+	private RagdollProperties properties;
 
 	public DecoratorPattern(IClassInfo classInfo) {
 		super(classInfo);
+		properties = RagdollProperties.getInstance();
 	}
 
 	public void detectPattern() {
@@ -41,7 +42,8 @@ public class DecoratorPattern extends APatternDetector {
 					unDecorationCount++;
 				}
 			}
-			if (unDecorationCount <= UNDECORATED_METHOD_THRESHOLD) {
+			int undecoratedMethodThreshold = Integer.valueOf(properties.getProperty("Decorator-MethodNotDelegatedThreshold", "1"));
+			if (unDecorationCount <= undecoratedMethodThreshold) {
 				Pattern pattern = new Pattern(className);
 				pattern.addRole(component, "Target");
 				pattern.addRole(className, "Decorator");

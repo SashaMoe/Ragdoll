@@ -17,13 +17,12 @@
   * Load {Done}
   * Pattern Detection {Done}
   * Output {Done}
-  * Convert patterns to ClassInfo
+  * Convert patterns to ClassInfo {Done}
 
 Properties
-  All properties
-  Singleton need getInstance()
-  Adapter / Decorator Threshold
-  Singleton-RequireGetInstance (check if a method returns the classType and named getInstance())
+  Adapter / Decorator Threshold {Done}
+  Singleton-RequireGetInstance (check if a method returns the classType and named getInstance()) {Done}
+  All other properties {Done}
   Input Folder support
 
 GUI
