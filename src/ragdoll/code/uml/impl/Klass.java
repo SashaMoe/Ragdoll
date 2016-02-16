@@ -127,7 +127,6 @@ public class Klass implements IClass {
 			m.accept(v);
 		}
 
-		// FIXME: Call it once ASM finish reading the class
 		filterUseSet();
 		filterAssocSet();
 

@@ -218,4 +218,12 @@ public interface IClassInfo {
 	 * @return
 	 */
 	public List<IMethod> getConstructors(String className);
+	
+	/**
+	 * Checks if the given class is in the scope.
+	 * 
+	 * @param className
+	 * @return
+	 */
+	public boolean containsClass(String className);
 }

@@ -168,6 +168,8 @@ The project follows the following design principles:
 | zxqdx          | Added documentation for IClassInfo.                                                                                   | 15m    |
 | Sasha          | Separated UML diagram generation into different IPhases                                                               | 15m    |
 | yangh1         | Separated SD diagram generation into different IPhases                                                                | 15m    |
+| zxqdx          | Added WutFace.. Uh.. no.. WutPhase                                                                                    | 5m     |
+| zxqdx          | Added TranslateUserSelectedPatternsPhase.                                                                             | 15m    |
 
 ## Usage / Instructions
 ### Before we start

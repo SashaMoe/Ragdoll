@@ -10,8 +10,8 @@ import ragdoll.framework.IPhase;
 public class AdapterPatternDetectionPhase implements IPhase {
 	private PatternInfo patternInfo;
 
-	public AdapterPatternDetectionPhase(PatternInfo patternInfo) {
-		this.patternInfo = patternInfo;
+	public AdapterPatternDetectionPhase() {
+		this.patternInfo = PatternInfo.getInstance();
 	}
 	
 	public void execute() {

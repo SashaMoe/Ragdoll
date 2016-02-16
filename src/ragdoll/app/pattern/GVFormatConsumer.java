@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ragdoll.code.uml.impl.ClassInfo;
 import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.NodeAttribute;
 import ragdoll.code.uml.pattern.Pattern;
@@ -61,8 +62,12 @@ public class GVFormatConsumer implements IFormatConsumer {
 			try {
 				List<String> fromTo = pattern.getRelationMap().keySet().iterator().next();
 				String relation = pattern.getRelationMap().get(fromTo);
-				NodeAttribute node = getClassNodeAttribute(fromTo.get(0));
-				node.addAssociationArrowText(fromTo.get(1), relation);
+				String fromClass = fromTo.get(0);
+				String toClass = fromTo.get(1);
+				if (ClassInfo.getInstance().containsClass(toClass)) {
+					NodeAttribute node = getClassNodeAttribute(fromClass);
+					node.addAssociationArrowText(toClass, relation);
+				}
 			} catch (Exception e) {
 
 			}

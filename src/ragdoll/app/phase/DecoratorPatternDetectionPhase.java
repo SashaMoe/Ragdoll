@@ -10,8 +10,8 @@ import ragdoll.framework.IPhase;
 public class DecoratorPatternDetectionPhase implements IPhase {
 	private PatternInfo patternInfo;
 
-	public DecoratorPatternDetectionPhase(PatternInfo patternInfo) {
-		this.patternInfo = patternInfo;
+	public DecoratorPatternDetectionPhase() {
+		this.patternInfo = PatternInfo.getInstance();
 	}
 
 	@Override

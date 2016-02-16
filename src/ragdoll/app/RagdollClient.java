@@ -15,7 +15,6 @@ import ragdoll.app.phase.SDOutputPhase;
 import ragdoll.app.phase.SingletonPatternDetectionPhase;
 import ragdoll.app.phase.TranslateUserSelectedPatternsPhase;
 import ragdoll.app.phase.WutPhase;
-import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.framework.IPhase;
 import ragdoll.framework.RagdollFramework;
 import ragdoll.framework.RagdollProperties;
@@ -25,16 +24,14 @@ public class RagdollClient {
 		RagdollProperties properties = RagdollProperties.getInstance();
 		RagdollFramework framework = new RagdollFramework();
 
-		PatternInfo patternInfo = new PatternInfo();
-
 		IPhase sdAnalyzePhase = new SDAnalyzePhase();
 		IPhase sdOutputPhase = new SDOutputPhase();
 		IPhase loadAndVisitASMPhase = new LoadAndVisitASMPhase();
-		IPhase adapterPatternDetectionPhase = new AdapterPatternDetectionPhase(patternInfo);
-		IPhase compositePatternDetectionPhase = new CompositePatternDetectionPhase(patternInfo);
-		IPhase decoratorPatternDetectionPhase = new DecoratorPatternDetectionPhase(patternInfo);
-		IPhase singletonPatternDetectionPhase = new SingletonPatternDetectionPhase(patternInfo);
-		IPhase gvOutputPhase = new GVOutputPhase(patternInfo);
+		IPhase adapterPatternDetectionPhase = new AdapterPatternDetectionPhase();
+		IPhase compositePatternDetectionPhase = new CompositePatternDetectionPhase();
+		IPhase decoratorPatternDetectionPhase = new DecoratorPatternDetectionPhase();
+		IPhase singletonPatternDetectionPhase = new SingletonPatternDetectionPhase();
+		IPhase gvOutputPhase = new GVOutputPhase();
 		IPhase generateSDImagePhase = new GenerateSDImagePhase();
 		IPhase generateDotImagePhase = new GenerateDotImagePhase();
 		IPhase translateUserSelectedPatternsPhase = new TranslateUserSelectedPatternsPhase();

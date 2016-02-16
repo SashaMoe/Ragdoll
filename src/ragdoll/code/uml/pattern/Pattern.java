@@ -34,5 +34,9 @@ public class Pattern {
 	public HashMap<List<String>, String> getRelationMap() {
 		return relationMap;
 	}
+
+	public String getPatternName() {
+		return patternName;
+	}
 	
 }

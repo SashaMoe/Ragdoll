@@ -10,8 +10,8 @@ import ragdoll.framework.IPhase;
 public class SingletonPatternDetectionPhase implements IPhase {
 	private PatternInfo patternInfo;
 
-	public SingletonPatternDetectionPhase(PatternInfo patternInfo) {
-		this.patternInfo = patternInfo;
+	public SingletonPatternDetectionPhase() {
+		this.patternInfo = PatternInfo.getInstance();
 	}
 
 	@Override

@@ -16,8 +16,8 @@ import ragdoll.framework.RagdollProperties;
 public class GVOutputPhase implements IPhase {
 	private PatternInfo patternInfo;
 
-	public GVOutputPhase(PatternInfo patternInfo) {
-		this.patternInfo = patternInfo;
+	public GVOutputPhase() {
+		this.patternInfo = PatternInfo.getInstance();
 	}
 
 	public void execute() throws Exception {
@@ -39,8 +39,6 @@ public class GVOutputPhase implements IPhase {
 		try (PrintWriter out = new PrintWriter(outputFile)) {
 			out.println(gvOS.toString());
 		}
-
-		// System.out.println(gvOS.toString());
 	}
 
 }

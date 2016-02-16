@@ -181,4 +181,8 @@ public class ClassInfo implements IClassInfo {
 	public IClass getClassByName(String className) {
 		return classes.get(className);
 	}
+
+	public boolean containsClass(String className) {
+		return classes.keySet().contains(className);
+	}
 }
