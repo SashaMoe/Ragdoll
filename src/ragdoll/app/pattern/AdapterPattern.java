@@ -8,13 +8,14 @@ import ragdoll.code.uml.api.IMethod;
 import ragdoll.code.uml.api.IMethodCall;
 import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.Pattern;
+import ragdoll.framework.RagdollProperties;
 
 public class AdapterPattern extends APatternDetector {
-
-	private static final int ADAPTER_METHOD_THRESHOLD = 1;
+	private RagdollProperties properties;
 
 	public AdapterPattern(IClassInfo classInfo) {
 		super(classInfo);
+		properties = RagdollProperties.getInstance();
 	}
 
 	public void detectPattern() {
@@ -53,7 +54,8 @@ public class AdapterPattern extends APatternDetector {
 							}
 						}
 					}
-					if (implementedCount >= ADAPTER_METHOD_THRESHOLD) {
+					int adapterMethodThreshold = Integer.valueOf(properties.getProperty("Adapter-MethodDelegationThreshold", "2"));
+					if (implementedCount >= adapterMethodThreshold) {
 						Pattern pattern = new Pattern(className);
 						pattern.addRole(implementedInterface, "Target");
 						pattern.addRole(aggregatedClass, "Adaptee");
