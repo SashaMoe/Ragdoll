@@ -170,6 +170,7 @@ The project follows the following design principles:
 | yangh1         | Separated SD diagram generation into different IPhases                                                                | 15m    |
 | zxqdx          | Added WutFace.. Uh.. no.. WutPhase                                                                                    | 5m     |
 | zxqdx          | Added TranslateUserSelectedPatternsPhase.                                                                             | 15m    |
+| Sasha          | Added support for configuring three pattern detectors.                                                                | 15m    |
 
 ## Usage / Instructions
 ### Before we start
