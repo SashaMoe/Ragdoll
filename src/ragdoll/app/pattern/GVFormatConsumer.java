@@ -8,6 +8,7 @@ import ragdoll.code.uml.impl.ClassInfo;
 import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.NodeAttribute;
 import ragdoll.code.uml.pattern.Pattern;
+import ragdoll.code.uml.pattern.PatternInfo;
 
 public class GVFormatConsumer implements IFormatConsumer {
 	private volatile static GVFormatConsumer instance;
@@ -17,6 +18,10 @@ public class GVFormatConsumer implements IFormatConsumer {
 	private Map<String, NodeAttribute> nodeAttributeMap;
 
 	private GVFormatConsumer() {
+		init();
+	}
+	
+	public void init() {
 		this.nodeAttributeMap = new HashMap<>();
 	}
 
@@ -36,23 +41,29 @@ public class GVFormatConsumer implements IFormatConsumer {
 			List<Pattern> patterns = patternMap.get(patternType);
 			if (patternType.toLowerCase().equals("singleton")) {
 				for (Pattern pattern : patterns) {
+					if (!PatternInfo.getInstance().isPatternSelected(patternType, pattern)) {
+						continue;
+					}
 					String className = pattern.getRoleMap().keySet().iterator().next();
 					NodeAttribute node = getClassNodeAttribute(className);
 					node.setBorderColor("blue");
 					node.addPatternName("«singleton»");
 				}
 			} else if (patternType.toLowerCase().equals("adapter")) {
-				setNodeAttribute(patterns, YIMA_RED);
+				setNodeAttribute(patternType, patterns, YIMA_RED);
 			} else if (patternType.toLowerCase().equals("decorator")) {
-				setNodeAttribute(patterns, "green");
+				setNodeAttribute(patternType, patterns, "green");
 			} else if (patternType.toLowerCase().equals("composite")) {
-				setNodeAttribute(patterns, "yellow");
+				setNodeAttribute(patternType, patterns, "yellow");
 			}
 		}
 	}
 
-	private void setNodeAttribute(List<Pattern> patterns, String patternColor) {
+	private void setNodeAttribute(String patternType, List<Pattern> patterns, String patternColor) {
 		for (Pattern pattern : patterns) {
+			if (!PatternInfo.getInstance().isPatternSelected(patternType, pattern)) {
+				continue;
+			}
 			for (String className : pattern.getRoleMap().keySet()) {
 				String role = pattern.getRoleMap().get(className);
 				NodeAttribute node = getClassNodeAttribute(className);

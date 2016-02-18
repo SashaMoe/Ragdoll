@@ -172,6 +172,7 @@ The project follows the following design principles:
 | zxqdx          | Added TranslateUserSelectedPatternsPhase.                                                                             | 15m    |
 | Sasha          | Added support for configuring three pattern detectors.                                                                | 15m    |
 | yangh1         | Added GUI draft.                                                                                                      | 15m    |
+| zxqdx          | Fixed an issue with TranslateUserSelectedPatternsPhase                                                                | 15m    |
 
 ## Usage / Instructions
 ### Before we start

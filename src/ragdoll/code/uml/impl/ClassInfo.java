@@ -17,7 +17,7 @@ public class ClassInfo implements IClassInfo {
 	private volatile static ClassInfo instance;
 
 	private ClassInfo() {
-		this.classes = new HashMap<>();
+		init();
 	}
 
 	public static ClassInfo getInstance() {
@@ -29,6 +29,10 @@ public class ClassInfo implements IClassInfo {
 			}
 		}
 		return instance;
+	}
+	
+	public void init() {
+		this.classes = new HashMap<>();
 	}
 
 	public Map<String, IClass> getClasses() {

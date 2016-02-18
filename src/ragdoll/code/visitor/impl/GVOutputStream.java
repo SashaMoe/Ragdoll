@@ -159,7 +159,7 @@ public class GVOutputStream extends AOutputStream implements IUMLVisitor {
 		
 		if (!nodeAttrinute.getPatternNames().isEmpty()) {
 			for (String patternName : nodeAttrinute.getPatternNames()) {
-				this.sb.append("\n" + patternName + "\\n");
+				this.sb.append("\n" + patternName);
 			}
 		}
 		

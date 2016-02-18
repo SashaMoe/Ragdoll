@@ -1,7 +1,6 @@
 package ragdoll.framework;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -20,21 +19,19 @@ public class RagdollProperties {
 		return instance;
 	}
 	
-	private InputStream inputStream;
 	private Properties properties;
 	
 	private RagdollProperties() {
+		init();
+	}
+	
+	public void init() {
 		this.properties = new Properties();
 	}
 	
 	public void loadProperties(String propFilePath) throws IOException {
-		this.properties = new Properties();
-		inputStream = new FileInputStream(propFilePath);
-		if (inputStream != null) {
-			properties.load(inputStream);
-		} else {
-			throw new FileNotFoundException(propFilePath + " not found!");
-		}
+		InputStream inputStream = new FileInputStream(propFilePath);
+		properties.load(inputStream);
 		inputStream.close();
 	}
 	

@@ -1,6 +1,5 @@
 package ragdoll.app.phase;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,24 +24,27 @@ public class TranslateUserSelectedPatternsPhase implements IPhase {
 	@Override
 	public void execute() throws Exception {
 		// TODO: This is just for tests! Remove them after GUI is finished!
-		List<String> ls = new ArrayList<>();
-		ls.add("java.io.FilterOutputStream");
-		ls.add("ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream");
-		patternInfo.setSelectedClasses(ls);
-		
+		patternInfo.addSelectedClasses("decorator", "java.io.FilterOutputStream");
+//		patternInfo.addSelectedClasses("decorator", "ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream");
+		patternInfo.addSelectedClasses("singleton", "ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream");
 		
 		Map<String, IClass> iClasses = new HashMap<>();
-		List<String> selectedClasses = patternInfo.getSelectedClasses();
+		Map<String, List<String>> selectedClasses = patternInfo.getSelectedClasses();
 		Map<String, List<Pattern>> patternMap = patternInfo.getPatterMap();
-		for (String patternName : patternMap.keySet()) {
-			List<Pattern> patterns = patternMap.get(patternName);
-			for (Pattern pattern : patterns) {
-				String patternInstanceName = pattern.getPatternName();
-				if (selectedClasses.contains(patternInstanceName)) {
-					// The pattern is selected by user.
-					Map<String, String> roleMap = pattern.getRoleMap();
-					for (String className : roleMap.keySet()) {
-						putClassToClasses(iClasses, className);
+		
+		for (String selectedPatternName: selectedClasses.keySet()) {
+			List<String> selectedClassNames = selectedClasses.get(selectedPatternName);
+			for (String selectedClassName : selectedClassNames) {
+				if (patternMap.containsKey(selectedPatternName)) {
+					List<Pattern> patterns = patternMap.get(selectedPatternName);
+					for (Pattern pattern : patterns) {
+						if (pattern.getPatternName().equals(selectedClassName)) {
+							// The pattern is selected by user.
+							Map<String, String> roleMap = pattern.getRoleMap();
+							for (String className : roleMap.keySet()) {
+								putClassToClasses(iClasses, className);
+							}
+						}
 					}
 				}
 			}

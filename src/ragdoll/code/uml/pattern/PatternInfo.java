@@ -9,11 +9,15 @@ public class PatternInfo {
 	private volatile static PatternInfo instance;
 	
 	private Map<String, List<Pattern>> patternMap;
-	private List<String> selectedClasses;
+	private Map<String, List<String>> selectedClasses;
 
 	private PatternInfo() {
+		init();
+	}
+	
+	public void init() {
 		this.patternMap = new HashMap<>();
-		this.selectedClasses = new ArrayList<>();
+		this.selectedClasses = new HashMap<>();
 	}
 
 	public static PatternInfo getInstance() {
@@ -26,12 +30,21 @@ public class PatternInfo {
 		}
 		return instance;
 	}
+
+	public boolean isPatternSelected(String patternType, Pattern pattern) {
+		String patternName = pattern.getPatternName();
+		return selectedClasses.containsKey(patternType) &&
+			selectedClasses.get(patternType).contains(patternName);
+	}
 	
-	public void setSelectedClasses(List<String> selectedClasses) {
-		this.selectedClasses = selectedClasses;
+	public void addSelectedClasses(String patternType, String selectedClass) {
+		if (!this.selectedClasses.containsKey(patternType)) {
+			this.selectedClasses.put(patternType, new ArrayList<>());
+		}
+		this.selectedClasses.get(patternType).add(selectedClass);
 	}
 
-	public List<String> getSelectedClasses() {
+	public Map<String, List<String>> getSelectedClasses() {
 		return selectedClasses;
 	}
 

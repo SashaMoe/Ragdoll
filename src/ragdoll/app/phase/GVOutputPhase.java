@@ -7,7 +7,6 @@ import ragdoll.app.pattern.GVFormatConsumer;
 import ragdoll.code.uml.api.IClass;
 import ragdoll.code.uml.api.IClassInfo;
 import ragdoll.code.uml.impl.ClassInfo;
-import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
 import ragdoll.framework.IPhase;
@@ -21,7 +20,8 @@ public class GVOutputPhase implements IPhase {
 	}
 
 	public void execute() throws Exception {
-		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
+		GVFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
+		gvFormatConsumer.init();
 		gvFormatConsumer.parse(patternInfo.getPatterMap());
 
 		IClassInfo classInfo = ClassInfo.getInstance();

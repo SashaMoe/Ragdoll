@@ -6,11 +6,29 @@ import java.io.InputStream;
 
 public class DecryptionInputStream extends FilterInputStream {
 	private IDecryption decryptor;
-
-	public DecryptionInputStream(InputStream in, IDecryption decryptor) {
+	
+	private volatile static DecryptionInputStream instance;
+	
+	private DecryptionInputStream(InputStream in, IDecryption decryptor) {
 		super(in);
 		this.decryptor = decryptor;
 	}
+	
+	public static DecryptionInputStream getInstance(InputStream in, IDecryption decryptor) {
+		if (instance == null) {
+			synchronized (DecryptionInputStream.class) {
+				if (instance == null) {
+					instance = new DecryptionInputStream(in, decryptor);
+				}
+			}
+		}
+		return instance;
+	}
+
+//	public DecryptionInputStream(InputStream in, IDecryption decryptor) {
+//		super(in);
+//		this.decryptor = decryptor;
+//	}
 
 	@Override
 	public int read() throws IOException {
