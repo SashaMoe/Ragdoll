@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class PatternInfo {
 	private volatile static PatternInfo instance;
 	
 	private Map<String, List<Pattern>> patternMap;
 	private Map<String, List<String>> selectedClasses;
+	private Set<String> involvedClasses = null;
 
 	private PatternInfo() {
 		init();
@@ -18,6 +20,10 @@ public class PatternInfo {
 	public void init() {
 		this.patternMap = new HashMap<>();
 		this.selectedClasses = new HashMap<>();
+	}
+
+	public void setSelectedClasses(Map<String, List<String>> selectedClasses) {
+		this.selectedClasses = selectedClasses;
 	}
 
 	public static PatternInfo getInstance() {
@@ -56,4 +62,11 @@ public class PatternInfo {
 		patternMap.put(patternType, patterns);
 	}
 
+	public Set<String> getInvolvedClasses() {
+		return involvedClasses;
+	}
+
+	public void setInvolvedClasses(Set<String> involvedClasses) {
+		this.involvedClasses = involvedClasses;
+	}
 }

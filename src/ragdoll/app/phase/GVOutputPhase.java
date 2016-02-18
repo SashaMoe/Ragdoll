@@ -29,7 +29,11 @@ public class GVOutputPhase implements IPhase {
 		GVOutputStream gvOS = new GVOutputStream();
 		gvOS.initBuffer();
 		for (String c : iClasses.keySet()) {
-			iClasses.get(c).accept(gvOS);
+			if (RagdollProperties.getInstance().getProperty("Mode").equals("UML") ||
+				patternInfo.getInvolvedClasses().contains(c)) {
+				iClasses.get(c).accept(gvOS);
+			}
+			
 		}
 		gvOS.endBuffer();
 

@@ -15,7 +15,8 @@ public class GenerateDotImagePhase implements IPhase {
 		String outputImage = properties.getProperty("Output-Directory") + properties.getProperty("Output-Image-Name")
 				+ "." + properties.getProperty("Output-Image-Type");
 		Runtime runtime = Runtime.getRuntime();
-		String cmd = properties.getProperty("Dot-Path") + " " + inputFile + " -Tpng -o " + outputImage;
+		String cmd = properties.getProperty("Dot-Path") + " " + inputFile + " -T"
+				+ properties.getProperty("Output-Image-Type") + " -o " + outputImage;
 		runtime.exec(cmd);
 	}
 

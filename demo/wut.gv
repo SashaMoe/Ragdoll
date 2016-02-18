@@ -29,33 +29,6 @@ style = "dashed"
 arrowhead = "vee"
 ]
 edge [label=" "]
-"java.io.FilterOutputStream" [
-color=black
-fillcolor="green"
-style=filled
-label = "{java.io.FilterOutputStream
-«Decorator»|# out : java.io.OutputStream\l|+ write(i0 : int): void\l+ write(b0 : byte[]): void\l+ write(b0 : byte[], i1 : int, i2 : int): void\l+ flush(): void\l+ close(): void\l}"
-]
-edge [
-style = "dashed"
-arrowhead = "empty"
-]
-edge [
-style = "solid"
-arrowhead = "empty"
-]
-"java.io.FilterOutputStream" -> "java.io.OutputStream"
-edge [
-style = "dashed"
-arrowhead = "vee"
-]
-edge [
-style = "solid"
-arrowhead = "vee"
-label = "decorate"
-]
-"java.io.FilterOutputStream" -> "java.io.OutputStream"
-edge [label=" "]
 "ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" [
 color=black
 fillcolor="green"
@@ -82,13 +55,19 @@ arrowhead = "vee"
 label = " "
 ]
 "ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" -> "ragdoll.asm.uml.test.sample.decorator.IEncryption"
+edge [
+style = "solid"
+arrowhead = "vee"
+label = "decorate"
+]
+"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" -> "java.io.OutputStream"
 edge [label=" "]
-"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" [
-color=blue
-fillcolor="white"
+"java.io.FilterOutputStream" [
+color=black
+fillcolor="green"
 style=filled
-label = "{ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream
-«singleton»|- decryptor : ragdoll.asm.uml.test.sample.decorator.IDecryption\l- instance : ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\l|+ getInstance(j0 : java.io.InputStream, r1 : ragdoll.asm.uml.test.sample.decorator.IDecryption): DecryptionInputStream\l+ read(): int\l+ read(b0 : byte[], i1 : int, i2 : int): int\l}"
+label = "{java.io.FilterOutputStream
+«Decorator»|# out : java.io.OutputStream\l|+ write(i0 : int): void\l+ write(b0 : byte[]): void\l+ write(b0 : byte[], i1 : int, i2 : int): void\l+ flush(): void\l+ close(): void\l}"
 ]
 edge [
 style = "dashed"
@@ -98,7 +77,7 @@ edge [
 style = "solid"
 arrowhead = "empty"
 ]
-"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "java.io.FilterInputStream"
+"java.io.FilterOutputStream" -> "java.io.OutputStream"
 edge [
 style = "dashed"
 arrowhead = "vee"
@@ -106,15 +85,9 @@ arrowhead = "vee"
 edge [
 style = "solid"
 arrowhead = "vee"
-label = " "
+label = "decorate"
 ]
-"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "ragdoll.asm.uml.test.sample.decorator.IDecryption"
-edge [
-style = "solid"
-arrowhead = "vee"
-label = " "
-]
-"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream"
+"java.io.FilterOutputStream" -> "java.io.OutputStream"
 edge [label=" "]
 }
 
