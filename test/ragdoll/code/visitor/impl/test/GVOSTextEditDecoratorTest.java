@@ -3,6 +3,7 @@ package ragdoll.code.visitor.impl.test;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.security.Signature;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,7 @@ import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
+import ragdoll.framework.RagdollProperties;
 import ragdoll.util.ClassFinder;
 
 public class GVOSTextEditDecoratorTest {
@@ -45,7 +47,7 @@ public class GVOSTextEditDecoratorTest {
 		for (Class<?> c : classes) {
 			classNames.add(c.getName());
 		}
-		
+
 		GVOutputStream gvOS = new GVOutputStream();
 		iClasses = new HashMap<>();
 
@@ -80,21 +82,26 @@ public class GVOSTextEditDecoratorTest {
 		}
 
 		// Pattern Detection
-		PatternInfo patternController = new PatternInfo();
+		PatternInfo patternController = PatternInfo.getInstance();
 		IClassInfo classInfo = ClassInfo.getInstance();
 		classInfo.setClasses(iClasses);
 
 		APatternDetector singletonPattern = new SingletonPattern(classInfo);
-		patternController.registerPatternDetector("singleton", singletonPattern);
+		singletonPattern.detectPattern();
 		APatternDetector adapterPattern = new AdapterPattern(classInfo);
-		patternController.registerPatternDetector("adapter", adapterPattern);
+		adapterPattern.detectPattern();
 		APatternDetector decoratorPattern = new DecoratorPattern(classInfo);
-		patternController.registerPatternDetector("decorator", decoratorPattern);
+		decoratorPattern.detectPattern();
+		patternController.storePatternInfo("singleton", singletonPattern.getPatterns());
+		patternController.storePatternInfo("adapter", adapterPattern.getPatterns());
+		patternController.storePatternInfo("decorator", decoratorPattern.getPatterns());
+
+		RagdollProperties properties = RagdollProperties.getInstance();
+		properties.init();
+		properties.setProperty("Mode", "UML");
 
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
-		patternController.registerFormatConsumer(gvFormatConsumer);
-
-		patternController.detectAllPatterns();
+		gvFormatConsumer.parse(patternController.getPatterMap());
 
 	}
 
@@ -111,18 +118,19 @@ public class GVOSTextEditDecoratorTest {
 		gvOS = new GVOutputStream();
 		sb = new StringBuffer();
 	}
-	
+
 	@Test
-	public void testFilterISDecorator(){
+	public void testFilterISDecorator() {
 		IClass klass = iClasses.get("java.io.FilterInputStream");
 		klass.accept(gvOS);
-		
+
 		appendBufferLine("\"java.io.FilterInputStream\" [");
 		appendBufferLine("color=black");
 		appendBufferLine("fillcolor=\"green\"");
 		appendBufferLine("style=filled");
 		appendBufferLine("label = \"{java.io.FilterInputStream");
-		appendBufferLine("«Decorator»\\n|# in : java.io.InputStream\\l|+ read(): int\\l+ read(b0 : byte[]): int\\l+ read(b0 : byte[], i1 : int, i2 : int): int\\l+ skip(l0 : long): long\\l+ available(): int\\l+ close(): void\\l+ mark(i0 : int): void\\l+ reset(): void\\l+ markSupported(): boolean\\l}\"");
+		appendBufferLine(
+				"«Decorator»|# in : java.io.InputStream\\l|+ read(): int\\l+ read(b0 : byte[]): int\\l+ read(b0 : byte[], i1 : int, i2 : int): int\\l+ skip(l0 : long): long\\l+ available(): int\\l+ close(): void\\l+ mark(i0 : int): void\\l+ reset(): void\\l+ markSupported(): boolean\\l}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
@@ -145,7 +153,6 @@ public class GVOSTextEditDecoratorTest {
 		appendBufferLine("\"java.io.FilterInputStream\" -> \"java.io.InputStream\"");
 		appendBufferLine("edge [label=\" \"]");
 
-		
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
@@ -153,13 +160,14 @@ public class GVOSTextEditDecoratorTest {
 	public void testEncryptionOSDecorator() {
 		IClass klass = iClasses.get("ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream");
 		klass.accept(gvOS);
-		
+
 		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream\" [");
 		appendBufferLine("color=black");
 		appendBufferLine("fillcolor=\"green\"");
 		appendBufferLine("style=filled");
 		appendBufferLine("label = \"{ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream");
-		appendBufferLine("«Decorator»\\n|- encryptor : ragdoll.asm.uml.test.sample.decorator.IEncryption\\l|+ write(i0 : int): void\\l}\"");
+		appendBufferLine(
+				"«Decorator»|- encryptor : ragdoll.asm.uml.test.sample.decorator.IEncryption\\l|+ write(i0 : int): void\\l}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
@@ -169,7 +177,8 @@ public class GVOSTextEditDecoratorTest {
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"empty\"");
 		appendBufferLine("]");
-		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream\" -> \"java.io.FilterOutputStream\"");
+		appendBufferLine(
+				"\"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream\" -> \"java.io.FilterOutputStream\"");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
 		appendBufferLine("arrowhead = \"vee\"");
@@ -179,28 +188,34 @@ public class GVOSTextEditDecoratorTest {
 		appendBufferLine("arrowhead = \"vee\"");
 		appendBufferLine("label = \" \"");
 		appendBufferLine("]");
-		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream\" -> \"ragdoll.asm.uml.test.sample.decorator.IEncryption\"");
+		appendBufferLine(
+				"\"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream\" -> \"ragdoll.asm.uml.test.sample.decorator.IEncryption\"");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"vee\"");
 		appendBufferLine("label = \"decorate\"");
 		appendBufferLine("]");
-		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream\" -> \"java.io.OutputStream\"");
+		appendBufferLine(
+				"\"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream\" -> \"java.io.OutputStream\"");
 		appendBufferLine("edge [label=\" \"]");
-		
+
 		assertEquals(sb.toString(), gvOS.toString());
 	}
-	
+
 	@Test
 	public void testDecryptionISDecorator() {
 		IClass klass = iClasses.get("ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream");
 		klass.accept(gvOS);
 		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" [");
-		appendBufferLine("color=black");
+		appendBufferLine("color=blue");
 		appendBufferLine("fillcolor=\"green\"");
 		appendBufferLine("style=filled");
 		appendBufferLine("label = \"{ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream");
-		appendBufferLine("«Decorator»\\n|- decryptor : ragdoll.asm.uml.test.sample.decorator.IDecryption\\l|+ read(): int\\l+ read(b0 : byte[], i1 : int, i2 : int): int\\l}\"");
+		appendBufferLine("«Decorator»");
+		appendBufferLine("«singleton»|- decryptor : ragdoll.asm.uml.test.sample.decorator.IDecryption\\l"
+				+ "- instance : ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\\l"
+				+ "|+ getInstance(j0 : java.io.InputStream, r1 : ragdoll.asm.uml.test.sample.decorator.IDecryption): DecryptionInputStream\\l"
+				+ "+ read(): int\\l+ read(b0 : byte[], i1 : int, i2 : int): int\\l}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
@@ -210,7 +225,8 @@ public class GVOSTextEditDecoratorTest {
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"empty\"");
 		appendBufferLine("]");
-		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" -> \"java.io.FilterInputStream\"");
+		appendBufferLine(
+				"\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" -> \"java.io.FilterInputStream\"");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");
 		appendBufferLine("arrowhead = \"vee\"");
@@ -220,7 +236,15 @@ public class GVOSTextEditDecoratorTest {
 		appendBufferLine("arrowhead = \"vee\"");
 		appendBufferLine("label = \" \"");
 		appendBufferLine("]");
-		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" -> \"ragdoll.asm.uml.test.sample.decorator.IDecryption\"");
+		appendBufferLine(
+				"\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" -> \"ragdoll.asm.uml.test.sample.decorator.IDecryption\"");
+		appendBufferLine("edge [");
+		appendBufferLine("style = \"solid\"");
+		appendBufferLine("arrowhead = \"vee\"");
+		appendBufferLine("label = \" \"");
+		appendBufferLine("]");
+		appendBufferLine(
+				"\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" -> \"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\"");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"solid\"");
 		appendBufferLine("arrowhead = \"vee\"");
@@ -228,6 +252,7 @@ public class GVOSTextEditDecoratorTest {
 		appendBufferLine("]");
 		appendBufferLine("\"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\" -> \"java.io.InputStream\"");
 		appendBufferLine("edge [label=\" \"]");
+
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 }

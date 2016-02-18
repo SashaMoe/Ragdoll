@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,7 +103,7 @@ public class PersianFrame extends JFrame {
 					String filePath = fc.getSelectedFile().getAbsolutePath();
 					filePath = filePath.endsWith("." + properties.getProperty("Output-Image-Type")) ? filePath
 							: (filePath + "." + properties.getProperty("Output-Image-Type"));
-					
+
 					String outputImagePath = properties.getProperty("Output-Directory")
 							+ properties.getProperty("Output-Image-Name") + "."
 							+ properties.getProperty("Output-Image-Type");
@@ -130,9 +132,26 @@ public class PersianFrame extends JFrame {
 
 		JMenuItem helpMenuItem = new JMenuItem("Help");
 		helpMenu.add(helpMenuItem);
+		helpMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				String helpString = "Left Pane: Check the checkbox to select patterns.\n"
+						+ "Right Pane: Your can see selected diagrams here!\n" + "File-Reload: Reload config file.\n"
+						+ "File-Export: Export picure in the right pane.";
+				JOptionPane.showMessageDialog(PersianFrame.this, helpString, "Help", JOptionPane.PLAIN_MESSAGE);
+			}
+		});
 
 		JMenuItem usMenuItem = new JMenuItem("About Ragdoll...");
 		helpMenu.add(usMenuItem);
+		usMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				String helpString = "As cute as ragdoll~";
+				ImageIcon ragdollIcon = new ImageIcon("resources/Ragdoll.jpg");
+				JOptionPane.showMessageDialog(PersianFrame.this, helpString, "Help", JOptionPane.INFORMATION_MESSAGE, ragdollIcon);
+			}
+		});
 		contentPane.setLayout(null);
 
 		treeScrollPanel = new JPanel();
@@ -206,7 +225,7 @@ public class PersianFrame extends JFrame {
 			x = 0;
 		}
 		treeScrollPanel.setPreferredSize(new Dimension(250, y));
-		
+
 		this.repaint();
 	}
 

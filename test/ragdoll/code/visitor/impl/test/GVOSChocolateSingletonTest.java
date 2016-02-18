@@ -28,6 +28,7 @@ import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
+import ragdoll.framework.RagdollProperties;
 import ragdoll.util.ClassFinder;
 
 public class GVOSChocolateSingletonTest {
@@ -77,17 +78,20 @@ public class GVOSChocolateSingletonTest {
 		}
 
 		// Pattern Detection
-		PatternInfo patternController = new PatternInfo();
+		PatternInfo patternController = PatternInfo.getInstance();
 		IClassInfo classInfo = ClassInfo.getInstance();
 		classInfo.setClasses(iClasses);
 
 		APatternDetector singletonPattern = new SingletonPattern(classInfo);
-		patternController.registerPatternDetector("singleton", singletonPattern);
+		singletonPattern.detectPattern();
+		patternController.storePatternInfo("singleton", singletonPattern.getPatterns());
 
+		RagdollProperties properties = RagdollProperties.getInstance();
+		properties.init();
+		properties.setProperty("Mode", "UML");
+		
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
-		patternController.registerFormatConsumer(gvFormatConsumer);
-
-		patternController.detectAllPatterns();
+		gvFormatConsumer.parse(patternController.getPatterMap());
 
 	}
 
@@ -111,7 +115,7 @@ public class GVOSChocolateSingletonTest {
 				.getDeclaration();
 		classDeclaration.accept(gvOS);
 		appendBufferLine("ragdoll.asm.uml.test.sample.ChocolateBoiler");
-		appendBuffer("«singleton»\\n|");
+		appendBuffer("«singleton»|");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
@@ -121,7 +125,7 @@ public class GVOSChocolateSingletonTest {
 				.getDeclaration();
 		classDeclaration.accept(gvOS);
 		appendBufferLine("ragdoll.asm.uml.test.sample.ChocolateBoilerEager");
-		appendBuffer("«singleton»\\n|");
+		appendBuffer("«singleton»|");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 }

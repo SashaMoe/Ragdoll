@@ -10,7 +10,7 @@ public class TextEditorApp {
 		SubstitutionCipher cipher = new SubstitutionCipher();
 		InputStream fIn = new FileInputStream("./input_output/out.txt");
 		OutputStream fOut = new FileOutputStream("./input_output/out1.txt");		
-		InputStream in = new DecryptionInputStream(fIn, cipher);
+		InputStream in = DecryptionInputStream.getInstance(fIn, cipher);
 		OutputStream out = new EncryptionOutputStream(fOut, cipher);
 		
 		TextEditor editor = new TextEditor(in, out);

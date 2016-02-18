@@ -30,6 +30,7 @@ import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
+import ragdoll.framework.RagdollProperties;
 import ragdoll.util.ClassFinder;
 
 public class GVOSItrToEnmAdapterTest {
@@ -80,21 +81,26 @@ public class GVOSItrToEnmAdapterTest {
 		}
 
 		// Pattern Detection
-		PatternInfo patternController = new PatternInfo();
+		PatternInfo patternController = PatternInfo.getInstance();
 		IClassInfo classInfo = ClassInfo.getInstance();
 		classInfo.setClasses(iClasses);
 
 		APatternDetector singletonPattern = new SingletonPattern(classInfo);
-		patternController.registerPatternDetector("singleton", singletonPattern);
+		singletonPattern.detectPattern();
 		APatternDetector adapterPattern = new AdapterPattern(classInfo);
-		patternController.registerPatternDetector("adapter", adapterPattern);
+		adapterPattern.detectPattern();
 		APatternDetector decoratorPattern = new DecoratorPattern(classInfo);
-		patternController.registerPatternDetector("decorator", decoratorPattern);
+		decoratorPattern.detectPattern();
+		patternController.storePatternInfo("singleton", singletonPattern.getPatterns());
+		patternController.storePatternInfo("adapter", adapterPattern.getPatterns());
+		patternController.storePatternInfo("decorator", decoratorPattern.getPatterns());
 
+		RagdollProperties properties = RagdollProperties.getInstance();
+		properties.init();
+		properties.setProperty("Mode", "UML");
+		
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
-		patternController.registerFormatConsumer(gvFormatConsumer);
-
-		patternController.detectAllPatterns();
+		gvFormatConsumer.parse(patternController.getPatterMap());
 
 	}
 
@@ -123,7 +129,7 @@ public class GVOSItrToEnmAdapterTest {
 		appendBufferLine("style=filled");
 		appendBufferLine("label = \"{ragdoll.asm.uml.test.sample.adapter.IteratorToEnumerationAdapter");
 		appendBufferLine(
-				"«Adapter»\\n|- itr : java.util.Iterator\\l|+ hasMoreElements(): boolean\\l+ nextElement(): Object\\l}\"");
+				"«Adapter»|- itr : java.util.Iterator\\l|+ hasMoreElements(): boolean\\l+ nextElement(): Object\\l}\"");
 		appendBufferLine("]");
 		appendBufferLine("edge [");
 		appendBufferLine("style = \"dashed\"");

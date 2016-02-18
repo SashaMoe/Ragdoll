@@ -43,4 +43,8 @@ public class RagdollProperties {
 		return properties.getProperty(name);
 	}
 	
+	public void setProperty(String name, String value) {
+		this.properties.setProperty(name, value);
+	}
+	
 }

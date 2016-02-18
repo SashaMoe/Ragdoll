@@ -32,6 +32,7 @@ import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.Pattern;
 import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
+import ragdoll.framework.RagdollProperties;
 import ragdoll.util.ClassFinder;
 
 public class GVOSSwingCompositeTest {
@@ -83,23 +84,29 @@ public class GVOSSwingCompositeTest {
 		}
 
 		// Pattern Detection
-		patternController = new PatternInfo();
+		patternController = PatternInfo.getInstance();
 		IClassInfo classInfo = ClassInfo.getInstance();
 		classInfo.setClasses(iClasses);
 
 		APatternDetector singletonPattern = new SingletonPattern(classInfo);
-		patternController.registerPatternDetector("singleton", singletonPattern);
+		singletonPattern.detectPattern();
 		APatternDetector adapterPattern = new AdapterPattern(classInfo);
-		patternController.registerPatternDetector("adapter", adapterPattern);
+		adapterPattern.detectPattern();
 		APatternDetector decoratorPattern = new DecoratorPattern(classInfo);
-		patternController.registerPatternDetector("decorator", decoratorPattern);
+		decoratorPattern.detectPattern();
 		APatternDetector compositePattern = new CompositePattern(classInfo);
-		patternController.registerPatternDetector("composite", compositePattern);
+		compositePattern.detectPattern();
+		patternController.storePatternInfo("composite", compositePattern.getPatterns());
+		patternController.storePatternInfo("singleton", singletonPattern.getPatterns());
+		patternController.storePatternInfo("adapter", adapterPattern.getPatterns());
+		patternController.storePatternInfo("decorator", decoratorPattern.getPatterns());
 
+		RagdollProperties properties = RagdollProperties.getInstance();
+		properties.init();
+		properties.setProperty("Mode", "UML");
+		
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
-		patternController.registerFormatConsumer(gvFormatConsumer);
-
-		patternController.detectAllPatterns();
+		gvFormatConsumer.parse(patternController.getPatterMap());
 
 	}
 

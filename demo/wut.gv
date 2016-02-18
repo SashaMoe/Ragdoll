@@ -7,34 +7,39 @@ fontname = "Times New Roman"
 fontsize = 12
 shape = "record"
 ]
-"java.io.OutputStream" [
+"java.io.FilterInputStream" [
 color=black
 fillcolor="green"
 style=filled
-label = "{«abstract»\njava.io.OutputStream
-«Target»||+ write(i0 : int): void\l+ write(b0 : byte[]): void\l+ write(b0 : byte[], i1 : int, i2 : int): void\l+ flush(): void\l+ close(): void\l}"
+label = "{java.io.FilterInputStream
+«Decorator»|# in : java.io.InputStream\l|+ read(): int\l+ read(b0 : byte[]): int\l+ read(b0 : byte[], i1 : int, i2 : int): int\l+ skip(l0 : long): long\l+ available(): int\l+ close(): void\l+ mark(i0 : int): void\l+ reset(): void\l+ markSupported(): boolean\l}"
 ]
 edge [
 style = "dashed"
 arrowhead = "empty"
 ]
-"java.io.OutputStream" -> "java.io.Closeable"
-"java.io.OutputStream" -> "java.io.Flushable"
 edge [
 style = "solid"
 arrowhead = "empty"
 ]
+"java.io.FilterInputStream" -> "java.io.InputStream"
 edge [
 style = "dashed"
 arrowhead = "vee"
 ]
+edge [
+style = "solid"
+arrowhead = "vee"
+label = "decorate"
+]
+"java.io.FilterInputStream" -> "java.io.InputStream"
 edge [label=" "]
-"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" [
+"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" [
 color=black
 fillcolor="green"
 style=filled
-label = "{ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream
-«Decorator»|- encryptor : ragdoll.asm.uml.test.sample.decorator.IEncryption\l|+ write(i0 : int): void\l}"
+label = "{ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream
+«Decorator»|- decryptor : ragdoll.asm.uml.test.sample.decorator.IDecryption\l- instance : ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream\l|+ getInstance(j0 : java.io.InputStream, r1 : ragdoll.asm.uml.test.sample.decorator.IDecryption): DecryptionInputStream\l+ read(): int\l+ read(b0 : byte[], i1 : int, i2 : int): int\l}"
 ]
 edge [
 style = "dashed"
@@ -44,7 +49,7 @@ edge [
 style = "solid"
 arrowhead = "empty"
 ]
-"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" -> "java.io.FilterOutputStream"
+"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "java.io.FilterInputStream"
 edge [
 style = "dashed"
 arrowhead = "vee"
@@ -54,40 +59,34 @@ style = "solid"
 arrowhead = "vee"
 label = " "
 ]
-"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" -> "ragdoll.asm.uml.test.sample.decorator.IEncryption"
+"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "ragdoll.asm.uml.test.sample.decorator.IDecryption"
 edge [
 style = "solid"
 arrowhead = "vee"
-label = "decorate"
+label = " "
 ]
-"ragdoll.asm.uml.test.sample.decorator.EncryptionOutputStream" -> "java.io.OutputStream"
+"ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream" -> "ragdoll.asm.uml.test.sample.decorator.DecryptionInputStream"
 edge [label=" "]
-"java.io.FilterOutputStream" [
+"java.io.InputStream" [
 color=black
 fillcolor="green"
 style=filled
-label = "{java.io.FilterOutputStream
-«Decorator»|# out : java.io.OutputStream\l|+ write(i0 : int): void\l+ write(b0 : byte[]): void\l+ write(b0 : byte[], i1 : int, i2 : int): void\l+ flush(): void\l+ close(): void\l}"
+label = "{«abstract»\njava.io.InputStream
+«Target»|- MAX_SKIP_BUFFER_SIZE : int\l|+ read(): int\l+ read(b0 : byte[]): int\l+ read(b0 : byte[], i1 : int, i2 : int): int\l+ skip(l0 : long): long\l+ available(): int\l+ close(): void\l+ mark(i0 : int): void\l+ reset(): void\l+ markSupported(): boolean\l}"
 ]
 edge [
 style = "dashed"
 arrowhead = "empty"
 ]
+"java.io.InputStream" -> "java.io.Closeable"
 edge [
 style = "solid"
 arrowhead = "empty"
 ]
-"java.io.FilterOutputStream" -> "java.io.OutputStream"
 edge [
 style = "dashed"
 arrowhead = "vee"
 ]
-edge [
-style = "solid"
-arrowhead = "vee"
-label = "decorate"
-]
-"java.io.FilterOutputStream" -> "java.io.OutputStream"
 edge [label=" "]
 }
 

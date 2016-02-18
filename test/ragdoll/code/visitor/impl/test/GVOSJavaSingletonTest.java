@@ -28,6 +28,7 @@ import ragdoll.code.uml.pattern.APatternDetector;
 import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.PatternInfo;
 import ragdoll.code.visitor.impl.GVOutputStream;
+import ragdoll.framework.RagdollProperties;
 import ragdoll.util.ClassFinder;
 
 public class GVOSJavaSingletonTest {
@@ -68,7 +69,7 @@ public class GVOSJavaSingletonTest {
 			reader.accept(methodVisitor, ClassReader.EXPAND_FRAMES);
 			iClasses.put(className, newClass);
 		}
-		
+
 		for (String className : iClasses.keySet()) {
 			IClass klass = iClasses.get(className);
 			String superClassName = klass.getDeclaration().getNameOfSuperClass();
@@ -88,17 +89,20 @@ public class GVOSJavaSingletonTest {
 		}
 
 		// Pattern Detection
-		PatternInfo patternController = new PatternInfo();
+		PatternInfo patternController = PatternInfo.getInstance();
 		IClassInfo classInfo = ClassInfo.getInstance();
 		classInfo.setClasses(iClasses);
 
 		APatternDetector singletonPattern = new SingletonPattern(classInfo);
-		patternController.registerPatternDetector("singleton", singletonPattern);
+		singletonPattern.detectPattern();
+		patternController.storePatternInfo("singleton", singletonPattern.getPatterns());
 
+		RagdollProperties properties = RagdollProperties.getInstance();
+		properties.init();
+		properties.setProperty("Mode", "UML");
+		
 		IFormatConsumer gvFormatConsumer = GVFormatConsumer.getInstance();
-		patternController.registerFormatConsumer(gvFormatConsumer);
-
-		patternController.detectAllPatterns();
+		gvFormatConsumer.parse(patternController.getPatterMap());
 
 	}
 
@@ -121,7 +125,7 @@ public class GVOSJavaSingletonTest {
 		IClassDeclaration classDeclaration = iClasses.get(RUNTIME_CLASS_NAME).getDeclaration();
 		classDeclaration.accept(gvOS);
 		appendBufferLine(RUNTIME_CLASS_NAME);
-		appendBuffer("«singleton»\\n|");
+		appendBuffer("«singleton»|");
 		assertEquals(sb.toString(), gvOS.toString());
 	}
 
@@ -130,7 +134,7 @@ public class GVOSJavaSingletonTest {
 		IClassDeclaration classDeclaration = iClasses.get(CALENDAR_CALSS_NAME).getDeclaration();
 		classDeclaration.accept(gvOS);
 		appendBufferLine(CALENDAR_CALSS_NAME);
-		appendBuffer("«singleton»\\n|");
+		appendBuffer("«singleton»|");
 		assertNotEquals(sb.toString(), gvOS.toString());
 	}
 
@@ -143,7 +147,7 @@ public class GVOSJavaSingletonTest {
 		IClassDeclaration classDeclaration = iClasses.get(DESKTOP_CLASS_NAME).getDeclaration();
 		classDeclaration.accept(gvOS);
 		appendBufferLine(DESKTOP_CLASS_NAME);
-		appendBuffer("«singleton»\\n|");
+		appendBuffer("«singleton»|");
 		assertNotEquals(sb.toString(), gvOS.toString());
 	}
 
@@ -152,7 +156,7 @@ public class GVOSJavaSingletonTest {
 		IClassDeclaration classDeclaration = iClasses.get(FILTERINPUTSTREAM_CLASS_NAME).getDeclaration();
 		classDeclaration.accept(gvOS);
 		appendBufferLine(FILTERINPUTSTREAM_CLASS_NAME);
-		appendBuffer("«singleton»\\n|");
+		appendBuffer("«singleton»|");
 		assertNotEquals(sb.toString(), gvOS.toString());
 	}
 }

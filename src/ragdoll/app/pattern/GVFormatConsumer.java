@@ -9,6 +9,7 @@ import ragdoll.code.uml.pattern.IFormatConsumer;
 import ragdoll.code.uml.pattern.NodeAttribute;
 import ragdoll.code.uml.pattern.Pattern;
 import ragdoll.code.uml.pattern.PatternInfo;
+import ragdoll.framework.RagdollProperties;
 
 public class GVFormatConsumer implements IFormatConsumer {
 	private volatile static GVFormatConsumer instance;
@@ -41,7 +42,8 @@ public class GVFormatConsumer implements IFormatConsumer {
 			List<Pattern> patterns = patternMap.get(patternType);
 			if (patternType.toLowerCase().equals("singleton")) {
 				for (Pattern pattern : patterns) {
-					if (!PatternInfo.getInstance().isPatternSelected(patternType, pattern)) {
+					if (!PatternInfo.getInstance().isPatternSelected(patternType, pattern) &&
+						!RagdollProperties.getInstance().getProperty("Mode").equals("UML")) {
 						continue;
 					}
 					String className = pattern.getRoleMap().keySet().iterator().next();
@@ -61,7 +63,8 @@ public class GVFormatConsumer implements IFormatConsumer {
 
 	private void setNodeAttribute(String patternType, List<Pattern> patterns, String patternColor) {
 		for (Pattern pattern : patterns) {
-			if (!PatternInfo.getInstance().isPatternSelected(patternType, pattern)) {
+			if (!PatternInfo.getInstance().isPatternSelected(patternType, pattern) &&
+				!RagdollProperties.getInstance().getProperty("Mode").equals("UML")) {
 				continue;
 			}
 			for (String className : pattern.getRoleMap().keySet()) {
